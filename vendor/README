@@ -1,9 +1,0 @@
-Vendor folder
-=============
-The files in this folder should get automatically created by Composer.
-When running the application, first make sure that Composer has parsed the
-composer.json file in the root.
-
-Files that do not use Composer are NOT autoloaded by default. If you want to use
-vendor files that are not installed by Composer, make sure you create an
-autoloader for these files, or load them automatically using the Folders class.
