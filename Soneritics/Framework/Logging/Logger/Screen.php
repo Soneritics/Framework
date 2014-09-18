@@ -24,42 +24,24 @@
  */
 namespace Soneritics\Framework\Logging;
 
-use Soneritics\Framework\Logging\Logger\Logger;
-
 /**
+ * Screen logger. Simply logs to the screen.
  * 
  * @author Jordi Jolink
- * @date 14-9-2014
+ * @date 19-9-2014
  */
-class Log
+class Screen extends Logger
 {
-	private static $logger;
-
-	/**
-	 * Set the logger to use.
-	 * 
-	 * @param \Soneritics\Framework\Logging\Logger $logger
-	 * @return \Soneritics\Framework\Logging\Log
-	 */
-	public static function setLogger(Logger $logger)
-	{
-		static::$logger = $logger;
-		return $this;
-	}
-
 	/**
 	 * Write a debug message to the selected logger.
 	 * When no logger has been initialized, the default logger is used.
 	 * 
-	 * @param type $object
+	 * @param mixed $object
 	 */
-    public static function write($object)
+    public function write($object)
 	{
-		if (static::$logger === null) {
-			static::$logger = new Logger\Screen();
-		}
-
-		static::$logger->write($object);
-		return $this;
+		echo '<pre style="text-align:left;">';
+		print_r($object);
+		echo '</pre>';
 	}
 }
