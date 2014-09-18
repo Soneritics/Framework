@@ -33,6 +33,13 @@ namespace Soneritics\Framework\Logging;
 class Screen extends Logger
 {
 	/**
+	 * No configuration is needed for this Logger.
+	 * 
+	 * @param array $configuration
+	 */
+	public function setConfiguration(array $configuration){}
+
+	/**
 	 * Write a debug message to the selected logger.
 	 * When no logger has been initialized, the default logger is used.
 	 * 

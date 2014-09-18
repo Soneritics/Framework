@@ -2,7 +2,7 @@
 /* 
  * The MIT License
  *
- * Copyright 2014 Soneritics Webdevelopment.
+ * Copyright 2014 Jordi Jolink.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,28 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Soneritics\Framework\Logging;
+namespace Test\Modules\Controller;
 
 /**
- * Logger abstraction.
+ * Example controller.
+ * Functions that can are publically visible through the routing system must end with:
+ *  - Action	Default action. Can be used for all actions.
+ *  - Get		Only available for GET actions.
+ *  - Post		Only available for POST actions.
+ *  - Put		Only available for PUT actions.
+ *  - Delete	Only available for DELETE actions
  * 
  * @author Jordi Jolink
- * @date 19-9-2014
+ * @date 18-9-2014
  */
-abstract class Logger
+class Page
 {
-	/**
-	 * Write a debug message to the selected logger.
-	 * When no logger has been initialized, the default logger is used.
-	 * 
-	 * @param mixed $object
-	 */
-    public abstract function write($object);
+	public function indexAction()
+	{
+		
+	}
 
-	/**
-	 * Set the configuration of the logger, as based on the configuration.
-	 * 
-	 * @param array $configuration
-	 */
-	public abstract function setConfiguration(array $configuration);
+	public function faqAction()
+	{
+		
+	}
+
+	public function showAction($page)
+	{
+		die('page: ' . $page);
+	}
 }

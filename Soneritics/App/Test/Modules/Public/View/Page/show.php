@@ -1,0 +1,1 @@
+<p>Pagina: <?php echo $page; ?></p>

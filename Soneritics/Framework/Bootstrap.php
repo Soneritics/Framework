@@ -24,6 +24,8 @@
  */
 namespace Soneritics\Framework;
 
+use Soneritics\Framework\Application;
+
 /**
  * Bootstrap class for the Soneritics framework.
  * This class loads all the files, sets an autoloader and error handler and
@@ -97,7 +99,7 @@ class Bootstrap
         $this->initAutoLoading($app);
         $this->initErrorHandling();
 
-        // Create an application handler
-        echo 'ok';
+        // Start the application
+        new Application($app);
     }
 }

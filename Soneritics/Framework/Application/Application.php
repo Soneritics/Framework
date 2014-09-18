@@ -2,7 +2,7 @@
 /* 
  * The MIT License
  *
- * Copyright 2014 Soneritics Webdevelopment.
+ * Copyright 2014 Jordi Jolink.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,28 +22,52 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Soneritics\Framework\Logging;
+namespace Soneritics\Framework\Application;
+
+use Soneritics\Framework\IO\Folders;
 
 /**
- * Logger abstraction.
+ * Main Application class.
  * 
  * @author Jordi Jolink
- * @date 19-9-2014
+ * @date 18-9-2014
  */
-abstract class Logger
+class Application
 {
-	/**
-	 * Write a debug message to the selected logger.
-	 * When no logger has been initialized, the default logger is used.
-	 * 
-	 * @param mixed $object
-	 */
-    public abstract function write($object);
+	private $application;
+	private $folders;
 
 	/**
-	 * Set the configuration of the logger, as based on the configuration.
+	 * Constructor starts the application.
 	 * 
-	 * @param array $configuration
+	 * @param string $application
 	 */
-	public abstract function setConfiguration(array $configuration);
+	public function __construct($application)
+	{
+		// Set the properties
+		$this->application = $application;
+		$this->folders = new Folders();
+
+		// Validate all module files
+		$this->validate();
+
+		// Create, set-up and start the controller
+		// @todo
+	}
+
+	/**
+	 * Check if all the module's files can be loaded.
+	 * 
+	 * @throws \Soneritics\Framework\Exceptions\FatalException
+	 * @throws Exception
+	 */
+	private function validate()
+	{
+		
+	}
+
+	private function getConfigs()
+	{
+		
+	}
 }
