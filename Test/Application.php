@@ -22,34 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Test\Modules\Controller;
 
 /**
- * Example controller.
- * Functions that can are publically visible through the routing system must end with:
- *  - Action	Default action. Can be used for all actions.
- *  - Get		Only available for GET actions.
- *  - Post		Only available for POST actions.
- *  - Put		Only available for PUT actions.
- *  - Delete	Only available for DELETE actions
+ * Main application class.
  * 
  * @author Jordi Jolink
- * @date 18-9-2014
+ * @date 19-9-2014
  */
-class Page
+class Application extends Soneritics\Framework\Application\Application
 {
-	public function indexAction()
-	{
-		
-	}
+    public function afterRun()
+    {
+        
+    }
 
-	public function faqAction()
-	{
-		
-	}
+    public function beforeRun()
+    {
+        
+    }
 
-	public function showAction($page)
-	{
-		die('page: ' . $page);
-	}
+    public function canRun($controller, $function)
+    {
+        return true;
+    }
 }

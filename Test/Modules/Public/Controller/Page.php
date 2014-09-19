@@ -22,48 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Soneritics\Framework\Application;
-
-use Soneritics\Framework\IO\Folders;
+namespace Modules\Controller;
 
 /**
- * Main Application abstraction class.
+ * Example controller.
+ * Functions that can are publically visible through the routing system must end with:
+ *  - Action	Default action. Can be used for all actions.
+ *  - Get		Only available for GET actions.
+ *  - Post		Only available for POST actions.
+ *  - Put		Only available for PUT actions.
+ *  - Delete	Only available for DELETE actions
  * 
  * @author Jordi Jolink
  * @date 18-9-2014
  */
-abstract class Application
+class Page
 {
-	private $folders;
-
-	/**
-	 * Constructor starts the application.
-	 * 
-	 * @param string $application
-	 */
-	public final function __construct()
-	{
-		// Set the properties
-		$this->folders = new Folders();
-
-		// Validate all module files
-		$this->validate();
-	}
-
-	/**
-	 * Check if all the module's files can be loaded.
-	 * 
-	 * @throws \Soneritics\Framework\Exceptions\FatalException
-	 * @throws Exception
-	 */
-	private final function validate()
+	public function indexAction()
 	{
 		
 	}
 
-    public abstract function beforeRun();
+	public function faqAction()
+	{
+		
+	}
 
-    public abstract function afterRun();
-
-    public abstract function canRun($controller, $function);
+	public function showAction($page)
+	{
+		die('page: ' . $page);
+	}
 }

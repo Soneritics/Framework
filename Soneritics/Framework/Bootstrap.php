@@ -24,7 +24,7 @@
  */
 namespace Soneritics\Framework;
 
-use Soneritics\Framework\Application;
+use \Application;
 
 /**
  * Bootstrap class for the Soneritics framework.
@@ -41,21 +41,22 @@ class Bootstrap
     /**
      * Create a Folders object and initialize it with the root path.
      * 
-     * @param string $app
+     * @param string $appPath Path of the application root (optional).
      */
-    private function setFolders($app)
+    private function setFolders($appPath = null)
     {
         $rootPath = dirname(dirname(__DIR__));
         require_once($rootPath . '/Soneritics/Framework/IO/Folders.php');
 
-        $this->folders = new IO\Folders();
-        $this->folders->setRootPath($app, $rootPath);
+        $this->folders = (new IO\Folders())
+            ->setFrameworkRootPath($rootPath)
+            ->setAppRootPath($appPath);
     }
 
     /**
      * Initialize the auto loaders.
      */
-    private function initAutoLoading($app)
+    private function initAutoLoading()
     {
         // Initialize Composer's autoloader
         $vendorAutoLoader = 
@@ -69,13 +70,13 @@ class Bootstrap
         require($this->folders->get('framework') . '/AutoLoader.php');
         (new SplClassLoader(
             'Soneritics',
-            $this->folders->get('package')
+            $this->folders->get('root')
         ))->register();
 
         // Add the App's auto loading
         (new SplClassLoader(
-            $app,
-            $this->folders->get('app') . '/' . $app
+            '',
+            $this->folders->get('app')
         ))->register();
     }
 
@@ -88,18 +89,29 @@ class Bootstrap
     }
 
     /**
+     * Start the application.
+     */
+    private function dispatch()
+    {
+        require_once($this->folders->get('app') . '/Application.php');
+        $application = new Application();
+
+        echo ' ja';
+    }
+
+    /**
      * Starts the application.
      * 
-     * @param string $app Name of the application.
+     * @param string $appPath Path of the application root (optional).
      */
-    public function __construct($app)
+    public function __construct($appPath = null)
     {
         // Initialize and register the necessary
-        $this->setFolders($app);
-        $this->initAutoLoading($app);
+        $this->setFolders($appPath);
+        $this->initAutoLoading();
         $this->initErrorHandling();
 
         // Start the application
-        new Application($app);
+        $this->dispatch();
     }
 }

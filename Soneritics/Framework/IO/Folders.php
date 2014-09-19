@@ -52,26 +52,49 @@ class Folders
     }
 
     /**
-     * Set the root path, on which other paths are based on.
+     * Set the root path of the framework, on which other paths are based on.
      * 
-     * @param string $appName The name of the application.
-     * @param string $rootPath The path of the application root.
+     * @param string $rootPath The path of the framework's root.
+     * @return \Soneritics\Framework\IO\Folders
      */
-    public function setRootPath($appName, $rootPath = null)
+    public function setFrameworkRootPath($rootPath)
     {
-        $rootPath = $this->removeTrailingSlash(
+        $root = $this->removeTrailingSlash($rootPath);
+
+        static::$paths = array_merge(
+            static::$paths,
+            array(
+                'root' => $root,
+                'package' => "{$root}/Soneritics",
+                'framework' => "{$root}/Soneritics/Framework"
+            )
+        );
+
+        return $this;
+    }
+
+    /**
+     * Set the application root directory.
+     * 
+     * @param string $rootPath Path of the application's root.
+     */
+    public function setAppRootPath($rootPath = null)
+    {
+        $root = $this->removeTrailingSlash(
             $rootPath === null ? getcwd() : $rootPath
         );
 
-        static::$paths = array(
-            'root' => $rootPath,
-            'package' => "{$rootPath}/Soneritics",
-            'framework' => "{$rootPath}/Soneritics/Framework",
-            'web' => "{$rootPath}/Web",
-            'vendor' => "{$rootPath}/vendor",
-            'app' => "{$rootPath}/Soneritics/App/{$appName}",
-            'config' => "{$rootPath}/Soneritics/App/{$appName}/Config",
+        static::$paths = array_merge(
+            static::$paths,
+            array(
+                'app' => $root,
+                'web' => "{$root}/Web",
+                'vendor' => "{$root}/vendor",
+                'config' => "{$root}/Config",
+            )
         );
+
+        return $this;
     }
 
     /**
