@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Soneritics\Framework\Headers;
+namespace Framework\Headers;
 
 /**
  * Simple class that redirects to a given URL.
