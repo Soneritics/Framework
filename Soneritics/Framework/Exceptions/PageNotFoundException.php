@@ -25,4 +25,7 @@
 
 namespace Framework\Exceptions;
 
-class FatalException extends \Exception  {}
+class PageNotFoundException extends \Exception
+{
+    protected $message = 'Page not found.';
+}

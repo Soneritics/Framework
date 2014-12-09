@@ -25,4 +25,7 @@
 
 namespace Framework\Exceptions;
 
-class FatalException extends \Exception  {}
+class PermissionDeniedException extends \Exception 
+{
+    protected $message = 'Permission denied!';
+}
