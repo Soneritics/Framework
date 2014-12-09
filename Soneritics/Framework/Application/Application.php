@@ -22,9 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Soneritics\Framework\Application;
+namespace Framework\Application;
 
-use Soneritics\Framework\IO\Folders;
+use Framework\Exceptions\PageNotFoundException;
+use Framework\Exceptions\PermissionDeniedException;
+use Framework\Exceptions\FatalException;
+use Framework\IO\Folders;
 
 /**
  * Main Application abstraction class.
@@ -34,36 +37,135 @@ use Soneritics\Framework\IO\Folders;
  */
 abstract class Application
 {
-	private $folders;
+	private static $folders;
+    private static $config;
 
 	/**
-	 * Constructor starts the application.
-	 * 
-	 * @param string $application
+	 * Constructor. Set-up necessary objects and connections.
 	 */
 	public final function __construct()
 	{
-		// Set the properties
-		$this->folders = new Folders();
-
-		// Validate all module files
-		$this->validate();
+		self::$folders = new Folders();
 	}
 
-	/**
-	 * Check if all the module's files can be loaded.
-	 * 
-	 * @throws \Soneritics\Framework\Exceptions\FatalException
-	 * @throws Exception
-	 */
-	private final function validate()
-	{
-		
-	}
+    protected abstract function beforeRun(Routing $router);
 
-    public abstract function beforeRun();
+    protected abstract function afterRun(Routing $router);
 
-    public abstract function afterRun();
+    protected abstract function canRun(Routing $router);
 
-    public abstract function canRun($controller, $function);
+    /**
+     * Run the current application with a given Router and Config.
+     * 
+     * @param \Framework\Application\Config $config
+     * @param \Framework\Application\Routing $router
+     * @throws PageNotFoundException
+     * @throws PermissionDeniedException
+     */
+    public final function run(Config $config, Routing $router)
+    {
+        // Make the Config object available through the Application class
+        self::$config = $config;
+
+        // Make sure the page exists
+        if ($router->canRoute() === false) {
+            throw new PageNotFoundException('Unable to route.');
+        }
+
+        // Check if the application allows running
+        if (!$this->canRun($router)) {
+            throw new PermissionDeniedException();
+        }
+
+        // Do the actual running
+        $this->beforeRun($router);
+        $this->dispatch($router);
+        $this->afterRun($router);
+    }
+
+    /**
+     * Function to handle the actual running of the controller.
+     * 
+     * @param \Framework\Application\Routing $router
+     * @throws PageNotFoundException
+     */
+    private function dispatch(Routing $router)
+    {
+        // Create the controller
+        $controllerClass = implode(
+            '\\',
+            array(
+                'Modules',
+                $router->getModule(),
+                'Controller',
+                $router->getController()
+            )
+        );
+
+        try {
+            $controller = new $controllerClass();
+        } catch (Exception $ex) {
+            throw new PageNotFoundException($ex->getMessage());
+        }
+
+        // Check for the action
+        if (method_exists($controller, $router->getFunction() . $router->getRequestType())) {
+            $action = $router->getFunction() . $router->getRequestType();
+        } elseif (method_exists($controller, $router->getFunction() . 'Action')) {
+            $action = $router->getFunction() . 'Action';
+        } else {
+            throw new PageNotFoundException(
+                'Action not found: ' .
+                $router->getFunction() . $router->getRequestType()
+            );
+        }
+
+        $view = call_user_func_array(
+            array($controller, $action),
+            $router->getParams()
+        );
+
+        $isView = is_a($view, 'Framework\MVC\View');
+        if (!is_null($view) && !$isView) {
+            throw new FatalException(
+                'Unexpected controller function result: ' .
+                print_r($view, true)
+            );
+        } elseif ($isView) {
+            echo $view->render(
+                new \Framework\Renderer\HtmlRenderer($router->getModule()) // @todo: fixme
+            );
+        }
+    }
+
+    /**
+     * Static function to return the configuration object.
+     * 
+     * @return Config Configuration for the application.
+     */
+    public static function getConfig()
+    {
+        return self::$config;
+    }
+
+    /**
+     * Returns an initialized Folders object.
+     * 
+     * @return Folders Initialized Folders object.
+     */
+    public static function getFolders()
+    {
+        return self::$folders;
+    }
+
+    /**
+     * Use the framework's logger to log a message.
+     */
+    public static function log()
+    {
+        call_user_func_array(
+            array('Framework\Logging\Log', 'write'),
+            func_get_args()
+        );
+    }
 }
