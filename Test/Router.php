@@ -22,34 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Modules\Controller;
 
 /**
- * Example controller.
- * Functions that can are publically visible through the routing system must end with:
- *  - Action	Default action. Can be used for all actions.
- *  - Get		Only available for GET actions.
- *  - Post		Only available for POST actions.
- *  - Put		Only available for PUT actions.
- *  - Delete	Only available for DELETE actions
+ * Router class for catching pages that could not be routed.
  * 
  * @author Jordi Jolink
- * @date 18-9-2014
+ * @date 8-11-2014
  */
-class Page
+class Router
 {
-	public function indexAction()
-	{
-		
-	}
-
-	public function faqAction()
-	{
-		
-	}
-
-	public function showAction($page)
-	{
-		die('page: ' . $page);
-	}
+    
 }
