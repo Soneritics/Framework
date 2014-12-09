@@ -1,0 +1,4 @@
+RewriteEngine on
+RewriteCond %{DOCUMENT_ROOT}/Web%{REQUEST_URI} -f
+RewriteRule (.*) Web%{REQUEST_URI} [L]
+RewriteRule (.*) index.php
