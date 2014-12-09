@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Soneritics\Framework\IO;
+namespace Framework\IO;
 
 /**
  * Class that handles file folders.
@@ -55,7 +55,7 @@ class Folders
      * Set the root path of the framework, on which other paths are based on.
      * 
      * @param string $rootPath The path of the framework's root.
-     * @return \Soneritics\Framework\IO\Folders
+     * @return \Framework\IO\Folders
      */
     public function setFrameworkRootPath($rootPath)
     {
@@ -91,6 +91,8 @@ class Folders
                 'web' => "{$root}/Web",
                 'vendor' => "{$root}/vendor",
                 'config' => "{$root}/Config",
+                'layouts' => "{$root}/Layouts",
+                'modules' => "{$root}/Modules",
             )
         );
 
@@ -110,7 +112,7 @@ class Folders
             return static::$paths[$name];
         }
 
-        throw new Soneritics\Framework\Exceptions\FatalException(
+        throw new Framework\Exceptions\FatalException(
             'Path not set: ' . $name
         );
     }
