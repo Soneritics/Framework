@@ -22,9 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Soneritics\Framework;
+namespace Framework;
 
-use \Application;
+use Framework\Application\Config;
+use Framework\Application\Routing;
 
 /**
  * Bootstrap class for the Soneritics framework.
@@ -36,7 +37,7 @@ use \Application;
  */
 class Bootstrap
 {
-    private $folders;
+    private $folders, $application;
 
     /**
      * Create a Folders object and initialize it with the root path.
@@ -68,16 +69,10 @@ class Bootstrap
 
         // Include the framework's autoloader
         require($this->folders->get('framework') . '/AutoLoader.php');
-        (new SplClassLoader(
-            'Soneritics',
-            $this->folders->get('root')
-        ))->register();
-
-        // Add the App's auto loading
-        (new SplClassLoader(
-            '',
-            $this->folders->get('app')
-        ))->register();
+        (new AutoLoader)
+            ->addRootPath($this->folders->get('app'))
+            ->addRootPath($this->folders->get('package'))
+            ->register();
     }
 
     /**
@@ -85,7 +80,21 @@ class Bootstrap
      */
     private function initErrorHandling()
     {
-        
+        register_shutdown_function(array($this, 'shutdown'));
+    }
+
+    /**
+     * Actual shutdown function.
+     */
+    public function shutdown()
+    {
+        $error = error_get_last();
+        if (!empty($error)) {
+            // Show the error
+            echo '<pre>';
+            print_r($error);
+            echo '</pre>';
+        }
     }
 
     /**
@@ -93,10 +102,13 @@ class Bootstrap
      */
     private function dispatch()
     {
-        require_once($this->folders->get('app') . '/Application.php');
-        $application = new Application();
+        $this->application = new \Application();
+        $config = new Config($this->folders->get('config'));
 
-        echo ' ja';
+        $this->application->run(
+            $config,
+            new Routing($config->get('Routing'))
+        );
     }
 
     /**
@@ -106,6 +118,9 @@ class Bootstrap
      */
     public function __construct($appPath = null)
     {
+        // Complete output buffering
+        ob_start();
+
         // Initialize and register the necessary
         $this->setFolders($appPath);
         $this->initAutoLoading();
@@ -113,5 +128,8 @@ class Bootstrap
 
         // Start the application
         $this->dispatch();
+
+        // When everything is done, render
+        echo ob_get_clean();
     }
 }
