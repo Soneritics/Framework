@@ -22,9 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Soneritics\Framework\Logging;
+namespace Framework\Logging;
 
-use Soneritics\Framework\Logging\Logger\Logger;
+use Framework\Logging\Logger;
+use Framework\Logging\Loggers\Screen;
 
 /**
  * 
@@ -38,28 +39,28 @@ class Log
 	/**
 	 * Set the logger to use.
 	 * 
-	 * @param \Soneritics\Framework\Logging\Logger $logger
-	 * @return \Soneritics\Framework\Logging\Log
+	 * @param \Framework\Logging\Logger $logger
+	 * @return \Framework\Logging\Log
 	 */
 	public static function setLogger(Logger $logger)
 	{
 		static::$logger = $logger;
-		return $this;
 	}
 
 	/**
 	 * Write a debug message to the selected logger.
 	 * When no logger has been initialized, the default logger is used.
-	 * 
-	 * @param type $object
 	 */
-    public static function write($object)
+    public static function write()
 	{
 		if (static::$logger === null) {
-			static::$logger = new Logger\Screen();
+			static::$logger = new Screen();
 		}
 
-		static::$logger->write($object);
-		return $this;
+        if (func_num_args() > 0) {
+            foreach (func_get_args() as $object) {
+                static::$logger->write($object);
+            }
+        }
 	}
 }

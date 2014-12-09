@@ -22,7 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Soneritics\Framework\Logging;
+namespace Framework\Logging\Loggers;
+
+use Framework\Logging\Logger;
 
 /**
  * Screen logger. Simply logs to the screen.
