@@ -16,7 +16,7 @@ return array(
 		'/' => array(
 			'Module' => 'Pub',
 			'Controller' => 'Login',
-            'Action' => 'index'
+            'Function' => 'index'
 		)
 	)
 );
