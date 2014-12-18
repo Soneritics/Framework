@@ -6,7 +6,7 @@
 return array(
 	// Select the Logger. When not using a framework's logger, use the full namespace to define the logger.
 	'Logging' => array(
-		'Logger' => 'FirePHP',
+		'Logger' => '\Framework\Logging\Loggers\FirePHP',
 		'Config' => array()
 	),
 
