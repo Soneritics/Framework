@@ -49,10 +49,7 @@ class Config
 
 		if (!empty($configFiles)) {
 			foreach ($configFiles as $configFile) {
-				$this->configs = array_merge_recursive(
-					$this->configs,
-					include($configPath . '/' . $configFile)
-				);
+				$this->configs += include($configPath . '/' . $configFile);
 			}
 		}
     }
