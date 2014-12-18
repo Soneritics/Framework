@@ -25,22 +25,48 @@
 namespace Framework\Application;
 
 /**
- * 
+ * Project configuration class.
+ * HAndles the reading and parsing of the project's configuration files.
  * 
  * @author Jordi Jolink
  * @date 27-11-2014
  */
 class Config
 {
+	private $configs = array();
+
+	/**
+	 * Constructor, reads the configuration files from a project.
+	 * 
+	 * @param string $configPath
+	 */
     public function __construct($configPath)
     {
-        $configFiles = glob('config-*.php');
+        $configFiles = array_map(
+			'basename',
+			glob($configPath . '/config-*.php')
+		);
+
+		if (!empty($configFiles)) {
+			foreach ($configFiles as $configFile) {
+				$this->configs = array_merge_recursive(
+					$this->configs,
+					include($configPath . '/' . $configFile)
+				);
+			}
+		}
     }
 
+	/**
+	 * Get the contents of a configuration.
+	 * 
+	 * @param string $key
+	 * @return mixed
+	 */
     public function get($key)
     {
-        if ($key == 'Routing') {
-            return array();
+        if (isset($this->configs[$key])) {
+            return $this->configs[$key];
         } else {
             return null;
         }
