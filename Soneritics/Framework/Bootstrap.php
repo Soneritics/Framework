@@ -105,6 +105,13 @@ class Bootstrap
         $this->application = new \Application();
         $config = new Config($this->folders->get('config'));
 
+		if ($config->get('Logging') !== null) {
+			$logger = $config->get('Logging');
+			\Framework\Logging\Log::setLogger(
+				new $logger['Logger']($logger['Config'])
+			);
+		}
+
         $this->application->run(
             $config,
             new Routing($config->get('Routing'))
