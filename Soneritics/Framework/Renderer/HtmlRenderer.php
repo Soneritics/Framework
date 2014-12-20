@@ -57,9 +57,11 @@ class HtmlRenderer extends Renderer
         $content = ob_get_clean();
 
         if ($layout !== null) {
+			ob_start();
             include(
                 \Application::getFolders()->get('layouts') . '/' . $layout . '.php'
             );
+			return ob_get_clean();
         } else {
             return $content;
         }
