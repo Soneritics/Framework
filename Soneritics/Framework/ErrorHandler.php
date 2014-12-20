@@ -22,28 +22,45 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-use Framework\Application\Routing;
+namespace Framework;
+
+use Framework\Logging\Log;
 
 /**
- * Main application class.
+ * Error handler class.
+ * Renders errors.
  * 
  * @author Jordi Jolink
- * @date 19-9-2014
+ * @date 18-12-2014
  */
-class Application extends Framework\Application\Application
+class ErrorHandler
 {
-    public function afterRun(Routing $router)
-    {
-        static::log('Application afterRun');
-    }
+	private function getErrorView(\Exception $exception)
+	{
+		$className = substr(get_class($exception), strlen('Framework\Exceptions\\'));
+		switch ($className) {
+			case 'PageNotFoundException':
+			case 'PermissionDeniedException':
+				return substr($className, 0, -1 * strlen('Exception'));
+				break;
+		}
 
-    public function beforeRun(Routing $router)
-    {
-        static::log('Application beforeRun');
-    }
+		return 'error';
+	}
 
-    public function canRun(Routing $router)
-    {
-        return false;
-    }
+	private function sendHeader(\Exception $exception)
+	{
+		// @todo
+	}
+
+	public function handle(\Exception $exception)
+	{
+		Log::write($exception);
+		$this->sendHeader($exception);
+		$errorRenderer = new Renderer\ErrorRenderer('error');
+		echo $errorRenderer->render(
+			$this->getErrorView($exception),
+			array('exception' => $exception)
+		);
+	}
 }

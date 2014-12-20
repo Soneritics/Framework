@@ -6,6 +6,7 @@
 	</head>
 
 	<body>
+		<h1>Layout</h1>
         <?php echo $content; ?>
 	</body>
 </html>

@@ -22,28 +22,60 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-use Framework\Application\Routing;
+namespace Framework\Renderer;
 
 /**
- * Main application class.
+ * 
  * 
  * @author Jordi Jolink
- * @date 19-9-2014
+ * @date 20-12-2014
  */
-class Application extends Framework\Application\Application
+class ErrorRenderer extends HtmlRenderer
 {
-    public function afterRun(Routing $router)
-    {
-        static::log('Application afterRun');
-    }
+	/**
+	 * Override the constructor, as it might raise errors.
+	 * 
+	 * @param string $module Can be omitted for the ErrorRenderer.
+	 */
+	public function __construct($module){}
 
-    public function beforeRun(Routing $router)
-    {
-        static::log('Application beforeRun');
-    }
+	private function getViewFileUrl($viewFile)
+	{
+		$file = 'Errors/%s.php';
+		if (file_exists(($f = sprintf($file, $viewFile)))) {
+			return $f;
+		}
 
-    public function canRun(Routing $router)
+		return sprintf($file, 'error');
+	}
+
+	private function getErrorLayout()
+	{
+		if (file_exists('Layouts/error.php')) {
+			return 'error';
+		}
+
+		return 'default';
+	}
+
+	/**
+	 * 
+	 * 
+	 * @param type $viewFile
+	 * @param array $params
+	 * @param type $layout
+	 * @return string
+	 */
+    public function render($viewFile, array $params, $layout = null)
     {
-        return false;
+        extract($params);
+
+        ob_start();
+        include($this->getViewFileUrl($viewFile));
+        $content = ob_get_clean();
+
+		ob_start();
+		include('Layouts/' . $this->getErrorLayout() . '.php');
+		return ob_get_clean();
     }
 }

@@ -90,10 +90,7 @@ class Bootstrap
     {
         $error = error_get_last();
         if (!empty($error)) {
-            // Show the error
-            echo '<pre>';
-            print_r($error);
-            echo '</pre>';
+            \Application::log($error);
         }
     }
 
@@ -128,6 +125,7 @@ class Bootstrap
         // Complete output buffering
         ob_start();
 
+		try {
         // Initialize and register the necessary
         $this->setFolders($appPath);
         $this->initAutoLoading();
@@ -135,8 +133,12 @@ class Bootstrap
 
         // Start the application
         $this->dispatch();
-
-        // When everything is done, render
-        echo ob_get_clean();
+		} catch (\Exception $e) {
+			$errorHandler = new ErrorHandler;
+			$errorHandler->handle($e);
+		} finally {
+			// When everything is done, render
+			echo ob_get_clean();
+		}
     }
 }
