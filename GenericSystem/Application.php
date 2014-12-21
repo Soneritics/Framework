@@ -44,6 +44,6 @@ class Application extends Framework\Application\Application
 
     public function canRun(Routing $router)
     {
-        return false;
+        return true;
     }
 }
