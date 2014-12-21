@@ -42,6 +42,6 @@ class Form
     public function __call($object, $params)
     {
         $object = __NAMESPACE__ . '\HelperObject\Form' . ucfirst($object);
-        return new $object;
+        return new $object(isset($params[0]) ? $params[0] : null);
     }
 }
