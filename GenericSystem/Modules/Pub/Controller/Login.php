@@ -38,9 +38,11 @@ class Login extends Controller
 	public function indexAction()
     {
         \Application::log('In de controller al, toe maar!');
-        $view = new View('Login/index');
-        $view2 = new View('Login/index');
-        $view->setParam('view2', $view2);
-        return $view;
+        return new View('Login/index');
+    }
+
+    public function indexPost()
+    {
+        die('post');
     }
 }

@@ -1,4 +1,12 @@
-<form role="form" id="loginForm" action="dashboard.html" class="form-horizontal" novalidate="novalidate">
+<?php
+    $this->form
+        ->start()
+        ->setMethod('post')
+        ->setAction('/login')
+        ->setParam('id', 'loginForm')
+        ->setClass('form-horizontal')
+        ->render();
+?>
     <div class="form-group">
         <label for="email" class="col-lg-12 control-label">E-mailadres:</label>
         <div class="col-lg-12">
@@ -11,7 +19,7 @@
         <div class="col-lg-12">
             <input type="password" class="form-control uniform-input password" value="" name="password" id="password">
             <span class="icon16 fa fa-lock right gray marginR10"></span>
-            <span class="forgot help-block"><a href="#">Wachtwoord vergeten?</a></span>
+            <span class="forgot help-block"><a href="/wachtwoord-vergeten">Wachtwoord vergeten?</a></span>
         </div>
     </div>
     <div class="form-group">
@@ -19,4 +27,4 @@
             <button id="loginBtn" class="btn btn-info right" type="submit"><span class="icon16 fa fa-sign-in white"></span> Login</button>
         </div>
     </div>
-</form>
+<?php $this->form->end()->render(); ?>

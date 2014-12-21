@@ -28,6 +28,7 @@ use Framework\Exceptions\PageNotFoundException;
 use Framework\Exceptions\PermissionDeniedException;
 use Framework\Exceptions\FatalException;
 use Framework\IO\Folders;
+use Framework\MVC\View;
 
 /**
  * Main Application abstraction class.
@@ -53,6 +54,8 @@ abstract class Application
     protected abstract function afterRun(Routing $router);
 
     protected abstract function canRun(Routing $router);
+
+    protected abstract function beforeRender(View $view);
 
     /**
      * Run the current application with a given Router and Config.
@@ -132,6 +135,7 @@ abstract class Application
                 print_r($view, true)
             );
         } elseif ($isView) {
+            $this->beforeRender($view);
             echo $view->render(
                 new \Framework\Renderer\HtmlRenderer($router->getModule()) // @todo: fixme
             );

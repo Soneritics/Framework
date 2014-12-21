@@ -23,6 +23,7 @@
  * THE SOFTWARE.
  */
 use Framework\Application\Routing;
+use Framework\MVC\View;
 
 /**
  * Main application class.
@@ -32,17 +33,22 @@ use Framework\Application\Routing;
  */
 class Application extends Framework\Application\Application
 {
-    public function afterRun(Routing $router)
+    protected function afterRun(Routing $router)
     {
         static::log('Application afterRun');
     }
 
-    public function beforeRun(Routing $router)
+    protected function beforeRun(Routing $router)
     {
         static::log('Application beforeRun');
     }
 
-    public function canRun(Routing $router)
+    protected function beforeRender(View $view)
+    {
+        static::log('Application beforeRender');
+    }
+
+    protected function canRun(Routing $router)
     {
         return true;
     }

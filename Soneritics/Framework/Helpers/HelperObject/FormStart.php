@@ -2,7 +2,7 @@
 /* 
  * The MIT License
  *
- * Copyright 2014 Jordi Jolink.
+ * Copyright 2014 Soneritics Webdevelopment.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,53 +22,45 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Framework\Renderer;
-
-use Framework\Helpers\Form;
+namespace Framework\Helpers\HelperObject;
 
 /**
+ * Form's start element.
  * 
- * 
- * @author Jordi Jolink
- * @date 9-12-2014
+ * @author Soneritics Webdevelopment
+ * @date 21-12-2014
  */
-class HtmlRenderer extends Renderer
+class FormStart extends AbstractHelperObject
 {
-    protected $form;
-
-    protected function escape($string)
+    /**
+     * Render the object.
+     * 
+     * @return string HTML code of the object.
+     */
+    public function render()
     {
-        $string = (string)$string;
-
-        if (!mb_detect_encoding($string, 'UTF-8', true)) {
-            $string = utf8_encode($string);
-        }
-
-        return htmlspecialchars($string);
+        echo $this->renderHTML('<form%s>');
     }
 
-    private function getAbsoluteViewFileUrl($viewFile)
+    /**
+     * Wrapper for the `method` parameter.
+     * 
+     * @param string $method
+     * @return $this
+     */
+    public function setMethod($method)
     {
-        return $this->modulePath . '/' . $viewFile . '.php';
+        return $this->setParam('method', $method);
     }
 
-    public function render($viewFile, array $params, $layout = null)
+    /**
+     * Wrapper for the `action` parameter.
+     * 
+     * @param string $action
+     * @return $this
+     */
+    public function setAction($action)
     {
-        $this->form = new Form();
-        extract($params);
-
-        ob_start();
-        include($this->getAbsoluteViewFileUrl($viewFile));
-        $content = ob_get_clean();
-
-        if ($layout !== null) {
-			ob_start();
-            include(
-                \Application::getFolders()->get('layouts') . '/' . $layout . '.php'
-            );
-			return ob_get_clean();
-        } else {
-            return $content;
-        }
+        return $this->setParam('action', $action);
     }
 }

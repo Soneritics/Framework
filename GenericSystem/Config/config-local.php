@@ -17,6 +17,11 @@ return array(
 			'Module' => 'Pub',
 			'Controller' => 'Login',
             'Function' => 'index'
+		),
+		'/login'  => array(
+			'Module' => 'Pub',
+			'Controller' => 'Login',
+            'Function' => 'index'
 		)
 	)
 );

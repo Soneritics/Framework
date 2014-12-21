@@ -2,7 +2,7 @@
 /* 
  * The MIT License
  *
- * Copyright 2014 Jordi Jolink.
+ * Copyright 2014 Soneritics Webdevelopment.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,53 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Framework\Renderer;
-
-use Framework\Helpers\Form;
+namespace Framework\Helpers;
 
 /**
+ * Form helper class.
+ * This class contains functions that return HelperObjectInterface objects.
  * 
- * 
- * @author Jordi Jolink
- * @date 9-12-2014
+ * @author Soneritics Webdevelopment
+ * @date 21-12-2014
  */
-class HtmlRenderer extends Renderer
+class Form
 {
-    protected $form;
-
-    protected function escape($string)
+    /**
+     * Magic function to get a FormObject.
+     * 
+     * @param string $object
+     * @return AbstractHelperObject
+     */
+    public function __call($object, $params)
     {
-        $string = (string)$string;
-
-        if (!mb_detect_encoding($string, 'UTF-8', true)) {
-            $string = utf8_encode($string);
-        }
-
-        return htmlspecialchars($string);
-    }
-
-    private function getAbsoluteViewFileUrl($viewFile)
-    {
-        return $this->modulePath . '/' . $viewFile . '.php';
-    }
-
-    public function render($viewFile, array $params, $layout = null)
-    {
-        $this->form = new Form();
-        extract($params);
-
-        ob_start();
-        include($this->getAbsoluteViewFileUrl($viewFile));
-        $content = ob_get_clean();
-
-        if ($layout !== null) {
-			ob_start();
-            include(
-                \Application::getFolders()->get('layouts') . '/' . $layout . '.php'
-            );
-			return ob_get_clean();
-        } else {
-            return $content;
-        }
+        $object = __NAMESPACE__ . '\HelperObject\Form' . ucfirst($object);
+        return new $object;
     }
 }
