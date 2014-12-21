@@ -66,6 +66,16 @@ abstract class AbstractHelperObject
     }
 
     /**
+     * Create a name that can be used in HTML.
+     * 
+     * @return string
+     */
+    private function getRequestName()
+    {
+        return sprintf('data[%s]', str_replace('.', '][', $this->name));
+    }
+
+    /**
      * Render HTML from the parameters in the $markup.
      * 
      * @param string $markup
@@ -73,6 +83,10 @@ abstract class AbstractHelperObject
      */
     protected function renderHTML($markup)
     {
+        if ($this->name !== null) {
+            $this->params['name'] = $this->getRequestName();
+        }
+
         if (!empty($this->params)) {
             $params = array();
 
@@ -133,6 +147,17 @@ abstract class AbstractHelperObject
     public function setClass($class)
     {
         return $this->setParam('class' , $class);
+    }
+
+    /**
+     * Set the object's vlue.
+     * 
+     * @param string $value
+     * @return \Framework\Helpers\AbstractHelperObject
+     */
+    public function setValue($value)
+    {
+        return $this->setParam('value' , $value);
     }
 
     /**
