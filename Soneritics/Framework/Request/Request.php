@@ -22,48 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Framework\MVC;
-
-use Framework\Request\Post;
-use Framework\Request\Get;
-use Framework\Request\Request;
+namespace Framework\Request;
 
 /**
- * Abstract controller class, defines the lay-out of the controllers.
+ * 
  * 
  * @author Jordi Jolink
- * @date 17-11-2014
+ * @date 23-12-2014
  */
-abstract class Controller
+class Request extends RequestAbstract
 {
-    private $request = null,
-            $post = null,
-            $get = null;
-
-    protected function fromPost($name = null)
+    /**
+     * Get the data to parse.
+     * 
+     * @return array
+     */
+    protected function getData()
     {
-        if ($this->post === null) {
-            $this->post = new Post;
-        }
-
-        return $this->post->get($name);
-    }
-
-    protected function fromGet($name = null)
-    {
-        if ($this->get === null) {
-            $this->get = new Get;
-        }
-
-        return $this->get->get($name);
-    }
-
-    protected function fromRequest($name = null)
-    {
-        if ($this->request === null) {
-            $this->request = new Request;
-        }
-
-        return $this->request->get($name);
+        return isset($_REQUEST['data']) ? $_REQUEST['data'] : $_REQUEST;
     }
 }
