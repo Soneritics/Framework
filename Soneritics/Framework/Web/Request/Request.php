@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Framework\Request;
+namespace Framework\Web\Request;
 
 /**
  * 
@@ -30,7 +30,7 @@ namespace Framework\Request;
  * @author Jordi Jolink
  * @date 23-12-2014
  */
-class Post extends RequestAbstract
+class Request extends RequestAbstract
 {
     /**
      * Get the data to parse.
@@ -39,7 +39,6 @@ class Post extends RequestAbstract
      */
     protected function getData()
     {
-        return isset($_POST['data']) ? $_POST['data'] : $_POST;
+        return isset($_REQUEST['data']) ? $_REQUEST['data'] : $_REQUEST;
     }
-
 }

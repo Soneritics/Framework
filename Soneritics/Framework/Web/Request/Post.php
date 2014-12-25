@@ -22,73 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Framework\Request;
+namespace Framework\Web\Request;
 
 /**
- * Abstract request class.
+ * 
  * 
  * @author Jordi Jolink
  * @date 23-12-2014
  */
-abstract class RequestAbstract
+class Post extends RequestAbstract
 {
-    private $data = null;
-
     /**
      * Get the data to parse.
      * 
      * @return array
      */
-    protected abstract function getData();
-
-    private function parseRequestData($data)
+    protected function getData()
     {
-        return is_array($data) ?
-            array_map(array($this, 'parseRequestData'), $data) :
-            stripslashes($data);
+        return isset($_POST['data']) ? $_POST['data'] : $_POST;
     }
 
-    private function parseData()
-    {
-        $data = $this->parseRequestData($this->getData());
-        $this->data = $data;
-    }
-
-    private function getDataFromName($name)
-    {
-        $parts = explode('.', $name);
-
-        if (!empty($parts)) {
-            $result = $this->data;
-
-            foreach ($parts as $part) {
-                if (!isset($result[$part])) {
-                    return null;
-                }
-
-                $result = $result[$part];
-            }
-
-            return $result;
-        }
-
-        return null;
-    }
-
-    public function get($id = null)
-    {
-        if ($this->data === null) {
-            $this->parseData();
-        }
-
-        if ($id === null) {
-            return $this->data;
-        }
-
-        if (isset($this->data[$id])) {
-            return $this->data[$id];
-        }
-
-        return $this->getDataFromName($id);
-    }
 }

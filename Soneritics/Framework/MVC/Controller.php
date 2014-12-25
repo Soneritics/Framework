@@ -24,9 +24,9 @@
  */
 namespace Framework\MVC;
 
-use Framework\Request\Post;
-use Framework\Request\Get;
-use Framework\Request\Request;
+use Framework\Web\Request\Post;
+use Framework\Web\Request\Get;
+use Framework\Web\Request\Request;
 
 /**
  * Abstract controller class, defines the lay-out of the controllers.
