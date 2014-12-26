@@ -49,6 +49,10 @@ class HtmlRenderer extends Renderer
 
     private function getAbsoluteViewFileUrl($viewFile)
     {
+        if (file_exists($viewFile . '.php')) {
+            return $viewFile . '.php';
+        }
+
         return $this->modulePath . '/' . $viewFile . '.php';
     }
 
