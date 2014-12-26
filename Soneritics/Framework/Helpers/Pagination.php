@@ -81,7 +81,7 @@ class Pagination
      */
     private function getFromTo()
     {
-        if ($this->pages <= 6) {
+        if ($this->pages <= 5) {
             return array(1, $this->pages);
         }
 
