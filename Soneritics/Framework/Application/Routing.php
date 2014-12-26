@@ -24,7 +24,7 @@
  */
 namespace Framework\Application;
 
-use Framework\IO\URI;
+use Framework\Web\URI;
 
 /**
  * Routing class.
