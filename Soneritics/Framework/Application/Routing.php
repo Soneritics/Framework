@@ -117,10 +117,18 @@ class Routing
 			foreach ($strippedParts as $part) {
 				$var = trim($part);
 				if (strlen($var) > 0) {
-					$route['Parameters'][] = $var;
+                    if (!isset($route['Function'])) {
+                        $route['Function'] = $var;
+                    } else {
+                        $route['Parameters'][] = $var;
+                    }
 				}
 			}
 		}
+
+        if (!isset($route['Function'])) {
+            $route['Function'] = 'index';
+        }
 
 		// Store the route
 		$this->route = $route;
