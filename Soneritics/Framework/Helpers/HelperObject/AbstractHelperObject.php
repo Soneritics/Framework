@@ -24,6 +24,11 @@
  */
 namespace Framework\Helpers\HelperObject;
 
+use Framework\Web\Request\Post;
+use Framework\Web\Request\Get;
+use Framework\Web\Request\Request;
+use Framework\Web\Request\RequestAbstract;
+
 /**
  * Abstract class for the HelperObject classes.
  * 
@@ -34,6 +39,10 @@ abstract class AbstractHelperObject
 {
     protected $name = null,
               $params = array();
+
+    private $request = null,
+            $post = null,
+            $get = null;
 
     /**
      * Render the object.
@@ -184,5 +193,87 @@ abstract class AbstractHelperObject
         }
 
         return null;
+    }
+
+    /**
+     * Get and/or initialize a Post object.
+     * 
+     * @return Post
+     */
+    protected function getPost()
+    {
+        if ($this->post === null) {
+            $this->post = new Post;
+        }
+
+        return $this->post;
+    }
+
+    /**
+     * Get and/or initialize a Get object.
+     * 
+     * @return Get
+     */
+    protected function getGet()
+    {
+        if ($this->get === null) {
+            $this->get = new Get;
+        }
+
+        return $this->get;
+    }
+
+    /**
+     * Get and/or initialize a Request object.
+     * 
+     * @return Request
+     */
+    protected function getRequest()
+    {
+        if ($this->request === null) {
+            $this->request = new Request;
+        }
+
+        return $this->request;
+    }
+
+    /**
+     * Set the value for this object from a previously submitted form.
+     * 
+     * @param RequestAbstract $request
+     */
+    protected function setValueFrom(RequestAbstract $request)
+    {
+        $this->setValue($request->get($this->getName()));
+    }
+
+    /**
+     * Set the value for this object from a previously submitted form 
+     * using $_REQUEST.
+     */
+    public function setValueFromRequest()
+    {
+        $this->setValueFrom($this->getRequest());
+        return $this;
+    }
+
+    /**
+     * Set the value for this object from a previously submitted form 
+     * using $_GET.
+     */
+    public function setValueFromGet()
+    {
+        $this->setValueFrom($this->getGet());
+        return $this;
+    }
+
+    /**
+     * Set the value for this object from a previously submitted form 
+     * using $_POST.
+     */
+    public function setValueFromPost()
+    {
+        $this->setValueFrom($this->getPost());
+        return $this;
     }
 }
