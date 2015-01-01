@@ -39,7 +39,7 @@ class Insert extends QueryAbstract
      */
     public function getQueryType()
     {
-        return 'INSERT';
+        return 'INSERT INTO';
     }
 
     /**
