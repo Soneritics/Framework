@@ -29,6 +29,7 @@ use Framework\Exceptions\PermissionDeniedException;
 use Framework\Exceptions\FatalException;
 use Framework\IO\Folders;
 use Framework\MVC\View;
+use Framework\Web\Server;
 
 /**
  * Main Application abstraction class.
@@ -70,20 +71,24 @@ abstract class Application
         // Make the Config object available through the Application class
         self::$config = $config;
 
-        // Make sure the page exists
-        if ($router->canRoute() === false) {
-            throw new PageNotFoundException('Unable to route.');
-        }
+        // Only run when not in a CLI
+        $server = new Server;
+        if (!$server->isCLI()) {
+            // Make sure the page exists
+            if ($router->canRoute() === false) {
+                throw new PageNotFoundException('Unable to route.');
+            }
 
-        // Check if the application allows running
-        if (!$this->canRun($router)) {
-            throw new PermissionDeniedException();
-        }
+            // Check if the application allows running
+            if (!$this->canRun($router)) {
+                throw new PermissionDeniedException();
+            }
 
-        // Do the actual running
-        $this->beforeRun($router);
-        $this->dispatch($router);
-        $this->afterRun($router);
+            // Do the actual running
+            $this->beforeRun($router);
+            $this->dispatch($router);
+            $this->afterRun($router);
+        }
     }
 
     /**

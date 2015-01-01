@@ -24,6 +24,8 @@
  */
 namespace Framework\Web;
 
+use Framework\Web\Server;
+
 /**
  * URI object. Holds a URL.
  * 
@@ -36,13 +38,16 @@ class URI
 
 	public function __construct($url = null)
 	{
-		if ($url === null) {
-			$url = explode('?', $_SERVER['REQUEST_URI'])[0];
-		}
+        $server = new Server;
+        if (!$server->isCLI()) {
+            if ($url === null) {
+                $url = explode('?', $server->get('REQUEST_URI')[0]);
+            }
 
-		if (empty($url)) {
-			$url = '/';
-		}
+            if (empty($url)) {
+                $url = '/';
+            }
+        }
 
 		$this->url = $url;
 	}

@@ -24,6 +24,8 @@
  */
 namespace Framework\Renderer;
 
+use Framework\Web\Server;
+
 /**
  * 
  * 
@@ -70,12 +72,16 @@ class ErrorRenderer extends HtmlRenderer
     {
         extract($params);
 
-        ob_start();
-        include($this->getViewFileUrl($viewFile));
-        $content = ob_get_clean();
+        if ((new Server())->isCLI()) {
+            print_r($params); // @todo: Write to stderr
+        } else {
+            ob_start();
+            include($this->getViewFileUrl($viewFile));
+            $content = ob_get_clean();
 
-		ob_start();
-		include('Layouts/' . $this->getErrorLayout() . '.php');
-		return ob_get_clean();
+            ob_start();
+            include('Layouts/' . $this->getErrorLayout() . '.php');
+            return ob_get_clean();
+        }
     }
 }

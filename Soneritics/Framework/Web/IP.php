@@ -25,10 +25,10 @@
 namespace Framework\Web;
 
 /**
- * Gett the user's IP address.
+ * Get the user's IP address.
  * 
  * @author Jordi Jolink
- * @date 25-12-2014
+ * @since 25-12-2014
  */
 class IP 
 {
