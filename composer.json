@@ -1,0 +1,13 @@
+{
+    "name": "Soneritics/Framework",
+    "type": "library",
+    "description": "Soneritics PHP framework for PHP 5.5 and higher.",
+    "homepage": "http://www.soneritic.nl/",
+    "license": "MIT",
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    }
+}
