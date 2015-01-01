@@ -24,9 +24,11 @@
  */
 namespace Framework\Application;
 
+use Framework\Database\Database;
+
 /**
  * Project configuration class.
- * HAndles the reading and parsing of the project's configuration files.
+ * Handles the reading and parsing of the project's configuration files.
  * 
  * @author Jordi Jolink
  * @date 27-11-2014
@@ -69,6 +71,20 @@ class Config
             return $this->configs[$key];
         } else {
             return null;
+        }
+    }
+
+    /**
+     * When databases are present in the configuration file, they get
+     * initialized in this function.
+     */
+    public function setDatabases()
+    {
+        $databases = $this->get('Database');
+        if (!empty($databases)) {
+            foreach ($databases as $id => $config) {
+                Database::set($id, $config);
+            }
         }
     }
 }

@@ -102,6 +102,8 @@ class Bootstrap
         $this->application = new \Application();
         $config = new Config($this->folders->get('config'));
 
+        $config->setDatabases();
+
 		if ($config->get('Logging') !== null) {
 			$logger = $config->get('Logging');
 			\Framework\Logging\Log::setLogger(

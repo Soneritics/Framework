@@ -24,6 +24,8 @@
  */
 namespace Framework\Database;
 
+use Framework\Exceptions\FatalException;
+
 /**
  * Database class for connecting to the database.
  * 
