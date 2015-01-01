@@ -1,0 +1,16 @@
+install: composer install --prefer-source --dev
+
+before_script:
+  - mysql -e 'CREATE DATABASE sf_test;'
+
+services:
+  - memcache
+
+env: DB_DSN=mysql://root@127.0.0.1/sf_test
+
+language: php
+
+php:
+  - 5.5
+
+script: vendor/bin/phpunit -c phpunit.xml test/
