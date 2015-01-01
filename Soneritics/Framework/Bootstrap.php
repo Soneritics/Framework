@@ -26,6 +26,7 @@ namespace Framework;
 
 use Framework\Application\Config;
 use Framework\Application\Routing;
+use Framework\Web\Server;
 
 /**
  * Bootstrap class for the Soneritics framework.
@@ -109,10 +110,14 @@ class Bootstrap
 			);
 		}
 
-        $this->application->run(
-            $config,
-            new Routing($config->get('Routing'))
-        );
+        // Only run when not in CLI mode
+        $server = new Server;
+        if (!$server->isCLI()) {
+            $this->application->run(
+                $config,
+                new Routing($config->get('Routing'))
+            );
+        }
     }
 
     /**
