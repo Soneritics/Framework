@@ -41,7 +41,7 @@ class URI
         $server = new Server;
         if (!$server->isCLI()) {
             if ($url === null) {
-                $url = explode('?', $server->get('REQUEST_URI')[0]);
+                $url = explode('?', $server->get('REQUEST_URI'))[0];
             }
 
             if (empty($url)) {
