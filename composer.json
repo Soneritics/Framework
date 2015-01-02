@@ -11,7 +11,8 @@
         "pear/structures_graph": "dev-master",
         "pear/console_getopt": "dev-master",
         "pear/pear": "dev-master",
-        "pear/mail": "dev-master"
+        "pear/mail": "dev-master",
+        "firephp/firephp-core": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.*"
@@ -20,6 +21,10 @@
         {
             "type": "pear",
             "url": "http://pear2.php.net"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/firephp/firephp-core"
         }
     ]
 }
