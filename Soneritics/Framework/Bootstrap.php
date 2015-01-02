@@ -59,12 +59,14 @@ class Bootstrap
      */
     private function initAutoLoading()
     {
-        // Initialize Composer's autoloader
-        $vendorAutoLoader = 
-                $this->folders->get('vendor') . '/autoload.php';
+        // Initialize Composer's autoloaders
+        foreach (['framework-vendor', 'vendor'] as $folder) {
+            $vendorAutoLoader = 
+                    $this->folders->get($folder) . '/autoload.php';
 
-        if (file_exists($vendorAutoLoader)) {
-            include($vendorAutoLoader);
+            if (file_exists($vendorAutoLoader)) {
+                include($vendorAutoLoader);
+            }
         }
 
         // Include the framework's autoloader
