@@ -201,4 +201,24 @@ class Table
     {
         return new Delete($this);
     }
+
+    /**
+     * Execute a simple count query.
+     * 
+     * @param type $where
+     * @return int
+     */
+    public function count($where = null)
+    {
+        $select = $this->select()->fields("COUNT(*)")->limit(1);
+
+        if ($where != null) {
+            $select->where($where);
+        }
+
+        $result = $select->execute();
+        foreach ($result as $record) {
+            return (int)$record[0];
+        }
+    }
 }
