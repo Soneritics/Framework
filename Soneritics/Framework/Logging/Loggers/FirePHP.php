@@ -30,7 +30,7 @@ use Framework\Logging\Logger;
  * FirePHP Logger. Needs FirePHP to be installed through Composer.
  * 
  * @author Jordi Jolink
- * @date 8-12-2014
+ * @since 8-12-2014
  */
 class FirePHP extends Logger
 {

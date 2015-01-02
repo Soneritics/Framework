@@ -2,7 +2,7 @@
 /* 
  * The MIT License
  *
- * Copyright 2014 Jordi Jolink.
+ * Copyright 2014 Soneritics Webdevelopment.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,7 @@ use Framework\Exceptions\FatalException;
  * Abstract renderer class, defines the lay-out of the renderers.
  * 
  * @author Jordi Jolink
- * @date 9-12-2014
+ * @since 9-12-2014
  */
 abstract class Renderer
 {

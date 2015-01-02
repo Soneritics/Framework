@@ -2,7 +2,7 @@
 /* 
  * The MIT License
  *
- * Copyright 2014 Jordi Jolink.
+ * Copyright 2014 Soneritics Webdevelopment.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -41,13 +41,13 @@ abstract class QueryAbstract
 
     protected $table = null;
     protected $fields = null;
-    protected $values = array();
-    protected $set = array();
-    protected $joins = array();
-    protected $wheres = array();
-    protected $group = array();
-    protected $order = array();
-    protected $limit = array();
+    protected $values = [];
+    protected $set = [];
+    protected $joins = [];
+    protected $wheres = [];
+    protected $group = [];
+    protected $order = [];
+    protected $limit = [];
     protected $queryType = self::MODE_QUERY;
 
     /**
@@ -168,7 +168,7 @@ abstract class QueryAbstract
      */
     public function leftJoin($table, $on)
     {
-        $this->joins[] = array('LEFT', $table, $on);
+        $this->joins[] = ['LEFT', $table, $on];
         return $this;
     }
 
@@ -181,7 +181,7 @@ abstract class QueryAbstract
      */
     public function rightJoin($table, $on)
     {
-        $this->joins[] = array('RIGHT', $table, $on);
+        $this->joins[] = ['RIGHT', $table, $on];
         return $this;
     }
 
@@ -194,7 +194,7 @@ abstract class QueryAbstract
      */
     public function join($table, $on)
     {
-        $this->joins[] = array('', $table, $on);
+        $this->joins[] = ['', $table, $on];
         return $this;
     }
 
@@ -230,7 +230,7 @@ abstract class QueryAbstract
      */
     public function orderAsc($column)
     {
-        $this->order[] = array($column, 'ASC');
+        $this->order[] = [$column, 'ASC'];
         return $this;
     }
 
@@ -242,7 +242,7 @@ abstract class QueryAbstract
      */
     public function orderDesc($column)
     {
-        $this->order[] = array($column, 'DESC');
+        $this->order[] = [$column, 'DESC'];
         return $this;
     }
 
@@ -256,9 +256,9 @@ abstract class QueryAbstract
     public function limit($start, $end = null)
     {
         if ($end !== null) {
-            $this->limit = array($start, $end);
+            $this->limit = [$start, $end];
         } else {
-            $this->limit = array($start);
+            $this->limit = [$start];
         }
 
         return $this;
@@ -272,11 +272,11 @@ abstract class QueryAbstract
      */
     public function getQueryParts()
     {
-        $result = array(
+        $result = [
             'type' => $this->getQueryType(),
             'fields' => $this->fields,
             'table' => $this->getTable()
-        );
+        ];
 
         if (!empty($this->values)) {
             $result['values'] = $this->values;

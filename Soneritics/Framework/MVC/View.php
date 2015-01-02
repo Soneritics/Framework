@@ -2,7 +2,7 @@
 /* 
  * The MIT License
  *
- * Copyright 2014 Jordi Jolink.
+ * Copyright 2014 Soneritics Webdevelopment.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,10 +28,11 @@ use Framework\Exceptions\FatalException;
 use Framework\Renderer\Renderer;
 
 /**
- * 
+ * View object. This is the object that is used in controllers to actual
+ * render to the screen.
  * 
  * @author Jordi Jolink
- * @date 17-11-2014
+ * @since 17-11-2014
  */
 class View
 {
@@ -39,6 +40,15 @@ class View
             $view = null,
             $params = array();
 
+    /**
+     * Constructor. Optionally sets a view.
+     * Also, when there is no View object that has a layout yet, this will
+     * automatically load the layout.
+     * 
+     * 
+     * @staticvar boolean $layoutLoaded
+     * @param type $view
+     */
     public function __construct($view = null)
     {
         static $layoutLoaded = false;
@@ -53,40 +63,80 @@ class View
         }
     }
 
+    /**
+     * Getter for the layout.
+     * 
+     * @return string
+     */
     public function getLayout()
     {
         return $this->layout;
     }
 
+    /**
+     * Setter for the layout.
+     * 
+     * @param string $layout
+     * @return $this
+     */
     public function setLayout($layout)
     {
         $this->layout = $layout;
         return $this;
     }
 
+    /**
+     * Getter for the view file.
+     * 
+     * @return string
+     */
     public function getViewFile()
     {
         return $this->view;
     }
 
+    /**
+     * Setter for the view file.
+     * 
+     * @param string $view
+     * @return $this
+     */
     public function setViewFile($view)
     {
         $this->view = $view;
         return $this;
     }
 
+    /**
+     * Set a parameter for use in the view.
+     * 
+     * @param string $name
+     * @param mixed $value
+     * @return $this
+     */
     public function setParam($name, $value)
     {
         $this->params[$name] = $value;
         return $this;
     }
 
+    /**
+     * Set multiple parameters at once.
+     * 
+     * @param array $array
+     * @return $this
+     */
     public function setParams(array $array)
     {
         $this->params += $array;
         return $this;
     }
 
+    /**
+     * MAke the parameters available in the view.
+     * 
+     * @param Renderer $renderer
+     */
     private function parseParams(Renderer $renderer)
     {
         foreach ($this->params as &$param) {
@@ -96,6 +146,13 @@ class View
         }
     }
 
+    /**
+     * Render the view using the $renderer Renderer.
+     * 
+     * @param Renderer $renderer
+     * @return string
+     * @throws FatalException
+     */
     public function render(Renderer $renderer)
     {
         if ($this->view === null) {

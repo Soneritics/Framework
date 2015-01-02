@@ -2,7 +2,7 @@
 /* 
  * The MIT License
  *
- * Copyright 2014 Jordi Jolink.
+ * Copyright 2014 Soneritics Webdevelopment.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -101,17 +101,17 @@ trait MySQLTrait
     protected function getValues(array $queryParts)
     {
         if (!empty($queryParts['values'])) {
-            $parts = array();
+            $parts = [];
 
             // Keys
-            $quoted = array();
+            $quoted = [];
             foreach (array_keys($queryParts['values']) as $key) {
                 $quoted[] = $this->quoteIdentifier($key);
             }
             $parts[] = '(' . implode(', ', $quoted) . ')';
 
             // Values
-            $quoted = array();
+            $quoted = [];
             foreach ($queryParts['values'] as $value) {
                 $quoted[] = $this->quote($value);
             }
@@ -194,7 +194,7 @@ trait MySQLTrait
         $result = null;
 
         if (isset($queryParts['join']) && !empty($queryParts['join'])) {
-            $result = array();
+            $result = [];
 
             foreach ($queryParts['join'] as $join) {
                 $piece = trim($join[0] . ' JOIN') . ' ';
@@ -228,7 +228,7 @@ trait MySQLTrait
             return $where;
         }
 
-        $fullWhere = array();
+        $fullWhere = [];
 
         if (is_array($where)) {
             foreach ($where as $key => $value) {
@@ -295,7 +295,7 @@ trait MySQLTrait
     protected function getGroup(array $queryParts)
     {
         if (isset($queryParts['group'])) {
-            $group = array();
+            $group = [];
 
             foreach ($queryParts['group'] as $column) {
                 $group[] = $this->quoteIdentifier($column);
@@ -316,7 +316,7 @@ trait MySQLTrait
     protected function getOrder(array $queryParts)
     {
         if (isset($queryParts['order'])) {
-            $order = array();
+            $order = [];
 
             foreach ($queryParts['order'] as $array) {
                 $order[] =
@@ -339,7 +339,7 @@ trait MySQLTrait
     protected function getLimit(array $queryParts)
     {
         if (isset($queryParts['limit']) && !empty($queryParts['limit'])) {
-            $limit = array();
+            $limit = [];
             foreach ($queryParts['limit'] as $int) {
                 $limit[] = (int)$int;
             }
@@ -359,7 +359,7 @@ trait MySQLTrait
         return implode(
             ' ',
             array_filter(
-                array(
+                [
                     $queryParts['type'],
                     $this->getFields($queryParts),
                     $this->getTable($queryParts),
@@ -370,7 +370,7 @@ trait MySQLTrait
                     $this->getGroup($queryParts),
                     $this->getOrder($queryParts),
                     $this->getLimit($queryParts)
-                ),
+                ],
                 function($var)
                 {
                     return $var !== null;

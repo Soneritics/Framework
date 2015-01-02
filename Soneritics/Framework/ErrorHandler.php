@@ -2,7 +2,7 @@
 /* 
  * The MIT License
  *
- * Copyright 2014 Jordi Jolink.
+ * Copyright 2014 Soneritics Webdevelopment.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,10 +31,16 @@ use Framework\Logging\Log;
  * Renders errors.
  * 
  * @author Jordi Jolink
- * @date 18-12-2014
+ * @since 18-12-2014
  */
 class ErrorHandler
 {
+    /**
+     * Get the error view.
+     * 
+     * @param \Exception $exception
+     * @return string
+     */
 	private function getErrorView(\Exception $exception)
 	{
 		$className = substr(get_class($exception), strlen('Framework\Exceptions\\'));
@@ -48,11 +54,22 @@ class ErrorHandler
 		return 'error';
 	}
 
+    /**
+     * Send the correct (content type) header.
+     * 
+     * @param \Exception $exception
+     * @todo Write the implementation
+     */
 	private function sendHeader(\Exception $exception)
 	{
 		// @todo
 	}
 
+    /**
+     * Handle the exception. Renders the error view using the class' functions.
+     * 
+     * @param \Exception $exception
+     */
 	public function handle(\Exception $exception)
 	{
 		Log::write($exception);
@@ -60,7 +77,7 @@ class ErrorHandler
 		$errorRenderer = new Renderer\ErrorRenderer('error');
 		echo $errorRenderer->render(
 			$this->getErrorView($exception),
-			array('exception' => $exception)
+			['exception' => $exception]
 		);
 	}
 }

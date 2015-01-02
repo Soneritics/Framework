@@ -2,7 +2,7 @@
 /*
  * The MIT License
  *
- * Copyright 2014 Jordi Jolink.
+ * Copyright 2014 Soneritics Webdevelopment.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,7 @@ use SessionHandlers\SessionHandler;
  * Session class for handling session storage.
  * 
  * @author Jordi Jolink
- * @date 25-12-2014
+ * @since 25-12-2014
  */
 class Session
 {
@@ -53,7 +53,7 @@ class Session
                 $config = 
                     isset($sessionHandler['Config']) && is_array($sessionHandler['Config']) ?
                     $sessionHandler['Config'] :
-                    array();
+                    [];
 
                 $class = isset($sessionHandler['Handler']) ?
                     (string)$sessionHandler['Handler'] :

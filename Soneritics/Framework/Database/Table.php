@@ -2,7 +2,7 @@
 /* 
  * The MIT License
  *
- * Copyright 2014 Jordi Jolink.
+ * Copyright 2014 Soneritics Webdevelopment.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -135,7 +135,7 @@ class Table
             return $this->columns;
         }
 
-        $this->columns = array();
+        $this->columns = [];
         $describe = new Describe($this);
         // @todo fetchAll is PDO specific
         foreach ($describe->execute()->fetchAll() as $column) {

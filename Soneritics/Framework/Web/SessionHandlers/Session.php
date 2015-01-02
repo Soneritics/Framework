@@ -2,7 +2,7 @@
 /* 
  * The MIT License
  *
- * Copyright 2014 Jordi Jolink.
+ * Copyright 2014 Soneritics Webdevelopment.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,13 +24,13 @@
  */
 namespace Framework\Web\SessionHandlers;
 
-use \Framework\Web\IP;
+use Framework\Web\IP;
 
 /**
  * Session handler by using the default $_SESSION object.
  * 
  * @author Jordi Jolink
- * @date 25-12-2014
+ * @since 25-12-2014
  */
 class Session extends SessionHandler
 {
@@ -53,7 +53,7 @@ class Session extends SessionHandler
 
         // Prevent Session hijacking
         if (!isset($_SESSION[$this->ip])) {
-            $_SESSION[$this->ip] = array();
+            $_SESSION[$this->ip] = [];
         }
     }
 

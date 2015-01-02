@@ -32,8 +32,8 @@ use Framework\Web\Request\RequestAbstract;
 /**
  * Abstract class for the HelperObject classes.
  * 
- * @author Soneritics Webdevelopment
- * @date 21-12-2014
+ * @author Jordi Jolink
+ * @since 21-12-2014
  */
 abstract class AbstractHelperObject
 {
@@ -97,7 +97,7 @@ abstract class AbstractHelperObject
         }
 
         if (!empty($this->params)) {
-            $params = array();
+            $params = [];
 
             foreach ($this->params as $attribute => $value) {
                 $params[] =

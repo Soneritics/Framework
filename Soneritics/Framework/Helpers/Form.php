@@ -28,8 +28,8 @@ namespace Framework\Helpers;
  * Form helper class.
  * This class contains functions that return HelperObjectInterface objects.
  * 
- * @author Soneritics Webdevelopment
- * @date 21-12-2014
+ * @author Jordi Jolink
+ * @since 21-12-2014
  */
 class Form
 {

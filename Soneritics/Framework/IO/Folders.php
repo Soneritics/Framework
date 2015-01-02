@@ -2,7 +2,7 @@
 /* 
  * The MIT License
  *
- * Copyright 2014 Jordi Jolink.
+ * Copyright 2014 Soneritics Webdevelopment.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,11 +28,11 @@ namespace Framework\IO;
  * Class that handles file folders.
  * 
  * @author Jordi Jolink
- * @date 14-9-2014
+ * @since 14-9-2014
  */
 class Folders
 {
-    private static $paths = array();
+    private static $paths = [];
 
     /**
      * Make sure an ending slash is removed from a path.
@@ -43,7 +43,7 @@ class Folders
     private function removeTrailingSlash($path)
     {
         if (strlen($path) > 1 &&
-            in_array(substr($path, -1), array('\\', '/'))
+            in_array(substr($path, -1), ['\\', '/'])
         ) {
             $path = substr($path, 0, -1);
         }
@@ -63,12 +63,12 @@ class Folders
 
         static::$paths = array_merge(
             static::$paths,
-            array(
+            [
                 'root' => $root,
                 'package' => "{$root}/Soneritics",
                 'framework' => "{$root}/Soneritics/Framework",
                 'framework-vendor' => "{$root}/vendor",
-            )
+            ]
         );
 
         return $this;
@@ -87,14 +87,14 @@ class Folders
 
         static::$paths = array_merge(
             static::$paths,
-            array(
+            [
                 'app' => $root,
                 'web' => "{$root}/Web",
                 'vendor' => "{$root}/vendor",
                 'config' => "{$root}/Config",
                 'layouts' => "{$root}/Layouts",
                 'modules' => "{$root}/Modules",
-            )
+            ]
         );
 
         return $this;

@@ -2,7 +2,7 @@
 /* 
  * The MIT License
  *
- * Copyright 2014 Jordi Jolink.
+ * Copyright 2014 Soneritics Webdevelopment.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,7 +33,7 @@ use Framework\Application\Routing;
  * starts the application.
  * 
  * @author Jordi Jolink
- * @date 14-9-2014
+ * @since 14-9-2014
  */
 class Bootstrap
 {
@@ -82,7 +82,7 @@ class Bootstrap
      */
     private function initErrorHandling()
     {
-        register_shutdown_function(array($this, 'shutdown'));
+        register_shutdown_function([$this, 'shutdown']);
     }
 
     /**

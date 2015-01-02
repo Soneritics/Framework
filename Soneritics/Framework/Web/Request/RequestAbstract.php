@@ -2,7 +2,7 @@
 /* 
  * The MIT License
  *
- * Copyright 2014 Jordi Jolink.
+ * Copyright 2014 Soneritics Webdevelopment.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,7 @@ namespace Framework\Web\Request;
  * Abstract request class.
  * 
  * @author Jordi Jolink
- * @date 23-12-2014
+ * @since 23-12-2014
  */
 abstract class RequestAbstract
 {
@@ -41,19 +41,35 @@ abstract class RequestAbstract
      */
     protected abstract function getData();
 
+    /**
+     * Parse the data from the request and strip the slashes from it.
+     * 
+     * @param array|string $data
+     * @return array|string
+     */
     private function parseRequestData($data)
     {
         return is_array($data) ?
-            array_map(array($this, 'parseRequestData'), $data) :
+            array_map([$this, 'parseRequestData'], $data) :
             stripslashes($data);
     }
 
+    /**
+     * Set the data property with the pased request data.
+     */
     private function parseData()
     {
         $data = $this->parseRequestData($this->getData());
         $this->data = $data;
     }
 
+    /**
+     * Get data from the request by name. Arrays can be used by a dot in the
+     * $name variable. For example: 'User.email'
+     * 
+     * @param string $name
+     * @return type
+     */
     private function getDataFromName($name)
     {
         $parts = explode('.', $name);
@@ -75,6 +91,13 @@ abstract class RequestAbstract
         return null;
     }
 
+    /**
+     * Public getter. Parses the request data and uses the private 
+     * getDataFromName function to fetch the data.
+     * 
+     * @param type $id
+     * @return type
+     */
     public function get($id = null)
     {
         if ($this->data === null) {

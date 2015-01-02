@@ -2,7 +2,7 @@
 /* 
  * The MIT License
  *
- * Copyright 2014 Jordi Jolink.
+ * Copyright 2014 Soneritics Webdevelopment.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,11 +34,58 @@ use Framework\Database\Query\QueryAbstract;
  */
 interface IDatabaseType
 {
+    /**
+     * Constructor, loads the configs for the database type.
+     * 
+     * @param array $config
+     */
     public function __construct(array $config);
+
+    /**
+     * Quote a value.
+     * 
+     * @param type $value
+     * @return string
+     */
     public function quote($value);
+
+    /**
+     * Quote a database name.
+     * 
+     * @param type $db
+     * @return string
+     */
     public function quoteDatabase($db);
+
+    /**
+     * Quote a table name.
+     * 
+     * @param type $table
+     * @return string
+     */
     public function quoteTable($table);
+
+    /**
+     * Quote an identifier (column name).
+     * 
+     * @param type $id
+     * @return string
+     */
     public function quoteIdentifier($id);
+
+    /**
+     * Execute a query.
+     * 
+     * @param type $query
+     * @return mixed
+     */
     public function query($query);
+
+    /**
+     * Build a value from a QueryAbstract object.
+     * 
+     * @param QueryAbstract $query
+     * @return string
+     */
     public function buildQuery(QueryAbstract $query);
 } 

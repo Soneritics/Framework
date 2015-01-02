@@ -28,7 +28,7 @@ namespace Framework\Logging;
  * Logger abstraction.
  * 
  * @author Jordi Jolink
- * @date 19-9-2014
+ * @since 19-9-2014
  */
 abstract class Logger
 {

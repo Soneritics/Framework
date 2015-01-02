@@ -2,7 +2,7 @@
 /* 
  * The MIT License
  *
- * Copyright 2014 Jordi Jolink.
+ * Copyright 2014 Soneritics Webdevelopment.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,7 +34,7 @@ use Framework\Exceptions\FatalException;
  */
 class Database
 {
-    private static $databaseConnections = array();
+    private static $databaseConnections = [];
     private static $activeDatabaseConnection = null;
 
     /**

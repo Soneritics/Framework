@@ -30,7 +30,7 @@ use Framework\MVC\View;
  * Pagination helper.
  * 
  * @author Jordi Jolink
- * @date 26-12-2014
+ * @since 26-12-2014
  */
 class Pagination
 {
@@ -82,18 +82,18 @@ class Pagination
     private function getFromTo()
     {
         if ($this->pages <= 5) {
-            return array(1, $this->pages);
+            return [1, $this->pages];
         }
 
         if ($this->page <= 3) {
-            return array(1, 5);
+            return [1, 5];
         }
 
         if ($this->page + 2 >= $this->pages) {
-            return array($this->pages - 4, $this->pages);
+            return [$this->pages - 4, $this->pages];
         }
 
-        return array($this->page - 2, $this->page + 2);
+        return [$this->page - 2, $this->page + 2];
     }
 
     /**
@@ -106,14 +106,14 @@ class Pagination
     {
         list($from, $to) = $this->getFromTo();
 
-        return array(
+        return [
             'page' => $this->page,
             'from' => $from,
             'to' => $to,
             'prev' => $this->page > 1,
             'next' => $this->page < $this->pages,
             'url' => $this->url
-        );
+        ];
     }
 
     /**

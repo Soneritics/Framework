@@ -2,7 +2,7 @@
 /* 
  * The MIT License
  *
- * Copyright 2014 Jordi Jolink.
+ * Copyright 2014 Soneritics Webdevelopment.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,7 +32,7 @@ use Framework\Web\Request\Request;
  * Abstract controller class, defines the lay-out of the controllers.
  * 
  * @author Jordi Jolink
- * @date 17-11-2014
+ * @since 17-11-2014
  */
 abstract class Controller
 {
@@ -40,6 +40,12 @@ abstract class Controller
             $post = null,
             $get = null;
 
+    /**
+     * Get a value from the Post object.
+     * 
+     * @param type $name
+     * @return type
+     */
     protected function fromPost($name = null)
     {
         if ($this->post === null) {
@@ -49,6 +55,12 @@ abstract class Controller
         return $this->post->get($name);
     }
 
+    /**
+     * Get a value from the Get object.
+     * 
+     * @param type $name
+     * @return type
+     */
     protected function fromGet($name = null)
     {
         if ($this->get === null) {
@@ -58,6 +70,12 @@ abstract class Controller
         return $this->get->get($name);
     }
 
+    /**
+     * Get a value from the Request object.
+     * 
+     * @param type $name
+     * @return type
+     */
     protected function fromRequest($name = null)
     {
         if ($this->request === null) {

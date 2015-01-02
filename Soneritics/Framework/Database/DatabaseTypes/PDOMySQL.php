@@ -2,7 +2,7 @@
 /* 
  * The MIT License
  *
- * Copyright 2014 Jordi Jolink.
+ * Copyright 2014 Soneritics Webdevelopment.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -67,7 +67,7 @@ class PDOMySQL implements IDatabaseType
     public function quote($value)
     {
         if (is_array($value)) {
-            $result = array();
+            $result = [];
             foreach ($value as $single) {
                 $result[] = $this->quote($single);
             }

@@ -2,7 +2,7 @@
 /* 
  * The MIT License
  *
- * Copyright 2014 Jordi Jolink.
+ * Copyright 2014 Soneritics Webdevelopment.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,20 +27,27 @@ namespace Framework\Renderer;
 use Framework\Web\Server;
 
 /**
- * 
+ * Render an error.
  * 
  * @author Jordi Jolink
- * @date 20-12-2014
+ * @since 20-12-2014
  */
 class ErrorRenderer extends HtmlRenderer
 {
 	/**
-	 * Override the constructor, as it might raise errors.
+	 * Override the constructor, as it might raise errors for not having
+     * a $module that exists.
 	 * 
 	 * @param string $module Can be omitted for the ErrorRenderer.
 	 */
 	public function __construct($module){}
 
+    /**
+     * Get the location of the view file.
+     * 
+     * @param type $viewFile
+     * @return type
+     */
 	private function getViewFileUrl($viewFile)
 	{
 		$file = 'Errors/%s.php';
@@ -51,6 +58,13 @@ class ErrorRenderer extends HtmlRenderer
 		return sprintf($file, 'error');
 	}
 
+    /**
+     * Get the layout for the error view.
+     * When a layout called 'error.php' exists, thiss will be used. Otherwise,
+     * the default layout will be used.
+     * 
+     * @return string
+     */
 	private function getErrorLayout()
 	{
 		if (file_exists('Layouts/error.php')) {
@@ -61,7 +75,7 @@ class ErrorRenderer extends HtmlRenderer
 	}
 
 	/**
-	 * 
+	 * Render the error view.
 	 * 
 	 * @param type $viewFile
 	 * @param array $params

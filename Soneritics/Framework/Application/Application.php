@@ -2,7 +2,7 @@
 /* 
  * The MIT License
  *
- * Copyright 2014 Jordi Jolink.
+ * Copyright 2014 Soneritics Webdevelopment.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -35,7 +35,7 @@ use Framework\Web\Server;
  * Main Application abstraction class.
  * 
  * @author Jordi Jolink
- * @date 18-9-2014
+ * @since 18-9-2014
  */
 abstract class Application
 {
@@ -50,12 +50,36 @@ abstract class Application
 		self::$folders = new Folders();
 	}
 
+    /**
+     * Function that gets executed before the application runs.
+     * 
+     * @param Routing $router
+     */
     protected abstract function beforeRun(Routing $router);
 
+    /**
+     * Function that gets executed after the application runs.
+     * 
+     * @param Routing $router
+     */
     protected abstract function afterRun(Routing $router);
 
+    /**
+     * Function that gets executed before the application runs and should
+     * return true. When it returns false, a PermissionDeniedException is
+     * thrown.
+     * 
+     * @param Routing $router
+     * @return bool Indicator wether the app may run or not.
+     */
     protected abstract function canRun(Routing $router);
 
+    /**
+     * Function that gets executed before the view renders.
+     * Passes the View as a variable, so it can be altered.
+     * 
+     * @param View $view
+     */
     protected abstract function beforeRender(View $view);
 
     /**
@@ -102,12 +126,12 @@ abstract class Application
         // Create the controller
         $controllerClass = implode(
             '\\',
-            array(
+            [
                 'Modules',
                 $router->getModule(),
                 'Controller',
                 $router->getController()
-            )
+            ]
         );
 
         try {
@@ -129,7 +153,7 @@ abstract class Application
         }
 
         $view = call_user_func_array(
-            array($controller, $action),
+            [$controller, $action],
             $router->getParams()
         );
 
@@ -173,7 +197,7 @@ abstract class Application
     public static function log()
     {
         call_user_func_array(
-            array('Framework\Logging\Log', 'write'),
+            ['Framework\Logging\Log', 'write'],
             func_get_args()
         );
     }

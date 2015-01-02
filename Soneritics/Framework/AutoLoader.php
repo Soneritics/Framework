@@ -2,7 +2,7 @@
 /* 
  * The MIT License
  *
- * Copyright 2014 Jordi Jolink.
+ * Copyright 2014 Soneritics Webdevelopment.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,15 +25,21 @@
 namespace Framework;
 
 /**
- * 
+ * Framework's autoloader.
  * 
  * @author Jordi Jolink
- * @date 7-12-2014
+ * @since 7-12-2014
  */
 class AutoLoader
 {
     private $rootPaths = array();
 
+    /**
+     * Add a root path to the autoloader.
+     * 
+     * @param string $path
+     * @return $this
+     */
     public function addRootPath($path)
     {
         $this->rootPaths[] = $path;
@@ -42,17 +48,20 @@ class AutoLoader
 
     /**
      * Installs this class loader on the SPL autoload stack.
+     * 
+     * @return $this
      */
     public function register()
     {
-        spl_autoload_register(array($this, 'loadClass'));
+        spl_autoload_register([$this, 'loadClass']);
         return $this;
     }
 
     /**
-     * 
+     * Load class.
      *
      * @param string $className The name of the class to load.
+     * @return bool
      */
     public function loadClass($className)
     {

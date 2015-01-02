@@ -2,7 +2,7 @@
 /* 
  * The MIT License
  *
- * Copyright 2014 Jordi Jolink.
+ * Copyright 2014 Soneritics Webdevelopment.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,12 +30,17 @@ use Framework\Web\Server;
  * URI object. Holds a URL.
  * 
  * @author Jordi Jolink
- * @date 18-12-2014
+ * @since 18-12-2014
  */
 class URI
 {
 	private $url, $server;
 
+    /**
+     * Constructor, saves the url (request uri) in the $url property.
+     * 
+     * @param string $url
+     */
 	public function __construct($url = null)
 	{
         $this->server = new Server;
@@ -52,11 +57,22 @@ class URI
 		$this->url = $url;
 	}
 
+    /**
+     * Getter for the $url property.
+     * 
+     * @return string
+     */
 	public function getURL()
 	{
 		return $this->url;
 	}
 
+    /**
+     * Get the server, including the protocol.
+     * For example: https://www.localhost
+     * 
+     * @return string
+     */
     public function getServer()
     {
         $result = 'http';

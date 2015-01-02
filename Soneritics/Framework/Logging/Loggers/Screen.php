@@ -30,7 +30,7 @@ use Framework\Logging\Logger;
  * Screen logger. Simply logs to the screen.
  * 
  * @author Jordi Jolink
- * @date 19-9-2014
+ * @since 19-9-2014
  */
 class Screen extends Logger
 {

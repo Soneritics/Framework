@@ -28,9 +28,10 @@ use Framework\Logging\Logger;
 use Framework\Logging\Loggers\Screen;
 
 /**
+ * Static log class that can log and define a Logger object.
  * 
  * @author Jordi Jolink
- * @date 14-9-2014
+ * @since 14-9-2014
  */
 class Log
 {
@@ -40,7 +41,6 @@ class Log
 	 * Set the logger to use.
 	 * 
 	 * @param \Framework\Logging\Logger $logger
-	 * @return \Framework\Logging\Log
 	 */
 	public static function setLogger(Logger $logger)
 	{

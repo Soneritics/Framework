@@ -2,7 +2,7 @@
 /* 
  * The MIT License
  *
- * Copyright 2014 Jordi Jolink.
+ * Copyright 2014 Soneritics Webdevelopment.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,7 +33,7 @@ namespace Framework\Database\Query;
 class Where
 {
     public $operator = 'AND';
-    private $whereClause = array();
+    private $whereClause = [];
 
     /**
      * Constructor. Sets the operator.
@@ -58,7 +58,7 @@ class Where
      */
     public function where($where)
     {
-        $this->whereClause[] = array('=', $where);
+        $this->whereClause[] = ['=', $where];
         return $this;
     }
 
@@ -71,7 +71,7 @@ class Where
      */
     public function in($column, array $values)
     {
-        $this->whereClause[] = array('IN', $column, $values);
+        $this->whereClause[] = ['IN', $column, $values];
         return $this;
     }
 
@@ -84,7 +84,7 @@ class Where
      */
     public function notIn($column, array $values)
     {
-        $this->whereClause[] = array('NOT IN', $column, $values);
+        $this->whereClause[] = ['NOT IN', $column, $values];
         return $this;
     }
 
@@ -96,7 +96,7 @@ class Where
      */
     public function notNull($column)
     {
-        $this->whereClause[] = array('NOT NULL', $column);
+        $this->whereClause[] = ['NOT NULL', $column];
         return $this;
     }
 
@@ -109,7 +109,7 @@ class Where
      */
     public function like($column, $value)
     {
-        $this->whereClause[] = array('LIKE', $column, $value);
+        $this->whereClause[] = ['LIKE', $column, $value];
         return $this;
     }
 

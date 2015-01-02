@@ -2,7 +2,7 @@
 /* 
  * The MIT License
  *
- * Copyright 2014 Jordi Jolink.
+ * Copyright 2014 Soneritics Webdevelopment.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,11 +31,11 @@ use Framework\Database\Database;
  * Handles the reading and parsing of the project's configuration files.
  * 
  * @author Jordi Jolink
- * @date 27-11-2014
+ * @since 27-11-2014
  */
 class Config
 {
-	private $configs = array();
+	private $configs = [];
 
 	/**
 	 * Constructor, reads the configuration files from a project.
