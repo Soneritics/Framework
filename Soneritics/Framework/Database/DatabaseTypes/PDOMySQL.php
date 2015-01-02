@@ -99,4 +99,24 @@ class PDOMySQL implements IDatabaseType
 
         return $this->pdo->query($query);
     }
+
+    /**
+     * Execute a query. The parameter can either be a Query(Abstract) object,
+     * or a string containing a full query.
+     *
+     * @param $query
+     * @return PDOStatement
+     */
+    public function execute($query)
+    {
+        if (is_subclass_of($query, 'Framework\Database\Query\QueryAbstract')) {
+            return $this->query($this->buildQuery($query));
+        }
+
+        if ($this->debug) {
+            \Application::log($query);
+        }
+
+        return $this->pdo->exec($query);
+    }
 }

@@ -32,6 +32,9 @@ namespace Framework\Database\Query;
  */
 class Truncate extends QueryAbstract
 {
+    // Set mode to execute
+    protected $queryType = self::MODE_EXECUTE;
+
     /**
      * Overwrite the constructor so the query is executed directly.
      *

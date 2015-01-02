@@ -32,6 +32,9 @@ namespace Framework\Database\Query;
  */
 class Insert extends QueryAbstract
 {
+    // Set mode to execute
+    protected $queryType = self::MODE_EXECUTE;
+
     /**
      * Get the query type.
      *

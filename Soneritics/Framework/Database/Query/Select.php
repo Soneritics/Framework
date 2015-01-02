@@ -32,6 +32,9 @@ namespace Framework\Database\Query;
  */
 class Select extends QueryAbstract
 {
+    // Default select all fields
+    protected $fields = '*';
+
     /**
      * Get the query type.
      *

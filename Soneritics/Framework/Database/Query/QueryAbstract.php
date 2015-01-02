@@ -36,13 +36,19 @@ use Framework\Exceptions\FatalException;
  */
 abstract class QueryAbstract
 {
+    const MODE_EXECUTE = 1;
+    const MODE_QUERY = 2;
+
     protected $table = null;
-    protected $fields = '*';
+    protected $fields = null;
+    protected $values = array();
+    protected $set = array();
     protected $joins = array();
     protected $wheres = array();
     protected $group = array();
     protected $order = array();
     protected $limit = array();
+    protected $queryType = self::MODE_QUERY;
 
     /**
      * Constructor. Optionally sets the table name.
@@ -95,7 +101,11 @@ abstract class QueryAbstract
             );
         }
 
-        return Database::get()->query($this);
+        if ($this->queryType === static::MODE_QUERY) {
+            return Database::get()->query($this);
+        } else {
+            return Database::get()->execute($this);
+        }
     }
 
     /**
@@ -114,6 +124,38 @@ abstract class QueryAbstract
     public function fields($fields)
     {
         $this->fields = $fields;
+        return $this;
+    }
+
+    /**
+     * Set the values to use in the query.
+     *
+     * @param $values
+     * @return $this
+     */
+    public function values(array $values)
+    {
+        $this->values = $values;
+        return $this;
+    }
+
+    /**
+     * Set values for an update query.
+     * 
+     * @param type $key
+     * @param type $val
+     * @return $this
+     */
+    public function set($key, $val = null)
+    {
+        if (is_array($key)) {
+            foreach ($key as $k => $v) {
+                $this->set($k, $v);
+            }
+        } elseif ($val !== null) {
+            $this->set[$key] = $val;
+        }
+
         return $this;
     }
 
@@ -235,6 +277,14 @@ abstract class QueryAbstract
             'fields' => $this->fields,
             'table' => $this->getTable()
         );
+
+        if (!empty($this->values)) {
+            $result['values'] = $this->values;
+        }
+
+        if (!empty($this->set)) {
+            $result['set'] = $this->set;
+        }
 
         if (!empty($this->joins)) {
             $result['join'] = $this->joins;

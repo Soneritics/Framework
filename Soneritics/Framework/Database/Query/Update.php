@@ -32,6 +32,9 @@ namespace Framework\Database\Query;
  */
 class Update extends QueryAbstract
 {
+    // Set mode to execute
+    protected $queryType = self::MODE_EXECUTE;
+
     /**
      * Get the query type.
      *
@@ -41,4 +44,18 @@ class Update extends QueryAbstract
     {
         return 'UPDATE';
     }
+
+    /**
+     * Override the values function. Sets the fields to update instead of
+     * the values.
+     *
+     * @param $values
+     * @return $this
+     */
+    public function values(array $values)
+    {
+        $this->set = $values;
+        return $this;
+    }
+
 }

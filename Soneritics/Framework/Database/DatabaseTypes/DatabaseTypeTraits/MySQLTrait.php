@@ -93,6 +93,62 @@ trait MySQLTrait
     }
 
     /**
+     * Prepare the fields for use in the MySQL query.
+     *
+     * @param array $queryParts
+     * @return null|string
+     */
+    protected function getValues(array $queryParts)
+    {
+        if (!empty($queryParts['values'])) {
+            $parts = array();
+
+            // Keys
+            $quoted = array();
+            foreach (array_keys($queryParts['values']) as $key) {
+                $quoted[] = $this->quoteIdentifier($key);
+            }
+            $parts[] = '(' . implode(', ', $quoted) . ')';
+
+            // Values
+            $quoted = array();
+            foreach ($queryParts['values'] as $value) {
+                $quoted[] = $this->quote($value);
+            }
+            $parts[] = 'VALUES(' . implode(', ', $quoted) . ')';
+
+            return implode(' ', $parts);
+        }
+
+        return null;
+    }
+
+    /**
+     * Prepare the SET part of the MySQL query.
+     * 
+     * @param array $queryParts
+     * @return null|string
+     */
+    protected function getSet(array $queryParts)
+    {
+        if (isset($queryParts['set']) && !empty($queryParts['set'])) {
+            $updates = array();
+
+            foreach ($queryParts['set'] as $k => $v) {
+                $updates[] = sprintf(
+                    '%s = %s',
+                    $this->quoteIdentifier($k),
+                        $this->quote($v)
+                );
+            }
+
+            return 'SET ' . implode(', ', $updates);
+        }
+
+        return null;
+    }
+
+    /**
      * Prepare the table name for use in the MySQL query.
      *
      * @param array $queryParts
@@ -101,14 +157,26 @@ trait MySQLTrait
     protected function getTable(array $queryParts)
     {
         if (isset($queryParts['table'])) {
+            $from = 
+                (isset($queryParts['fields']) && !empty($queryParts['fields'])) ||
+                strtoupper($queryParts['type']) === 'DELETE' ?
+                'FROM ' :
+                '';
+
             if (is_a($queryParts['table'], 'Framework\Database\Table')) {
+                $select = !empty($from) ? $from . '%s' : '%s';
+
+                if (!empty($from) && strtoupper($queryParts['type']) !== 'DELETE') {
+                    $select .= ' AS %s';
+                }
+
                 return sprintf(
-                    'FROM %s AS %s',
+                    $select,
                     $this->quoteTable($queryParts['table']->getTable()),
                     $this->quoteTable($queryParts['table']->getName())
                 );
             } else {
-                return 'FROM ' . $this->quoteTable($queryParts['table']);
+                return $from . $this->quoteTable($queryParts['table']);
             }
         }
 
@@ -295,6 +363,8 @@ trait MySQLTrait
                     $queryParts['type'],
                     $this->getFields($queryParts),
                     $this->getTable($queryParts),
+                    $this->getSet($queryParts),
+                    $this->getValues($queryParts),
                     $this->getJoins($queryParts),
                     $this->getWhere($queryParts),
                     $this->getGroup($queryParts),
