@@ -29,6 +29,7 @@ use Framework\Database\Query\Insert;
 use Framework\Database\Query\Select;
 use Framework\Database\Query\Truncate;
 use Framework\Database\Query\Update;
+use Framework\Database\Query\Describe;
 
 /**
  * Table class. Corresponds to a database table and holds functions to insert,
@@ -41,6 +42,7 @@ class Table
 {
     private $name = null;
     private $table = null;
+    private $columns = null;
 
     /**
      * Constructor. Takes the class name and sets the name and table properties.
@@ -128,8 +130,18 @@ class Table
      */
     public function getColumns()
     {
-        // @todo: DESCRIBE query
-        return array();
+        if ($this->columns !== null) {
+            return $this->columns;
+        }
+
+        $this->columns = array();
+        $describe = new Describe($this);
+        // @todo fetchAll is PDO specific
+        foreach ($describe->execute()->fetchAll() as $column) {
+            $this->columns[] = $column['Field'];
+        }
+
+        return $this->getColumns();
     }
 
     /**
