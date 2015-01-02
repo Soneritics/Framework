@@ -32,6 +32,19 @@ namespace Framework\Logging;
  */
 abstract class Logger
 {
+    /**
+     * Constructor. Makes it possible to pass the configuration array
+     * in the constructor.
+     * 
+     * @param array $configuration
+     */
+    public function __construct(array $configuration = null)
+    {
+        if ($configuration !== null) {
+            $this->setConfiguration($configuration);
+        }
+    }
+
 	/**
 	 * Write a debug message to the selected logger.
 	 * When no logger has been initialized, the default logger is used.

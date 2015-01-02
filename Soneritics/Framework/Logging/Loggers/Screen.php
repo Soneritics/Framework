@@ -34,12 +34,19 @@ use Framework\Logging\Logger;
  */
 class Screen extends Logger
 {
+    private $html = true;
+
 	/**
 	 * No configuration is needed for this Logger.
 	 * 
 	 * @param array $configuration
 	 */
-	public function setConfiguration(array $configuration){}
+	public function setConfiguration(array $configuration)
+    {
+        if (isset($configuration['html'])) {
+            $this->html = $configuration['html'];
+        }
+    }
 
 	/**
 	 * Write a debug message to the selected logger.
@@ -49,8 +56,13 @@ class Screen extends Logger
 	 */
     public function write($object)
 	{
-		echo '<pre style="text-align:left;">';
-		print_r($object);
-		echo '</pre>';
+        if (!$this->html) {
+            print_r($object);
+            echo PHP_EOL;
+        } else {
+            echo '<pre style="text-align:left;">';
+            echo htmlspecialchars(print_r($object, true));
+            echo '</pre>';
+        }
 	}
 }
