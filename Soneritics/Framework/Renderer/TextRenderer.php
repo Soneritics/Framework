@@ -22,50 +22,52 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-namespace Framework\Web;
-
-use Framework\Web\Server;
+namespace Framework\Renderer;
 
 /**
- * URI object. Holds a URL.
+ * 
  * 
  * @author Jordi Jolink
- * @date 18-12-2014
+ * @since 2-1-2014
  */
-class URI
+class TextRenderer extends Renderer
 {
-	private $url, $server;
-
-	public function __construct($url = null)
-	{
-        $this->server = new Server;
-        if (!$this->server->isCLI()) {
-            if ($url === null) {
-                $url = explode('?', $this->server->get('REQUEST_URI'))[0];
-            }
-
-            if (empty($url)) {
-                $url = '/';
-            }
-        }
-
-		$this->url = $url;
-	}
-
-	public function getURL()
-	{
-		return $this->url;
-	}
-
-    public function getServer()
+    protected function escape($string)
     {
-        $result = 'http';
+        $string = (string)$string;
 
-        if ($this->server->get('HTTPS') !== false) {
-            $result .= 's';
+        if (!mb_detect_encoding($string, 'UTF-8', true)) {
+            $string = utf8_encode($string);
         }
 
-        $result .= '://' . $this->server->get('HTTP_HOST') . $this->getURL();
-        return $result;
+        return $string;
+    }
+
+    private function getAbsoluteViewFileUrl($viewFile)
+    {
+        if (file_exists($viewFile . '.php')) {
+            return $viewFile . '.php';
+        }
+
+        return $this->modulePath . '/' . $viewFile . '.php';
+    }
+
+    public function render($viewFile, array $params, $layout = null)
+    {
+        extract($params);
+
+        ob_start();
+        include($this->getAbsoluteViewFileUrl($viewFile));
+        $content = ob_get_clean();
+
+        if ($layout !== null) {
+			ob_start();
+            include(
+                \Application::getFolders()->get('layouts') . '/' . $layout . '.php'
+            );
+			return ob_get_clean();
+        } else {
+            return $content;
+        }
     }
 }
