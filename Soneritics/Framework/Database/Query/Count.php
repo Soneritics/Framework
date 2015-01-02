@@ -25,6 +25,7 @@
 namespace Framework\Database\Query;
 
 use Framework\Exceptions\FatalException;
+use Framework\Database\Database;
 
 /**
  * Select query class.
@@ -51,7 +52,7 @@ class Count extends Select
 
         $this->fields = sprintf(
             'COUNT(%s)',
-            \Framework\Database\Database::get()->quote($fields)
+            Database::get()->quote($fields)
         );
 
         return $this;
