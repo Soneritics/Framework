@@ -52,6 +52,9 @@ class Father extends Table {}
 class Mother extends Table {}
 class Child extends Table {}
 
+// Use the Child table as a base for the queries
+$child = new Child;
+
 // Select everything from the children table
 $child
     ->select()
