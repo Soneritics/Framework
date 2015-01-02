@@ -92,7 +92,11 @@ class PDOMySQL implements IDatabaseType
         if (is_subclass_of($query, 'Framework\Database\Query\QueryAbstract')) {
             return $this->query($this->buildQuery($query));
         }
-echo $query;
+
+        if ($this->debug) {
+            \Application::log($query);
+        }
+
         return $this->pdo->query($query);
     }
 }
