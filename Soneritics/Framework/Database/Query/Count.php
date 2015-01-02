@@ -61,15 +61,18 @@ class Count extends Select
     /**
      * Override the default execute function.
      * 
+     * @todo Function only works for PDO.
      * @return int
      */
     public function execute()
     {
         $result = parent::execute();
-        if (isset($result[0][0])) {
-            return (int)$result[0][0];
-        } else {
+        if ($result->rowCount() === 0) {
             return 0;
+        } else {
+            foreach ($result as $record) {
+                return (int)$record[0];
+            }
         }
     }
 }
