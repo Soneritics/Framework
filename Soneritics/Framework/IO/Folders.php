@@ -66,7 +66,8 @@ class Folders
             array(
                 'root' => $root,
                 'package' => "{$root}/Soneritics",
-                'framework' => "{$root}/Soneritics/Framework"
+                'framework' => "{$root}/Soneritics/Framework",
+                'framework-vendor' => "{$root}/vendor",
             )
         );
 
