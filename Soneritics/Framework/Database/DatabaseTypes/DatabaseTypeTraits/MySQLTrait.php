@@ -130,7 +130,7 @@ trait MySQLTrait
 
             foreach ($queryParts['join'] as $join) {
                 $piece = trim($join[0] . ' JOIN') . ' ';
-                $piece .= is_a($join[1], 'Table') ?
+                $piece .= is_a($join[1], 'Framework\Database\Table') ?
                     sprintf(
                         '%s AS %s',
                         $this->quoteTable($join[1]->getTable()),
