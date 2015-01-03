@@ -114,4 +114,61 @@ abstract class RequestAbstract
 
         return $this->getDataFromName($id);
     }
+
+    /**
+     * Get the request parts out of the data.
+     * returns an array with urlencoded values that can directly be pasted
+     * into a URL.
+     * 
+     * @param array $data
+     * @param string $part
+     * @param array $exclude Optional array with exclude values in the full name, eg: [data[Filter][search], data[Filter][page]]
+     * @return array
+     */
+    private function getRequestPartsFromArray(array $data, $part = 'data', $exclude = [])
+    {
+        if (empty($data)) {
+            return [];
+        }
+
+        $result = [];
+
+        foreach ($data as $k => $v) {
+            if (is_array($v)) {
+                $result += $this->getRequestPartsFromArray(
+                    $v,
+                    $part . "[{$k}]",
+                    $exclude
+                );
+            } else {
+                if (!in_array("{$part}[{$k}]", $exclude)) {
+                    $result[] = sprintf(
+                        '%s[%s]=%s',
+                        $part,
+                        urlencode($k),
+                        urlencode($v)
+                    );
+                }
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * Get the request parts out of the data.
+     * returns an array with urlencoded values that can directly be pasted
+     * into a URL.
+     * 
+     * @param array $exclude Optional array with exclude values in the full name, eg: [data[Filter][search], data[Filter][page]]
+     * @return array
+     */
+    public function getRequestParts(array $exclude = [])
+    {
+        if ($this->data === null) {
+            $this->parseData();
+        }
+
+        return $this->getRequestPartsFromArray($this->data, 'data', $exclude);
+    }
 }
