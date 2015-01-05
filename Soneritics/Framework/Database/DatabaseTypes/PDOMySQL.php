@@ -25,6 +25,8 @@
 namespace Framework\Database\DatabaseTypes;
 
 use Framework\Database\DatabaseTypes\DatabaseTypeTraits\MySQLTrait;
+use Framework\Database\DatabaseRecord\DatabaseRecord;
+use Framework\Database\DatabaseRecord\PDODatabaseRecord;
 
 /**
  * DatabaseType object for MySQL using the PDO connector.
@@ -85,7 +87,7 @@ class PDOMySQL implements IDatabaseType
      * or a string containing a full query.
      *
      * @param $query
-     * @return PDOStatement
+     * @return DatabaseRecord
      */
     public function query($query)
     {
@@ -97,7 +99,9 @@ class PDOMySQL implements IDatabaseType
             \Application::log($query);
         }
 
-        return $this->pdo->query($query);
+        return new PDODatabaseRecord(
+            $this->pdo->query($query)
+        );
     }
 
     /**
@@ -105,7 +109,7 @@ class PDOMySQL implements IDatabaseType
      * or a string containing a full query.
      *
      * @param $query
-     * @return PDOStatement
+     * @return DatabaseRecord
      */
     public function execute($query)
     {
@@ -117,6 +121,8 @@ class PDOMySQL implements IDatabaseType
             \Application::log($query);
         }
 
-        return $this->pdo->exec($query);
+        return new PDODatabaseRecord(
+            $this->pdo->exec($query)
+        );
     }
 }

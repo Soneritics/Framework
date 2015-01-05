@@ -137,8 +137,7 @@ class Table
 
         $this->columns = [];
         $describe = new Describe($this);
-        // @todo fetchAll is PDO specific
-        foreach ($describe->execute()->fetchAll() as $column) {
+        foreach ($describe->execute()->all() as $column) {
             $this->columns[] = $column['Field'];
         }
 
