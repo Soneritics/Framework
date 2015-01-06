@@ -44,7 +44,6 @@ class PDODatabaseRecord extends DatabaseRecord
     public function __construct(\PDOStatement $pdoStatement)
     {
         $this->pdoStatement = $pdoStatement;
-        $this->pdoStatement->execute();
     }
 
     /**

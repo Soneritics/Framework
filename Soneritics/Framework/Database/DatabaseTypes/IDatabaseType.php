@@ -88,4 +88,11 @@ interface IDatabaseType
      * @return string
      */
     public function buildQuery(QueryAbstract $query);
+
+    /**
+     * Returns the last insert id.
+     * 
+     * @return mixed
+     */
+    public function lastInsertId();
 } 

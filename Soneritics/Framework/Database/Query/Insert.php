@@ -55,4 +55,15 @@ class Insert extends QueryAbstract
     {
         return $this->setTable($table);
     }
+
+    /**
+     * Override the default execute function.
+     * 
+     * @return int Last insert ID.
+     */
+    public function execute()
+    {
+        $result = parent::execute();
+        return \Framework\Database\Database::get()->lastInsertId();
+    }
 }

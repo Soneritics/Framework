@@ -125,4 +125,14 @@ class PDOMySQL implements IDatabaseType
             $this->pdo->exec($query)
         );
     }
+
+    /**
+     * Returns the last insert id.
+     * 
+     * @return mixed
+     */
+    public function lastInsertId()
+    {
+        return $this->pdo->lastInsertId();
+    }
 }
