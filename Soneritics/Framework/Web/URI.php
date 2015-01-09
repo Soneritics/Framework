@@ -28,17 +28,18 @@ use Framework\Web\Server;
 
 /**
  * URI object. Holds a URL.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  18-12-2014
  */
 class URI
 {
-    private $url, $server;
+    private $url;
+    private $server;
 
     /**
      * Constructor, saves the url (request uri) in the $url property.
-     * 
+     *
      * @param string $url
      */
     public function __construct($url = null)
@@ -59,7 +60,7 @@ class URI
 
     /**
      * Getter for the $url property.
-     * 
+     *
      * @return string
      */
     public function getURL()
@@ -70,7 +71,7 @@ class URI
     /**
      * Get the server, including the protocol.
      * For example: https://www.localhost
-     * 
+     *
      * @return string
      */
     public function getServer()

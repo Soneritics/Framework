@@ -26,15 +26,15 @@ namespace Framework\Web\Request;
 
 /**
  * Class for fetching data from the $_GET superglobal.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  23-12-2014
  */
 class Get extends RequestAbstract
 {
     /**
      * Get the data to parse.
-     * 
+     *
      * @return array
      */
     protected function getData()

@@ -26,8 +26,8 @@ namespace Framework\Database\Query;
 
 /**
  * Describe query class.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  1-1-2015
  */
 class Describe extends QueryAbstract

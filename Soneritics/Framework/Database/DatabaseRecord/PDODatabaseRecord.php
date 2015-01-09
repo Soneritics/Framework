@@ -28,7 +28,7 @@ namespace Framework\Database\DatabaseRecord;
  * DatabseRecord for PDO connections.
  * Uses the PDOStatement object to fetch the rows from.
  *
- * @author Jordi Jolink
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  5-1-2015
  */
 class PDODatabaseRecord extends DatabaseRecord

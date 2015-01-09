@@ -29,8 +29,8 @@ use Framework\Database\Database;
 
 /**
  * Select query class.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  2-1-2015
  */
 class Count extends Select
@@ -40,7 +40,7 @@ class Count extends Select
 
     /**
      * Set the field to count.
-     * 
+     *
      * @param  type $fields
      * @return $this
      */
@@ -60,7 +60,7 @@ class Count extends Select
 
     /**
      * Override the default execute function.
-     * 
+     *
      * @return int
      */
     public function execute()

@@ -26,8 +26,8 @@ namespace Framework\Web\SessionHandlers;
 
 /**
  * Abstract class for session handlers.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  25-12-2014
  */
 abstract class SessionHandler
@@ -51,7 +51,7 @@ abstract class SessionHandler
 
     /**
      * Sets session data.
-     * 
+     *
      * @param $key    The index of the session.
      * @param $value    The value to be put into the session.
      */
@@ -59,7 +59,7 @@ abstract class SessionHandler
 
     /**
      * Removes session data.
-     * 
+     *
      * @param $key    The index of the session.
      */
     abstract public function delete($key);

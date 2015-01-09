@@ -28,8 +28,8 @@ use Framework\Exceptions\FatalException;
 
 /**
  * Database class for connecting to the database.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  1-1-2015
  */
 class Database

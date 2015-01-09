@@ -29,15 +29,15 @@ use Framework\Logging\Log;
 /**
  * Error handler class.
  * Renders errors.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  18-12-2014
  */
 class ErrorHandler
 {
     /**
      * Get the error view.
-     * 
+     *
      * @param  \Exception $exception
      * @return string
      */
@@ -45,10 +45,10 @@ class ErrorHandler
     {
         $className = substr(get_class($exception), strlen('Framework\Exceptions\\'));
         switch ($className) {
-        case 'PageNotFoundException':
-        case 'PermissionDeniedException':
-            return substr($className, 0, -1 * strlen('Exception'));
-          break;
+            case 'PageNotFoundException':
+            case 'PermissionDeniedException':
+                return substr($className, 0, -1 * strlen('Exception'));
+            break;
         }
 
         return 'error';
@@ -56,7 +56,7 @@ class ErrorHandler
 
     /**
      * Send the correct (content type) header.
-     * 
+     *
      * @param \Exception $exception
      * @todo  Write the implementation
      */
@@ -67,7 +67,7 @@ class ErrorHandler
 
     /**
      * Handle the exception. Renders the error view using the class' functions.
-     * 
+     *
      * @param \Exception $exception
      */
     public function handle(\Exception $exception)

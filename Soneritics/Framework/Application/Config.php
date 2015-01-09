@@ -29,8 +29,8 @@ use Framework\Database\Database;
 /**
  * Project configuration class.
  * Handles the reading and parsing of the project's configuration files.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  27-11-2014
  */
 class Config
@@ -39,7 +39,7 @@ class Config
 
     /**
      * Constructor, reads the configuration files from a project.
-     * 
+     *
      * @param string $configPath
      */
     public function __construct($configPath)
@@ -61,7 +61,7 @@ class Config
 
     /**
      * Get the contents of a configuration.
-     * 
+     *
      * @param  string $key
      * @return mixed
      */

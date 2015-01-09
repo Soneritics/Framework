@@ -30,8 +30,8 @@ use Framework\Exceptions\FatalException;
 /**
  * Abstract class for query objects. Every query object extends this abstract,
  * which automatically gives it full chainable query functionality.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  1-1-2015
  */
 abstract class QueryAbstract
@@ -93,12 +93,10 @@ abstract class QueryAbstract
     public function execute()
     {
         if ($this->table === null) {
-            throw new FatalException(
-                sprintf(
-                    'No table defined for method `%s`.',
-                    $this->getQueryType()
-                )
-            );
+            throw new FatalException(sprintf(
+                'No table defined for method `%s`.',
+                $this->getQueryType()
+            ));
         }
 
         if ($this->queryType === static::MODE_QUERY) {
@@ -113,7 +111,7 @@ abstract class QueryAbstract
      *
      * @return string Query type; SELECT, UPDATE, INSERT, DELETE, TRUNCATE, etc.
      */
-    public abstract function getQueryType();
+    abstract public function getQueryType();
 
     /**
      * Set the fields to use in the query.
@@ -141,7 +139,7 @@ abstract class QueryAbstract
 
     /**
      * Set values for an update query.
-     * 
+     *
      * @param  type $key
      * @param  type $val
      * @return $this
@@ -308,4 +306,4 @@ abstract class QueryAbstract
 
         return $result;
     }
-} 
+}

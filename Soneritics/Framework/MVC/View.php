@@ -30,15 +30,15 @@ use Framework\Renderer\Renderer;
 /**
  * View object. This is the object that is used in controllers to actual
  * render to the screen.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  17-11-2014
  */
 class View
 {
-    private $layout = null,
-            $view = null,
-            $params = array();
+    private $layout = null;
+    private $view = null;
+    private $params = [];
 
     /**
      * Constructor. Optionally sets a view.
@@ -64,7 +64,7 @@ class View
 
     /**
      * Getter for the layout.
-     * 
+     *
      * @return string
      */
     public function getLayout()
@@ -74,7 +74,7 @@ class View
 
     /**
      * Setter for the layout.
-     * 
+     *
      * @param  string $layout
      * @return $this
      */
@@ -86,7 +86,7 @@ class View
 
     /**
      * Getter for the view file.
-     * 
+     *
      * @return string
      */
     public function getViewFile()
@@ -96,7 +96,7 @@ class View
 
     /**
      * Setter for the view file.
-     * 
+     *
      * @param  string $view
      * @return $this
      */
@@ -108,7 +108,7 @@ class View
 
     /**
      * Set a parameter for use in the view.
-     * 
+     *
      * @param  string $name
      * @param  mixed  $value
      * @return $this
@@ -121,7 +121,7 @@ class View
 
     /**
      * Set multiple parameters at once.
-     * 
+     *
      * @param  array $array
      * @return $this
      */
@@ -133,7 +133,7 @@ class View
 
     /**
      * MAke the parameters available in the view.
-     * 
+     *
      * @param Renderer $renderer
      */
     private function parseParams(Renderer $renderer)
@@ -147,7 +147,7 @@ class View
 
     /**
      * Render the view using the $renderer Renderer.
-     * 
+     *
      * @param  Renderer $renderer
      * @return string
      * @throws FatalException

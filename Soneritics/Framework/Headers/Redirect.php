@@ -26,15 +26,15 @@ namespace Framework\Headers;
 
 /**
  * Simple class that redirects to a given URL.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  14-9-2014
  */
 class Redirect
 {
     /**
      * Redirect to a given URL.
-     * 
+     *
      * @param string $url
      */
     public function __construct($url)

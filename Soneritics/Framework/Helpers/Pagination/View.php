@@ -1,24 +1,32 @@
 <ul class="pagination">
-    <?php if ($prev === false) : ?>
+    <?php if ($prev === false) :
+?>
         <li class="disabled"><a href="javascript:;">&laquo;</a></li>
-    <?php else: ?>
+    <?php
+else :
+?>
         <li><a href="<?php echo $this->escape(sprintf($url, $page - 1)); ?>">&laquo;</a></li>
-    <?php 
+    <?php
 endif; ?>
 
-    <?php for ($p = $from; $p <= $to; $p++) : ?>
-        <li<?php if ($p == $page) : ?> class="active"<?php 
+    <?php for ($p = $from; $p <= $to; $p++) :
+?>
+        <li<?php if ($p == $page) :
+?> class="active"<?php
 endif; ?>>
             <a href="<?php echo $this->escape(sprintf($url, $p)); ?>"><?php echo (int)$p; ?></a>
         </li>
-    <?php 
+    <?php
 endfor; ?>
 
-    <?php if ($next === false) : ?>
+    <?php if ($next === false) :
+?>
         <li class="disabled"><a href="javascript:;">&raquo;</a></li>
-    <?php else: ?>
+    <?php
+else :
+?>
         <li><a href="<?php echo $this->escape(sprintf($url, $page + 1)); ?>">&raquo;</a></li>
-    <?php 
+    <?php
 endif; ?>
 
 </ul>

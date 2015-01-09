@@ -28,8 +28,8 @@ use Framework\Database\Query\QueryAbstract;
 
 /**
  * Trait for MySQL queries.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  1-1-2015
  */
 trait MySQLTrait
@@ -125,7 +125,7 @@ trait MySQLTrait
 
     /**
      * Prepare the SET part of the MySQL query.
-     * 
+     *
      * @param  array $queryParts
      * @return null|string
      */
@@ -157,7 +157,7 @@ trait MySQLTrait
     protected function getTable(array $queryParts)
     {
         if (isset($queryParts['table'])) {
-            $from = 
+            $from =
                 (isset($queryParts['fields']) && !empty($queryParts['fields'])) ||
                 strtoupper($queryParts['type']) === 'DELETE' ?
                 'FROM ' :
@@ -371,11 +371,10 @@ trait MySQLTrait
                     $this->getOrder($queryParts),
                     $this->getLimit($queryParts)
                 ],
-                function($var)
-                {
+                function($var) {
                     return $var !== null;
                 }
             )
         );
     }
-} 
+}

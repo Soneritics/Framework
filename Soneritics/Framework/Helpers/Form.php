@@ -27,15 +27,15 @@ namespace Framework\Helpers;
 /**
  * Form helper class.
  * This class contains functions that return HelperObjectInterface objects.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  21-12-2014
  */
 class Form
 {
     /**
      * Magic function to get a FormObject.
-     * 
+     *
      * @param  string $object
      * @return AbstractHelperObject
      */

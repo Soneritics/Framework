@@ -30,8 +30,8 @@ use Framework\Database\DatabaseRecord\PDODatabaseRecord;
 
 /**
  * DatabaseType object for MySQL using the PDO connector.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  1-1-2015
  */
 class PDOMySQL implements IDatabaseType
@@ -99,9 +99,7 @@ class PDOMySQL implements IDatabaseType
             \Application::log($query);
         }
 
-        return new PDODatabaseRecord(
-            $this->pdo->query($query)
-        );
+        return new PDODatabaseRecord($this->pdo->query($query));
     }
 
     /**
@@ -121,14 +119,12 @@ class PDOMySQL implements IDatabaseType
             \Application::log($query);
         }
 
-        return new PDODatabaseRecord(
-            $this->pdo->exec($query)
-        );
+        return new PDODatabaseRecord($this->pdo->exec($query));
     }
 
     /**
      * Returns the last insert id.
-     * 
+     *
      * @return mixed
      */
     public function lastInsertId()

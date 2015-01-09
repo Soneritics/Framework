@@ -28,8 +28,8 @@ use Framework\Web\Server;
 
 /**
  * Render an error.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  20-12-2014
  */
 class ErrorRenderer extends HtmlRenderer
@@ -37,7 +37,7 @@ class ErrorRenderer extends HtmlRenderer
     /**
      * Override the constructor, as it might raise errors for not having
      * a $module that exists.
-     * 
+     *
      * @param string $module Can be omitted for the ErrorRenderer.
      */
     public function __construct($module)
@@ -47,7 +47,7 @@ class ErrorRenderer extends HtmlRenderer
 
     /**
      * Get the location of the view file.
-     * 
+     *
      * @param  type $viewFile
      * @return type
      */
@@ -65,7 +65,7 @@ class ErrorRenderer extends HtmlRenderer
      * Get the layout for the error view.
      * When a layout called 'error.php' exists, thiss will be used. Otherwise,
      * the default layout will be used.
-     * 
+     *
      * @return string
      */
     private function getErrorLayout()
@@ -79,7 +79,7 @@ class ErrorRenderer extends HtmlRenderer
 
     /**
      * Render the error view.
-     * 
+     *
      * @param  type  $viewFile
      * @param  array $params
      * @param  type  $layout

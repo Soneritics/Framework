@@ -28,22 +28,22 @@ use Framework\Database\Query\QueryAbstract;
 
 /**
  * DatabaseType interface.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  1-1-2015
  */
 interface IDatabaseType
 {
     /**
      * Constructor, loads the configs for the database type.
-     * 
+     *
      * @param array $config
      */
     public function __construct(array $config);
 
     /**
      * Quote a value.
-     * 
+     *
      * @param  type $value
      * @return string
      */
@@ -51,7 +51,7 @@ interface IDatabaseType
 
     /**
      * Quote a database name.
-     * 
+     *
      * @param  type $db
      * @return string
      */
@@ -59,7 +59,7 @@ interface IDatabaseType
 
     /**
      * Quote a table name.
-     * 
+     *
      * @param  type $table
      * @return string
      */
@@ -67,7 +67,7 @@ interface IDatabaseType
 
     /**
      * Quote an identifier (column name).
-     * 
+     *
      * @param  type $id
      * @return string
      */
@@ -75,7 +75,7 @@ interface IDatabaseType
 
     /**
      * Execute a query.
-     * 
+     *
      * @param  type $query
      * @return mixed
      */
@@ -83,7 +83,7 @@ interface IDatabaseType
 
     /**
      * Build a value from a QueryAbstract object.
-     * 
+     *
      * @param  QueryAbstract $query
      * @return string
      */
@@ -91,8 +91,8 @@ interface IDatabaseType
 
     /**
      * Returns the last insert id.
-     * 
+     *
      * @return mixed
      */
     public function lastInsertId();
-} 
+}

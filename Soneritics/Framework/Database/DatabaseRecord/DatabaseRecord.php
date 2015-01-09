@@ -28,7 +28,7 @@ namespace Framework\Database\DatabaseRecord;
  * Abstract class for a database record. When fetching from the database,
  * records get returned as a DatabaseRecord object.
  *
- * @author Jordi Jolink
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  5-1-2015
  */
 abstract class DatabaseRecord
@@ -39,28 +39,28 @@ abstract class DatabaseRecord
      *
      * @return array
      */
-    protected abstract function getMapping();
+    abstract protected function getMapping();
 
     /**
      * Return an array with all the data from the query.
      *
      * @return array
      */
-    public abstract function all();
+    abstract public function all();
 
     /**
      * Get the total number of rows.
      *
      * @return int
      */
-    public abstract function count();
+    abstract public function count();
 
     /**
      * Fetch the next (or first) row from the results.
      *
      * @return mixed
      */
-    public abstract function get();
+    abstract public function get();
 
     /**
      * Reset the resource pointer. When using the get() function, this
@@ -69,7 +69,7 @@ abstract class DatabaseRecord
      * @return mixed
      * @return $this;
      */
-    public abstract function reset();
+    abstract public function reset();
 
     /**
      * Map the record, based on the table and field name.
@@ -108,4 +108,4 @@ abstract class DatabaseRecord
             return $record;
         }
     }
-} 
+}

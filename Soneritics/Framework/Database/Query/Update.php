@@ -26,8 +26,8 @@ namespace Framework\Database\Query;
 
 /**
  * Update query class.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  1-1-2015
  */
 class Update extends QueryAbstract
@@ -57,5 +57,4 @@ class Update extends QueryAbstract
         $this->set = $values;
         return $this;
     }
-
 }

@@ -26,15 +26,15 @@ namespace Framework\Web;
 
 /**
  * Object that loads server variables.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  1-1-2015
  */
 class Server
 {
     /**
      * Get a filtered variable from the $_SERVER super global.
-     * 
+     *
      * @param  type $id
      * @return mixed Boolean false when not found, otherwise the variable.
      */
@@ -49,7 +49,7 @@ class Server
 
     /**
      * Find out if the application is running from the command line interface.
-     * 
+     *
      * @return boolean
      */
     public function isCLI()

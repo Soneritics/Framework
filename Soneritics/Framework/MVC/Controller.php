@@ -30,19 +30,19 @@ use Framework\Web\Request\Request;
 
 /**
  * Abstract controller class, defines the lay-out of the controllers.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  17-11-2014
  */
 abstract class Controller
 {
-    private $request = null,
-            $post = null,
-            $get = null;
+    private $request = null;
+    private $post = null;
+    private $get = null;
 
     /**
      * Get a value from the Post object.
-     * 
+     *
      * @param  type $name
      * @return type
      */
@@ -57,7 +57,7 @@ abstract class Controller
 
     /**
      * Get a value from the Get object.
-     * 
+     *
      * @param  type $name
      * @return type
      */
@@ -72,7 +72,7 @@ abstract class Controller
 
     /**
      * Get a value from the Request object.
-     * 
+     *
      * @param  type $name
      * @return type
      */

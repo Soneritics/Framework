@@ -35,8 +35,8 @@ use Framework\Database\Query\Count;
 /**
  * Table class. Corresponds to a database table and holds functions to insert,
  * update, delete and select.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  1-1-2015
  */
 class Table
@@ -204,7 +204,7 @@ class Table
 
     /**
      * Execute a simple count query.
-     * 
+     *
      * @param  type $where
      * @return Count
      */

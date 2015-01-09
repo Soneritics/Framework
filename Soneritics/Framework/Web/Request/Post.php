@@ -26,20 +26,19 @@ namespace Framework\Web\Request;
 
 /**
  * Class for fetching data from the $_POST superglobal.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  23-12-2014
  */
 class Post extends RequestAbstract
 {
     /**
      * Get the data to parse.
-     * 
+     *
      * @return array
      */
     protected function getData()
     {
         return isset($_POST['data']) ? $_POST['data'] : $_POST;
     }
-
 }

@@ -28,19 +28,19 @@ use Framework\MVC\View;
 
 /**
  * Pagination helper.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  26-12-2014
  */
 class Pagination
 {
-    private $page = 1,
-            $pages = 1,
-            $url = '?page=%s';
+    private $page = 1;
+    private $pages = 1;
+    private $url = '?page=%s';
 
     /**
      * Setter for the currently active page.
-     * 
+     *
      * @param  type $page
      * @return \Framework\Helpers\Pagination
      */
@@ -52,7 +52,7 @@ class Pagination
 
     /**
      * Setter for the total amount of pages.
-     * 
+     *
      * @param  type $pages
      * @return \Framework\Helpers\Pagination
      */
@@ -64,7 +64,7 @@ class Pagination
 
     /**
      * Setter for the URL.
-     * 
+     *
      * @param  type $url
      * @return \Framework\Helpers\Pagination
      */
@@ -76,7 +76,7 @@ class Pagination
 
     /**
      * Find out which page to show first, and what page last.
-     * 
+     *
      * @return array($from, $to)
      */
     private function getFromTo()
@@ -99,7 +99,7 @@ class Pagination
     /**
      * Function to get the parameters needed for the pagination view, which
      * can be directly passed into a View's setParams() function.
-     * 
+     *
      * @return array
      */
     private function getViewParams()
@@ -118,7 +118,7 @@ class Pagination
 
     /**
      * Return the view that contains the pagination.
-     * 
+     *
      * @return View
      */
     public function getView()

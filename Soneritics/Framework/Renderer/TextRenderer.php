@@ -25,9 +25,9 @@
 namespace Framework\Renderer;
 
 /**
- * 
- * 
- * @author Jordi Jolink
+ *
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since 2-1-2014
  */
 class TextRenderer extends Renderer

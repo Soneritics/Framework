@@ -31,17 +31,18 @@ use Framework\Application\Routing;
  * Bootstrap class for the Soneritics framework.
  * This class loads all the files, sets an autoloader and error handler and
  * starts the application.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  14-9-2014
  */
 class Bootstrap
 {
-    private $folders, $application;
+    private $folders;
+    private $application;
 
     /**
      * Create a Folders object and initialize it with the root path.
-     * 
+     *
      * @param string $appPath Path of the application root (optional).
      */
     private function setFolders($appPath = null)
@@ -61,7 +62,7 @@ class Bootstrap
     {
         // Initialize Composer's autoloaders
         foreach (['framework-vendor', 'vendor'] as $folder) {
-            $vendorAutoLoader = 
+            $vendorAutoLoader =
                     $this->folders->get($folder) . '/autoload.php';
 
             if (file_exists($vendorAutoLoader)) {
@@ -108,9 +109,7 @@ class Bootstrap
 
         if ($config->get('Logging') !== null) {
             $logger = $config->get('Logging');
-            \Framework\Logging\Log::setLogger(
-                new $logger['Logger']($logger['Config'])
-            );
+            \Framework\Logging\Log::setLogger(new $logger['Logger']($logger['Config']));
         }
 
         $this->application->run(
@@ -121,7 +120,7 @@ class Bootstrap
 
     /**
      * Starts the application.
-     * 
+     *
      * @param string $appPath Path of the application root (optional).
      */
     public function __construct($appPath = null)

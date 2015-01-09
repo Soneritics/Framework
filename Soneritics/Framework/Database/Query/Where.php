@@ -26,8 +26,8 @@ namespace Framework\Database\Query;
 
 /**
  * Where object for creating where conditions for the queries.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  1-1-2015
  */
 class Where

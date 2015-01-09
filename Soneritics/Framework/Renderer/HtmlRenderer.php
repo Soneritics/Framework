@@ -27,9 +27,9 @@ namespace Framework\Renderer;
 use Framework\Helpers\Form;
 
 /**
- * 
- * 
- * @author Jordi Jolink
+ *
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since 9-12-2014
  */
 class HtmlRenderer extends Renderer

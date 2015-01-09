@@ -26,8 +26,8 @@ namespace Framework\Web\Request;
 
 /**
  * Abstract request class.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  23-12-2014
  */
 abstract class RequestAbstract
@@ -36,14 +36,14 @@ abstract class RequestAbstract
 
     /**
      * Get the data to parse.
-     * 
+     *
      * @return array
      */
-    protected abstract function getData();
+    abstract protected function getData();
 
     /**
      * Parse the data from the request and strip the slashes from it.
-     * 
+     *
      * @param  array|string $data
      * @return array|string
      */
@@ -66,7 +66,7 @@ abstract class RequestAbstract
     /**
      * Get data from the request by name. Arrays can be used by a dot in the
      * $name variable. For example: 'User.email'
-     * 
+     *
      * @param  string $name
      * @return type
      */
@@ -92,9 +92,9 @@ abstract class RequestAbstract
     }
 
     /**
-     * Public getter. Parses the request data and uses the private 
+     * Public getter. Parses the request data and uses the private
      * getDataFromName function to fetch the data.
-     * 
+     *
      * @param  type $id
      * @return type
      */
@@ -119,10 +119,11 @@ abstract class RequestAbstract
      * Get the request parts out of the data.
      * returns an array with urlencoded values that can directly be pasted
      * into a URL.
-     * 
+     *
      * @param  array  $data
      * @param  string $part
-     * @param  array  $exclude Optional array with exclude values in the full name, eg: [data[Filter][search], data[Filter][page]]
+     * @param  array  $exclude Optional array with exclude values in the full
+     *                name, eg: [data[Filter][search], data[Filter][page]]
      * @return array
      */
     private function getRequestPartsFromArray(array $data, $part = 'data', $exclude = [])
@@ -159,8 +160,9 @@ abstract class RequestAbstract
      * Get the request parts out of the data.
      * returns an array with urlencoded values that can directly be pasted
      * into a URL.
-     * 
-     * @param  array $exclude Optional array with exclude values in the full name, eg: [data[Filter][search], data[Filter][page]]
+     *
+     * @param  array $exclude Optional array with exclude values in the full
+     *                        name: [data[Filter][search], data[Filter][page]]
      * @return array
      */
     public function getRequestParts(array $exclude = [])

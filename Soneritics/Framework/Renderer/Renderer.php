@@ -28,20 +28,20 @@ use Framework\Exceptions\FatalException;
 
 /**
  * Abstract renderer class, defines the lay-out of the renderers.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  9-12-2014
  */
 abstract class Renderer
 {
-    protected abstract function escape($string);
-    public abstract function render($viewFile, array $params, $layout = null);
+    abstract protected function escape($string);
+    abstract public function render($viewFile, array $params, $layout = null);
 
     protected $modulePath;
 
     public function __construct($module)
     {
-        $modulePath = 
+        $modulePath =
             \Application::getFolders()->get('modules') . '/' .
             $module . '/View/';
 

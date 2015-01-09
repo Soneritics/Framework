@@ -28,8 +28,8 @@ use Framework\Logging\Logger;
 
 /**
  * Screen logger. Simply logs to the screen.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  19-9-2014
  */
 class Screen extends Logger
@@ -38,20 +38,20 @@ class Screen extends Logger
 
     /**
      * No configuration is needed for this Logger.
-     * 
+     *
      * @param array $configuration
      */
     public function setConfiguration(array $configuration)
- {
+    {
         if (isset($configuration['html'])) {
             $this->html = $configuration['html'];
-           }
- }
+        }
+    }
 
     /**
      * Write a debug message to the selected logger.
      * When no logger has been initialized, the default logger is used.
-     * 
+     *
      * @param mixed $object
      */
     public function write($object)

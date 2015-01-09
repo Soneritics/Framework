@@ -26,8 +26,8 @@ namespace Framework\Database\Query;
 
 /**
  * Insert query class.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  1-1-2015
  */
 class Insert extends QueryAbstract
@@ -58,7 +58,7 @@ class Insert extends QueryAbstract
 
     /**
      * Override the default execute function.
-     * 
+     *
      * @return int Last insert ID.
      */
     public function execute()

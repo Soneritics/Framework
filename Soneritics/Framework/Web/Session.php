@@ -28,8 +28,8 @@ use SessionHandlers\SessionHandler;
 
 /**
  * Session class for handling session storage.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  25-12-2014
  */
 class Session
@@ -39,7 +39,7 @@ class Session
     /**
      * Get the SessionHandler. When no session handler has been defined,
      * create one.
-     * 
+     *
      * @return SessionHandler
      */
     private function getSessionObject()
@@ -50,7 +50,7 @@ class Session
             if ($sessionHandler === null) {
                 $this->sessionObject = new SessionHandlers\Session;
             } else {
-                $config = 
+                $config =
                     isset($sessionHandler['Config']) && is_array($sessionHandler['Config']) ?
                     $sessionHandler['Config'] :
                     [];
@@ -76,7 +76,7 @@ class Session
 
     /**
      * Explicitly sets a SessionHandler to use.
-     * 
+     *
      * @param  SessionHandler $sessionObject
      * @return \Framework\Web\Session
      */
@@ -88,7 +88,7 @@ class Session
 
     /**
      * Updates the session object.
-     * 
+     *
      * @return \Framework\Web\Session
      */
     public function update()
@@ -122,7 +122,7 @@ class Session
 
     /**
      * Sets session data.
-     * 
+     *
      * @param $key    The index of the session.
      * @param $value    The value to be put into the session.
      */
@@ -134,7 +134,7 @@ class Session
 
     /**
      * Removes session data.
-     * 
+     *
      * @param $key    The index of the session.
      */
     public function delete($key)

@@ -21,13 +21,13 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */ 
+ */
 namespace Framework;
 
 /**
  * Framework's autoloader.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  7-12-2014
  */
 class AutoLoader
@@ -36,7 +36,7 @@ class AutoLoader
 
     /**
      * Add a root path to the autoloader.
-     * 
+     *
      * @param  string $path
      * @return $this
      */
@@ -48,7 +48,7 @@ class AutoLoader
 
     /**
      * Installs this class loader on the SPL autoload stack.
-     * 
+     *
      * @return $this
      */
     public function register()

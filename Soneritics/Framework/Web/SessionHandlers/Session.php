@@ -28,8 +28,8 @@ use Framework\Web\IP;
 
 /**
  * Session handler by using the default $_SESSION object.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  25-12-2014
  */
 class Session extends SessionHandler
@@ -39,7 +39,7 @@ class Session extends SessionHandler
 
     /**
      * Constructor. Starts the session and initializes.
-     * 
+     *
      * @param array $config Always empty for this class.
      */
     public function __construct(array $config = array())
@@ -92,7 +92,7 @@ class Session extends SessionHandler
 
     /**
      * Sets session data.
-     * 
+     *
      * @param $key    The index of the session.
      * @param $value    The value to be put into the session.
      */
@@ -104,7 +104,7 @@ class Session extends SessionHandler
 
     /**
      * Removes session data.
-     * 
+     *
      * @param $key    The index of the session.
      */
     public function delete($key)

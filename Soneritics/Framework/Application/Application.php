@@ -33,8 +33,8 @@ use Framework\Web\Server;
 
 /**
  * Main Application abstraction class.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  18-9-2014
  */
 abstract class Application
@@ -45,52 +45,52 @@ abstract class Application
     /**
      * Constructor. Set-up necessary objects and connections.
      */
-    public final function __construct()
+    final public function __construct()
     {
         self::$folders = new Folders();
     }
 
     /**
      * Function that gets executed before the application runs.
-     * 
+     *
      * @param Routing $router
      */
-    protected abstract function beforeRun(Routing $router);
+    abstract protected function beforeRun(Routing $router);
 
     /**
      * Function that gets executed after the application runs.
-     * 
+     *
      * @param Routing $router
      */
-    protected abstract function afterRun(Routing $router);
+    abstract protected function afterRun(Routing $router);
 
     /**
      * Function that gets executed before the application runs and should
      * return true. When it returns false, a PermissionDeniedException is
      * thrown.
-     * 
+     *
      * @param  Routing $router
      * @return bool Indicator wether the app may run or not.
      */
-    protected abstract function canRun(Routing $router);
+    abstract protected function canRun(Routing $router);
 
     /**
      * Function that gets executed before the view renders.
      * Passes the View as a variable, so it can be altered.
-     * 
+     *
      * @param View $view
      */
-    protected abstract function beforeRender(View $view);
+    abstract protected function beforeRender(View $view);
 
     /**
      * Run the current application with a given Router and Config.
-     * 
+     *
      * @param  \Framework\Application\Config  $config
      * @param  \Framework\Application\Routing $router
      * @throws PageNotFoundException
      * @throws PermissionDeniedException
      */
-    public final function run(Config $config, Routing $router)
+    final public function run(Config $config, Routing $router)
     {
         // Make the Config object available through the Application class
         self::$config = $config;
@@ -117,7 +117,7 @@ abstract class Application
 
     /**
      * Function to handle the actual running of the controller.
-     * 
+     *
      * @param  \Framework\Application\Routing $router
      * @throws PageNotFoundException
      */
@@ -146,10 +146,8 @@ abstract class Application
         } elseif (method_exists($controller, $router->getFunction() . 'Action')) {
             $action = $router->getFunction() . 'Action';
         } else {
-            throw new PageNotFoundException(
-                'Action not found: ' .
-                $router->getFunction() . $router->getRequestType()
-            );
+            throw new PageNotFoundException('Action not found: ' .
+                $router->getFunction() . $router->getRequestType());
         }
 
         $view = call_user_func_array(
@@ -159,21 +157,17 @@ abstract class Application
 
         $isView = is_a($view, 'Framework\MVC\View');
         if (!is_null($view) && !$isView) {
-            throw new FatalException(
-                'Unexpected controller function result: ' .
-                print_r($view, true)
-            );
+            throw new FatalException('Unexpected controller function result: ' .
+                print_r($view, true));
         } elseif ($isView) {
             $this->beforeRender($view);
-            echo $view->render(
-                new \Framework\Renderer\HtmlRenderer($router->getModule()) // @todo: fixme
-            );
+            echo $view->render(new \Framework\Renderer\HtmlRenderer($router->getModule()));
         }
     }
 
     /**
      * Static function to return the configuration object.
-     * 
+     *
      * @return Config Configuration for the application.
      */
     public static function getConfig()
@@ -183,7 +177,7 @@ abstract class Application
 
     /**
      * Returns an initialized Folders object.
-     * 
+     *
      * @return Folders Initialized Folders object.
      */
     public static function getFolders()

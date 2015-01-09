@@ -30,8 +30,8 @@ use Framework\Renderer\TextRenderer;
 
 /**
  * Mail object. Sends e-mail.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  2-1-2015
  * @todo   Uses the PEAR Mail_Mime extension. Should not do that :-)
  */
@@ -47,7 +47,7 @@ class Mail
 
     /**
      * Validate the properties.
-     * 
+     *
      * @throw FatalException
      */
     protected function validate()
@@ -67,7 +67,7 @@ class Mail
 
     /**
      * Send the mail, based on the class' properties.
-     * 
+     *
      * @return bool
      */
     public function send()
@@ -109,7 +109,7 @@ class Mail
 
     /**
      * Set the address to send the mail to.
-     * 
+     *
      * @param  string $address
      * @return $this
      */
@@ -121,7 +121,7 @@ class Mail
 
     /**
      * Add a CC address.
-     * 
+     *
      * @param  string $address
      * @return $this
      */
@@ -140,7 +140,7 @@ class Mail
 
     /**
      * Add a BCC address.
-     * 
+     *
      * @param  string $address
      * @return $this
      */
@@ -159,7 +159,7 @@ class Mail
 
     /**
      * Set the subject of the email.
-     * 
+     *
      * @param  string $subject
      * @return $this
      */
@@ -171,7 +171,7 @@ class Mail
 
     /**
      * Set the sender's email address.
-     * 
+     *
      * @param  string $from
      * @return $this
      */
@@ -183,7 +183,7 @@ class Mail
 
     /**
      * Set the HTML body of the email (mandatory).
-     * 
+     *
      * @param  View|string $body
      * @return $this
      */
@@ -199,7 +199,7 @@ class Mail
 
     /**
      * Set the text body of the email (optional).
-     * 
+     *
      * @param  View|string $body
      * @return $this
      */

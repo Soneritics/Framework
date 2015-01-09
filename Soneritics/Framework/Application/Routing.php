@@ -29,17 +29,18 @@ use Framework\Web\URI;
 /**
  * Routing class.
  * Handles mapping URLs to the correct module, controller and function.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  18-9-2014
  */
 class Routing
 {
-    private $routing, $route = [];
+    private $routing;
+    private $route = [];
 
     /**
      * Constructor saved the routing array in a property.
-     * 
+     *
      * @param array $routing
      */
     public function __construct(array $routing)
@@ -50,7 +51,7 @@ class Routing
 
     /**
      * Find the route.
-     * 
+     *
      * @return bool Route has been found.
      */
     private function init()
@@ -95,7 +96,7 @@ class Routing
 
     /**
      * Store a route in the class' properties and fetch the parameters.
-     * 
+     *
      * @param  type  $url
      * @param  URI   $uri
      * @param  array $route
@@ -137,7 +138,7 @@ class Routing
 
     /**
      * Check if a route can be found for the given URL.
-     * 
+     *
      * @return bool Returns wether a route could be found.
      */
     public function canRoute()
@@ -147,7 +148,7 @@ class Routing
 
     /**
      * Get the property from the route or null when it doesn't exist.
-     * 
+     *
      * @param  string $key
      * @return mixed
      */
@@ -158,7 +159,7 @@ class Routing
 
     /**
      * Get the module name from the route.
-     * 
+     *
      * @return string
      */
     public function getModule()
@@ -168,7 +169,7 @@ class Routing
 
     /**
      * Get the controller name from the route.
-     * 
+     *
      * @return string
      */
     public function getController()
@@ -178,7 +179,7 @@ class Routing
 
     /**
      * Get the function name from the route.
-     * 
+     *
      * @return string
      */
     public function getFunction()
@@ -188,7 +189,7 @@ class Routing
 
     /**
      * Get the parameters from the route.
-     * 
+     *
      * @return array
      */
     public function getParams()
@@ -198,7 +199,7 @@ class Routing
 
     /**
      * Get the request type.
-     * 
+     *
      * @return string
      */
     public function getRequestType()

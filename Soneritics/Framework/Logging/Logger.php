@@ -26,8 +26,8 @@ namespace Framework\Logging;
 
 /**
  * Logger abstraction.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  19-9-2014
  */
 abstract class Logger
@@ -35,7 +35,7 @@ abstract class Logger
     /**
      * Constructor. Makes it possible to pass the configuration array
      * in the constructor.
-     * 
+     *
      * @param array $configuration
      */
     public function __construct(array $configuration = null)
@@ -48,15 +48,15 @@ abstract class Logger
     /**
      * Write a debug message to the selected logger.
      * When no logger has been initialized, the default logger is used.
-     * 
+     *
      * @param mixed $object
      */
-    public abstract function write($object);
+    abstract public function write($object);
 
     /**
      * Set the configuration of the logger, as based on the configuration.
-     * 
+     *
      * @param array $configuration
      */
-    public abstract function setConfiguration(array $configuration);
+    abstract public function setConfiguration(array $configuration);
 }

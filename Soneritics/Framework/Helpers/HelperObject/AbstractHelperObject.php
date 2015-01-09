@@ -31,29 +31,29 @@ use Framework\Web\Request\RequestAbstract;
 
 /**
  * Abstract class for the HelperObject classes.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  21-12-2014
  */
 abstract class AbstractHelperObject
 {
-    protected $name = null,
-              $params = array();
+    protected $name = null;
+    protected $params = [];
 
-    private $request = null,
-            $post = null,
-            $get = null;
+    private $request = null;
+    private $post = null;
+    private $get = null;
 
     /**
      * Render the object.
-     * 
+     *
      * @return string HTML code of the object.
      */
     abstract public function render();
 
     /**
      * Format the attribute of an HTML object (attribute="value")
-     * 
+     *
      * @param  string $attribute
      * @return string
      */
@@ -64,7 +64,7 @@ abstract class AbstractHelperObject
 
     /**
      * Format the value of an HTML object (attribute="value")
-     * 
+     *
      * @param  type $value
      * @return string
      */
@@ -76,7 +76,7 @@ abstract class AbstractHelperObject
 
     /**
      * Create a name that can be used in HTML.
-     * 
+     *
      * @return string
      */
     private function getRequestName()
@@ -86,7 +86,7 @@ abstract class AbstractHelperObject
 
     /**
      * Render HTML from the parameters in the $markup.
-     * 
+     *
      * @param  string $markup
      * @return string
      */
@@ -115,7 +115,7 @@ abstract class AbstractHelperObject
 
     /**
      * Construct the object.
-     * 
+     *
      * @param string $name
      */
     public function __construct($name = null)
@@ -127,7 +127,7 @@ abstract class AbstractHelperObject
 
     /**
      * Set the name.
-     * 
+     *
      * @param  string $name
      * @return \Framework\Helpers\AbstractHelperObject
      */
@@ -139,7 +139,7 @@ abstract class AbstractHelperObject
 
     /**
      * Return the object's name.
-     * 
+     *
      * @return string
      */
     public function getName()
@@ -149,7 +149,7 @@ abstract class AbstractHelperObject
 
     /**
      * Set the object's class(ses).
-     * 
+     *
      * @param  string $class
      * @return \Framework\Helpers\AbstractHelperObject
      */
@@ -160,7 +160,7 @@ abstract class AbstractHelperObject
 
     /**
      * Set the object's vlue.
-     * 
+     *
      * @param  string $value
      * @return \Framework\Helpers\AbstractHelperObject
      */
@@ -171,7 +171,7 @@ abstract class AbstractHelperObject
 
     /**
      * Set a param.
-     * 
+     *
      * @param  string $class
      * @return \Framework\Helpers\FormStart
      */
@@ -183,7 +183,7 @@ abstract class AbstractHelperObject
 
     /**
      * Get a parameter value.
-     * 
+     *
      * @return string
      */
     public function getParam($id)
@@ -197,7 +197,7 @@ abstract class AbstractHelperObject
 
     /**
      * Get and/or initialize a Post object.
-     * 
+     *
      * @return Post
      */
     protected function getPost()
@@ -211,7 +211,7 @@ abstract class AbstractHelperObject
 
     /**
      * Get and/or initialize a Get object.
-     * 
+     *
      * @return Get
      */
     protected function getGet()
@@ -225,7 +225,7 @@ abstract class AbstractHelperObject
 
     /**
      * Get and/or initialize a Request object.
-     * 
+     *
      * @return Request
      */
     protected function getRequest()
@@ -239,7 +239,7 @@ abstract class AbstractHelperObject
 
     /**
      * Set the value for this object from a previously submitted form.
-     * 
+     *
      * @param RequestAbstract $request
      */
     protected function setValueFrom(RequestAbstract $request)
@@ -248,7 +248,7 @@ abstract class AbstractHelperObject
     }
 
     /**
-     * Set the value for this object from a previously submitted form 
+     * Set the value for this object from a previously submitted form
      * using $_REQUEST.
      */
     public function setValueFromRequest()
@@ -258,7 +258,7 @@ abstract class AbstractHelperObject
     }
 
     /**
-     * Set the value for this object from a previously submitted form 
+     * Set the value for this object from a previously submitted form
      * using $_GET.
      */
     public function setValueFromGet()
@@ -268,7 +268,7 @@ abstract class AbstractHelperObject
     }
 
     /**
-     * Set the value for this object from a previously submitted form 
+     * Set the value for this object from a previously submitted form
      * using $_POST.
      */
     public function setValueFromPost()

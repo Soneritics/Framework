@@ -26,15 +26,15 @@ namespace Framework\Web;
 
 /**
  * Get the user's IP address.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  25-12-2014
  */
 class IP
 {
     /**
      * Getter for the IP address.
-     * 
+     *
      * @return string IP address
      * @todo:  fix for users behind proxy
      */

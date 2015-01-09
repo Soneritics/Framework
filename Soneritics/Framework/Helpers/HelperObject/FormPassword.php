@@ -26,15 +26,15 @@ namespace Framework\Helpers\HelperObject;
 
 /**
  * Input type=password element.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  21-12-2014
  */
 class FormPassword extends AbstractHelperObject
 {
     /**
      * Render the object.
-     * 
+     *
      * @return string HTML code of the object.
      */
     public function render()

@@ -26,8 +26,8 @@ namespace Framework\IO;
 
 /**
  * Class that handles file folders.
- * 
- * @author Jordi Jolink
+ *
+ * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  14-9-2014
  */
 class Folders
@@ -36,13 +36,13 @@ class Folders
 
     /**
      * Make sure an ending slash is removed from a path.
-     * 
+     *
      * @param  string $path
      * @return string
      */
     private function removeTrailingSlash($path)
     {
-        if (strlen($path) > 1 
+        if (strlen($path) > 1
             && in_array(substr($path, -1), ['\\', '/'])
         ) {
             $path = substr($path, 0, -1);
@@ -53,7 +53,7 @@ class Folders
 
     /**
      * Set the root path of the framework, on which other paths are based on.
-     * 
+     *
      * @param  string $rootPath The path of the framework's root.
      * @return \Framework\IO\Folders
      */
@@ -76,14 +76,12 @@ class Folders
 
     /**
      * Set the application root directory.
-     * 
+     *
      * @param string $rootPath Path of the application's root.
      */
     public function setAppRootPath($rootPath = null)
     {
-        $root = $this->removeTrailingSlash(
-            $rootPath === null ? getcwd() : $rootPath
-        );
+        $root = $this->removeTrailingSlash($rootPath === null ? getcwd() : $rootPath);
 
         static::$paths = array_merge(
             static::$paths,
@@ -102,7 +100,7 @@ class Folders
 
     /**
      * Get the path identified by $name.
-     * 
+     *
      * @param  type $name
      * @return type
      * @throws FatalException
@@ -113,8 +111,6 @@ class Folders
             return static::$paths[$name];
         }
 
-        throw new Framework\Exceptions\FatalException(
-            'Path not set: ' . $name
-        );
+        throw new Framework\Exceptions\FatalException('Path not set: ' . $name);
     }
 }
