@@ -24,16 +24,32 @@
  */
 
 /**
- * Description of AutoLoaderTest
+ * Test the AutoLoader class.
  *
  * @author Jordi Jolink
  * @since 1-1-2015
  */
 class AutoLoaderTest extends PHPUnit_Framework_TestCase
 {
-    public function testBuild()
+    /**
+     * Test if the framework's Application class can be autoloaded.
+     */
+    public function testFrameworkAutoloadApplication()
     {
-        $this->assertFalse(false);
-        $this->assertTrue(true);
+        $this->assertTrue(
+            class_exists('Framework\Application\Application'),
+            'Test if the framework\'s Application class can be autoloaded.'
+        );
+    }
+
+    /**
+     * Test if the `application` can be autoloaded.
+     */
+    public function testApplicationAutoloadApplication()
+    {
+        $this->assertTrue(
+            class_exists('\Application'),
+            'Test if application\'s Application class can be autoloaded.'
+        );
     }
 }

@@ -43,8 +43,12 @@ class Routing
      *
      * @param array $routing
      */
-    public function __construct(array $routing)
+    public function __construct(array $routing = null)
     {
+        if ($routing === null) {
+            $routing = [];
+        }
+
         $this->routing = $routing;
         $this->init();
     }
@@ -105,7 +109,7 @@ class Routing
     private function parseRoute($url, URI $uri, array $route)
     {
         // Fetch the parameters from the URI
-        $route['Parameters'] = array();
+        $route['Parameters'] = [];
 
         if (substr($url, -1) === '*') {
             $url = substr($url, 0, -1);
