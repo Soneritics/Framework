@@ -13,4 +13,6 @@ language: php
 php:
   - 5.5
 
-script: vendor/bin/phpunit -c phpunit.xml test/
+script:
+  - vendor/bin/phpunit -c phpunit.xml test/
+  - vendor/bin/phpcs /Soneritics/Framework/
