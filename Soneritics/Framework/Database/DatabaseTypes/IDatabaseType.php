@@ -30,7 +30,7 @@ use Framework\Database\Query\QueryAbstract;
  * DatabaseType interface.
  * 
  * @author Jordi Jolink
- * @since 1-1-2015
+ * @since  1-1-2015
  */
 interface IDatabaseType
 {
@@ -44,7 +44,7 @@ interface IDatabaseType
     /**
      * Quote a value.
      * 
-     * @param type $value
+     * @param  type $value
      * @return string
      */
     public function quote($value);
@@ -52,7 +52,7 @@ interface IDatabaseType
     /**
      * Quote a database name.
      * 
-     * @param type $db
+     * @param  type $db
      * @return string
      */
     public function quoteDatabase($db);
@@ -60,7 +60,7 @@ interface IDatabaseType
     /**
      * Quote a table name.
      * 
-     * @param type $table
+     * @param  type $table
      * @return string
      */
     public function quoteTable($table);
@@ -68,7 +68,7 @@ interface IDatabaseType
     /**
      * Quote an identifier (column name).
      * 
-     * @param type $id
+     * @param  type $id
      * @return string
      */
     public function quoteIdentifier($id);
@@ -76,7 +76,7 @@ interface IDatabaseType
     /**
      * Execute a query.
      * 
-     * @param type $query
+     * @param  type $query
      * @return mixed
      */
     public function query($query);
@@ -84,7 +84,7 @@ interface IDatabaseType
     /**
      * Build a value from a QueryAbstract object.
      * 
-     * @param QueryAbstract $query
+     * @param  QueryAbstract $query
      * @return string
      */
     public function buildQuery(QueryAbstract $query);

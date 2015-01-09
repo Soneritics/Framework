@@ -32,7 +32,7 @@ use Framework\Renderer\Renderer;
  * render to the screen.
  * 
  * @author Jordi Jolink
- * @since 17-11-2014
+ * @since  17-11-2014
  */
 class View
 {
@@ -44,10 +44,9 @@ class View
      * Constructor. Optionally sets a view.
      * Also, when there is no View object that has a layout yet, this will
      * automatically load the layout.
-     * 
-     * 
+     *
      * @staticvar boolean $layoutLoaded
-     * @param type $view
+     * @param     type $view
      */
     public function __construct($view = null)
     {
@@ -76,7 +75,7 @@ class View
     /**
      * Setter for the layout.
      * 
-     * @param string $layout
+     * @param  string $layout
      * @return $this
      */
     public function setLayout($layout)
@@ -98,7 +97,7 @@ class View
     /**
      * Setter for the view file.
      * 
-     * @param string $view
+     * @param  string $view
      * @return $this
      */
     public function setViewFile($view)
@@ -110,8 +109,8 @@ class View
     /**
      * Set a parameter for use in the view.
      * 
-     * @param string $name
-     * @param mixed $value
+     * @param  string $name
+     * @param  mixed  $value
      * @return $this
      */
     public function setParam($name, $value)
@@ -123,7 +122,7 @@ class View
     /**
      * Set multiple parameters at once.
      * 
-     * @param array $array
+     * @param  array $array
      * @return $this
      */
     public function setParams(array $array)
@@ -149,7 +148,7 @@ class View
     /**
      * Render the view using the $renderer Renderer.
      * 
-     * @param Renderer $renderer
+     * @param  Renderer $renderer
      * @return string
      * @throws FatalException
      */

@@ -28,7 +28,7 @@ namespace Framework\Web\Request;
  * Class for fetching data from the $_REQUEST superglobal.
  * 
  * @author Jordi Jolink
- * @since 23-12-2014
+ * @since  23-12-2014
  */
 class Request extends RequestAbstract
 {

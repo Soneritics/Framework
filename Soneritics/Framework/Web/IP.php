@@ -28,15 +28,15 @@ namespace Framework\Web;
  * Get the user's IP address.
  * 
  * @author Jordi Jolink
- * @since 25-12-2014
+ * @since  25-12-2014
  */
-class IP 
+class IP
 {
     /**
      * Getter for the IP address.
      * 
      * @return string IP address
-     * @todo: fix for users behind proxy
+     * @todo:  fix for users behind proxy
      */
     public function get()
     {

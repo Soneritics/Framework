@@ -28,7 +28,7 @@ namespace Framework\Database\Query;
  * Update query class.
  * 
  * @author Jordi Jolink
- * @since 1-1-2015
+ * @since  1-1-2015
  */
 class Update extends QueryAbstract
 {
@@ -49,7 +49,7 @@ class Update extends QueryAbstract
      * Override the values function. Sets the fields to update instead of
      * the values.
      *
-     * @param $values
+     * @param  $values
      * @return $this
      */
     public function values(array $values)

@@ -37,7 +37,7 @@ use Framework\Database\Query\Count;
  * update, delete and select.
  * 
  * @author Jordi Jolink
- * @since 1-1-2015
+ * @since  1-1-2015
  */
 class Table
 {
@@ -77,7 +77,7 @@ class Table
     /**
      * Setter for the name.
      *
-     * @param $name
+     * @param  $name
      * @return $this
      */
     public function setName($name)
@@ -105,7 +105,7 @@ class Table
     /**
      * Set the table.
      *
-     * @param $table
+     * @param  $table
      * @return $this
      */
     public function setTable($table)
@@ -158,7 +158,7 @@ class Table
     /**
      * Get a select object for the current table.
      *
-     * @param null $fields
+     * @param  null $fields
      * @return Select
      */
     public function select($fields = null)
@@ -205,7 +205,7 @@ class Table
     /**
      * Execute a simple count query.
      * 
-     * @param type $where
+     * @param  type $where
      * @return Count
      */
     public function count()

@@ -28,7 +28,7 @@ namespace Framework\Helpers\HelperObject;
  * Form's start element.
  * 
  * @author Jordi Jolink
- * @since 21-12-2014
+ * @since  21-12-2014
  */
 class FormStart extends AbstractHelperObject
 {
@@ -45,7 +45,7 @@ class FormStart extends AbstractHelperObject
     /**
      * Wrapper for the `method` parameter.
      * 
-     * @param string $method
+     * @param  string $method
      * @return $this
      */
     public function setMethod($method)
@@ -56,7 +56,7 @@ class FormStart extends AbstractHelperObject
     /**
      * Wrapper for the `action` parameter.
      * 
-     * @param string $action
+     * @param  string $action
      * @return $this
      */
     public function setAction($action)

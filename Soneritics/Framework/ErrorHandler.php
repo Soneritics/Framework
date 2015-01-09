@@ -31,53 +31,53 @@ use Framework\Logging\Log;
  * Renders errors.
  * 
  * @author Jordi Jolink
- * @since 18-12-2014
+ * @since  18-12-2014
  */
 class ErrorHandler
 {
     /**
      * Get the error view.
      * 
-     * @param \Exception $exception
+     * @param  \Exception $exception
      * @return string
      */
-	private function getErrorView(\Exception $exception)
-	{
-		$className = substr(get_class($exception), strlen('Framework\Exceptions\\'));
-		switch ($className) {
-			case 'PageNotFoundException':
-			case 'PermissionDeniedException':
-				return substr($className, 0, -1 * strlen('Exception'));
-				break;
-		}
+    private function getErrorView(\Exception $exception)
+    {
+        $className = substr(get_class($exception), strlen('Framework\Exceptions\\'));
+        switch ($className) {
+        case 'PageNotFoundException':
+        case 'PermissionDeniedException':
+            return substr($className, 0, -1 * strlen('Exception'));
+          break;
+        }
 
-		return 'error';
-	}
+        return 'error';
+    }
 
     /**
      * Send the correct (content type) header.
      * 
      * @param \Exception $exception
-     * @todo Write the implementation
+     * @todo  Write the implementation
      */
-	private function sendHeader(\Exception $exception)
-	{
-		// @todo
-	}
+    private function sendHeader(\Exception $exception)
+    {
+        // @todo
+    }
 
     /**
      * Handle the exception. Renders the error view using the class' functions.
      * 
      * @param \Exception $exception
      */
-	public function handle(\Exception $exception)
-	{
-		Log::write($exception);
-		$this->sendHeader($exception);
-		$errorRenderer = new Renderer\ErrorRenderer('error');
-		echo $errorRenderer->render(
-			$this->getErrorView($exception),
-			['exception' => $exception]
-		);
-	}
+    public function handle(\Exception $exception)
+    {
+        Log::write($exception);
+        $this->sendHeader($exception);
+        $errorRenderer = new Renderer\ErrorRenderer('error');
+        echo $errorRenderer->render(
+            $this->getErrorView($exception),
+            ['exception' => $exception]
+        );
+    }
 }

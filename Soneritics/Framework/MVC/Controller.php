@@ -32,7 +32,7 @@ use Framework\Web\Request\Request;
  * Abstract controller class, defines the lay-out of the controllers.
  * 
  * @author Jordi Jolink
- * @since 17-11-2014
+ * @since  17-11-2014
  */
 abstract class Controller
 {
@@ -43,7 +43,7 @@ abstract class Controller
     /**
      * Get a value from the Post object.
      * 
-     * @param type $name
+     * @param  type $name
      * @return type
      */
     protected function fromPost($name = null)
@@ -58,7 +58,7 @@ abstract class Controller
     /**
      * Get a value from the Get object.
      * 
-     * @param type $name
+     * @param  type $name
      * @return type
      */
     protected function fromGet($name = null)
@@ -73,7 +73,7 @@ abstract class Controller
     /**
      * Get a value from the Request object.
      * 
-     * @param type $name
+     * @param  type $name
      * @return type
      */
     protected function fromRequest($name = null)

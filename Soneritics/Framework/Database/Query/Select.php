@@ -28,7 +28,7 @@ namespace Framework\Database\Query;
  * Select query class.
  * 
  * @author Jordi Jolink
- * @since 1-1-2015
+ * @since  1-1-2015
  */
 class Select extends QueryAbstract
 {
@@ -48,7 +48,7 @@ class Select extends QueryAbstract
     /**
      * Wrapper around the setTable function for the select class.
      *
-     * @param $table
+     * @param  $table
      * @return $this
      */
     public function from($table)

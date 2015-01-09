@@ -30,7 +30,7 @@ use Framework\Web\IP;
  * Session handler by using the default $_SESSION object.
  * 
  * @author Jordi Jolink
- * @since 25-12-2014
+ * @since  25-12-2014
  */
 class Session extends SessionHandler
 {
@@ -44,7 +44,7 @@ class Session extends SessionHandler
      */
     public function __construct(array $config = array())
     {
-		// Start the session
+        // Start the session
         session_start();
 
         // Get the user's IP address
@@ -68,9 +68,9 @@ class Session extends SessionHandler
     /**
      * Retrieve data from a session.
      *
-     * @param	$key		The index of the session.
-     * @param	$default	Default return value when not set.
-     * @return	Any type of variable
+     * @param  $key        The index of the session.
+     * @param  $default    Default return value when not set.
+     * @return Any type of variable
      */
     public function get($key, $default = null)
     {
@@ -82,8 +82,8 @@ class Session extends SessionHandler
     /**
      * Checks key existence.
      *
-     * @param	$key		The index of the session.
-     * @return	boolean
+     * @param  $key        The index of the session.
+     * @return boolean
      */
     public function has($key)
     {
@@ -93,8 +93,8 @@ class Session extends SessionHandler
     /**
      * Sets session data.
      * 
-     * @param	$key	The index of the session.
-     * @param	$value	The value to be put into the session.
+     * @param $key    The index of the session.
+     * @param $value    The value to be put into the session.
      */
     public function set($key, $value)
     {
@@ -105,11 +105,11 @@ class Session extends SessionHandler
     /**
      * Removes session data.
      * 
-     * @param	$key	The index of the session.
+     * @param $key    The index of the session.
      */
     public function delete($key)
     {
-		if (isset($_SESSION[$this->ip][$key])) {
+        if (isset($_SESSION[$this->ip][$key])) {
             unset($_SESSION[$this->ip][$key]);
         }
 

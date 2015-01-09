@@ -31,36 +31,36 @@ use Framework\Logging\Loggers\Screen;
  * Static log class that can log and define a Logger object.
  * 
  * @author Jordi Jolink
- * @since 14-9-2014
+ * @since  14-9-2014
  */
 class Log
 {
-	private static $logger;
+    private static $logger;
 
-	/**
-	 * Set the logger to use.
-	 * 
-	 * @param \Framework\Logging\Logger $logger
-	 */
-	public static function setLogger(Logger $logger)
-	{
-		static::$logger = $logger;
-	}
+    /**
+     * Set the logger to use.
+     * 
+     * @param \Framework\Logging\Logger $logger
+     */
+    public static function setLogger(Logger $logger)
+    {
+        static::$logger = $logger;
+    }
 
-	/**
-	 * Write a debug message to the selected logger.
-	 * When no logger has been initialized, the default logger is used.
-	 */
+    /**
+     * Write a debug message to the selected logger.
+     * When no logger has been initialized, the default logger is used.
+     */
     public static function write()
-	{
-		if (static::$logger === null) {
-			static::$logger = new Screen();
-		}
+    {
+        if (static::$logger === null) {
+            static::$logger = new Screen();
+        }
 
         if (func_num_args() > 0) {
             foreach (func_get_args() as $object) {
                 static::$logger->write($object);
             }
         }
-	}
+    }
 }

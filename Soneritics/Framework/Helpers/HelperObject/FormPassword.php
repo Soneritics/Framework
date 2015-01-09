@@ -28,7 +28,7 @@ namespace Framework\Helpers\HelperObject;
  * Input type=password element.
  * 
  * @author Jordi Jolink
- * @since 21-12-2014
+ * @since  21-12-2014
  */
 class FormPassword extends AbstractHelperObject
 {

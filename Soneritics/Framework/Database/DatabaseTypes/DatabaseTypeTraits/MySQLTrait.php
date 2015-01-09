@@ -30,14 +30,14 @@ use Framework\Database\Query\QueryAbstract;
  * Trait for MySQL queries.
  * 
  * @author Jordi Jolink
- * @since 1-1-2015
+ * @since  1-1-2015
  */
 trait MySQLTrait
 {
     /**
      * Quote a database name for use in a query.
      *
-     * @param $db
+     * @param  $db
      * @return string
      */
     public function quoteDatabase($db)
@@ -48,7 +48,7 @@ trait MySQLTrait
     /**
      * Quote a table name for use in a query.
      *
-     * @param $table
+     * @param  $table
      * @return string
      */
     public function quoteTable($table)
@@ -59,7 +59,7 @@ trait MySQLTrait
     /**
      * Quote an identifier (column name) for use in a query.
      *
-     * @param $id
+     * @param  $id
      * @return string
      */
     public function quoteIdentifier($id)
@@ -70,7 +70,7 @@ trait MySQLTrait
     /**
      * Prepare the fields for use in the MySQL query.
      *
-     * @param array $queryParts
+     * @param  array $queryParts
      * @return null|string
      */
     protected function getFields(array $queryParts)
@@ -95,7 +95,7 @@ trait MySQLTrait
     /**
      * Prepare the fields for use in the MySQL query.
      *
-     * @param array $queryParts
+     * @param  array $queryParts
      * @return null|string
      */
     protected function getValues(array $queryParts)
@@ -126,7 +126,7 @@ trait MySQLTrait
     /**
      * Prepare the SET part of the MySQL query.
      * 
-     * @param array $queryParts
+     * @param  array $queryParts
      * @return null|string
      */
     protected function getSet(array $queryParts)
@@ -138,7 +138,7 @@ trait MySQLTrait
                 $updates[] = sprintf(
                     '%s = %s',
                     $this->quoteIdentifier($k),
-                        $this->quote($v)
+                    $this->quote($v)
                 );
             }
 
@@ -151,7 +151,7 @@ trait MySQLTrait
     /**
      * Prepare the table name for use in the MySQL query.
      *
-     * @param array $queryParts
+     * @param  array $queryParts
      * @return null|string
      */
     protected function getTable(array $queryParts)
@@ -186,7 +186,7 @@ trait MySQLTrait
     /**
      * Prepare the joins for use in the MySQL query.
      *
-     * @param array $queryParts
+     * @param  array $queryParts
      * @return array|null|string
      */
     protected function getJoins(array $queryParts)
@@ -218,8 +218,8 @@ trait MySQLTrait
     /**
      * Format the where clause of a MySQL query from a mixed range of types.
      *
-     * @param $where
-     * @param string $operator
+     * @param  $where
+     * @param  string $operator
      * @return string
      */
     private function formatWhere($where, $operator = 'AND')
@@ -269,7 +269,7 @@ trait MySQLTrait
     /**
      * Prepare the where clause for use in the MySQL query.
      *
-     * @param array $queryParts
+     * @param  array $queryParts
      * @return null|string
      */
     protected function getWhere(array $queryParts)
@@ -289,7 +289,7 @@ trait MySQLTrait
     /**
      * Prepare the group for use in the MySQL query.
      *
-     * @param array $queryParts
+     * @param  array $queryParts
      * @return null|string
      */
     protected function getGroup(array $queryParts)
@@ -310,7 +310,7 @@ trait MySQLTrait
     /**
      * Prepare the order for use in the MySQL query.
      *
-     * @param array $queryParts
+     * @param  array $queryParts
      * @return null|string
      */
     protected function getOrder(array $queryParts)
@@ -333,7 +333,7 @@ trait MySQLTrait
     /**
      * Prepare the limit for use in the MySQL query.
      *
-     * @param array $queryParts
+     * @param  array $queryParts
      * @return null|string
      */
     protected function getLimit(array $queryParts)

@@ -31,7 +31,7 @@ use Framework\Database\Database;
  * Select query class.
  * 
  * @author Jordi Jolink
- * @since 2-1-2015
+ * @since  2-1-2015
  */
 class Count extends Select
 {
@@ -41,7 +41,7 @@ class Count extends Select
     /**
      * Set the field to count.
      * 
-     * @param type $fields
+     * @param  type $fields
      * @return $this
      */
     public function fields($fields)

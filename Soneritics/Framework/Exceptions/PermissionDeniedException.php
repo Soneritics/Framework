@@ -27,7 +27,7 @@ namespace Framework\Exceptions;
 /**
  * Permission denied.
  */
-class PermissionDeniedException extends \Exception 
+class PermissionDeniedException extends \Exception
 {
     protected $message = 'Permission denied!';
 }

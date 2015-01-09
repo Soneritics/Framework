@@ -32,8 +32,8 @@ use Framework\Renderer\TextRenderer;
  * Mail object. Sends e-mail.
  * 
  * @author Jordi Jolink
- * @since 2-1-2015
- * @todo Uses the PEAR Mail_Mime extension. Should not do that :-)
+ * @since  2-1-2015
+ * @todo   Uses the PEAR Mail_Mime extension. Should not do that :-)
  */
 class Mail
 {
@@ -110,7 +110,7 @@ class Mail
     /**
      * Set the address to send the mail to.
      * 
-     * @param string $address
+     * @param  string $address
      * @return $this
      */
     public function setAddress($address)
@@ -122,7 +122,7 @@ class Mail
     /**
      * Add a CC address.
      * 
-     * @param string $address
+     * @param  string $address
      * @return $this
      */
     public function addCC($address)
@@ -141,7 +141,7 @@ class Mail
     /**
      * Add a BCC address.
      * 
-     * @param string $address
+     * @param  string $address
      * @return $this
      */
     public function addBCC($address)
@@ -160,7 +160,7 @@ class Mail
     /**
      * Set the subject of the email.
      * 
-     * @param string $subject
+     * @param  string $subject
      * @return $this
      */
     public function setSubject($subject)
@@ -172,7 +172,7 @@ class Mail
     /**
      * Set the sender's email address.
      * 
-     * @param string $from
+     * @param  string $from
      * @return $this
      */
     public function setFrom($from)
@@ -184,7 +184,7 @@ class Mail
     /**
      * Set the HTML body of the email (mandatory).
      * 
-     * @param View|string $body
+     * @param  View|string $body
      * @return $this
      */
     public function setHTMLBody($body)
@@ -200,7 +200,7 @@ class Mail
     /**
      * Set the text body of the email (optional).
      * 
-     * @param View|string $body
+     * @param  View|string $body
      * @return $this
      */
     public function setTextBody($body)

@@ -29,7 +29,7 @@ namespace Framework\Database\DatabaseRecord;
  * records get returned as a DatabaseRecord object.
  *
  * @author Jordi Jolink
- * @since 5-1-2015
+ * @since  5-1-2015
  */
 abstract class DatabaseRecord
 {
@@ -82,7 +82,7 @@ abstract class DatabaseRecord
      *         ]
      *     ]
      *
-     * @param array $record
+     * @param  array $record
      * @return array
      */
     protected function map(array $record)

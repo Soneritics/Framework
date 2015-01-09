@@ -30,7 +30,7 @@ use Framework\MVC\View;
  * Pagination helper.
  * 
  * @author Jordi Jolink
- * @since 26-12-2014
+ * @since  26-12-2014
  */
 class Pagination
 {
@@ -41,7 +41,7 @@ class Pagination
     /**
      * Setter for the currently active page.
      * 
-     * @param type $page
+     * @param  type $page
      * @return \Framework\Helpers\Pagination
      */
     public function setCurrentPage($page)
@@ -53,7 +53,7 @@ class Pagination
     /**
      * Setter for the total amount of pages.
      * 
-     * @param type $pages
+     * @param  type $pages
      * @return \Framework\Helpers\Pagination
      */
     public function setPages($pages)
@@ -65,7 +65,7 @@ class Pagination
     /**
      * Setter for the URL.
      * 
-     * @param type $url
+     * @param  type $url
      * @return \Framework\Helpers\Pagination
      */
     public function setURL($url)

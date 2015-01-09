@@ -28,7 +28,7 @@ namespace Framework\Database\Query;
  * Truncate query class.
  * 
  * @author Jordi Jolink
- * @since 1-1-2015
+ * @since  1-1-2015
  */
 class Truncate extends QueryAbstract
 {

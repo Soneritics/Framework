@@ -30,25 +30,28 @@ use Framework\Logging\Logger;
  * FirePHP Logger. Needs FirePHP to be installed through Composer.
  * 
  * @author Jordi Jolink
- * @since 8-12-2014
+ * @since  8-12-2014
  */
 class FirePHP extends Logger
 {
-	/**
-	 * No configuration is needed for this Logger.
-	 * 
-	 * @param array $configuration
-	 */
-	public function setConfiguration(array $configuration){}
+    /**
+     * No configuration is needed for this Logger.
+     * 
+     * @param array $configuration
+     */
+    public function setConfiguration(array $configuration)
+    {
 
-	/**
-	 * Write a debug message to the selected logger.
-	 * When no logger has been initialized, the default logger is used.
-	 * 
-	 * @param mixed $object
-	 */
+    }
+
+    /**
+     * Write a debug message to the selected logger.
+     * When no logger has been initialized, the default logger is used.
+     * 
+     * @param mixed $object
+     */
     public function write($object)
-	{
-		\FB::info(print_r($object, true));
-	}
+    {
+        \FB::info(print_r($object, true));
+    }
 }

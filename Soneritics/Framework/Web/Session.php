@@ -30,7 +30,7 @@ use SessionHandlers\SessionHandler;
  * Session class for handling session storage.
  * 
  * @author Jordi Jolink
- * @since 25-12-2014
+ * @since  25-12-2014
  */
 class Session
 {
@@ -67,7 +67,7 @@ class Session
                         'Framework\Web\SessionHandlers\Session'
                     );
 
-                $this->sessionObject = new $class($config);
+                    $this->sessionObject = new $class($config);
             }
         }
 
@@ -77,7 +77,7 @@ class Session
     /**
      * Explicitly sets a SessionHandler to use.
      * 
-     * @param SessionHandler $sessionObject
+     * @param  SessionHandler $sessionObject
      * @return \Framework\Web\Session
      */
     public function setSessionHandler(SessionHandler $sessionObject)
@@ -100,9 +100,9 @@ class Session
     /**
      * Retrieve data from a session.
      *
-     * @param	$key		The index of the session.
-     * @param	$default	Default return value when not set.
-     * @return	Any type of variable
+     * @param  $key        The index of the session.
+     * @param  $default    Default return value when not set.
+     * @return Any type of variable
      */
     public function get($key, $default = null)
     {
@@ -112,8 +112,8 @@ class Session
     /**
      * Checks key existence.
      *
-     * @param	$key		The index of the session.
-     * @return	boolean
+     * @param  $key        The index of the session.
+     * @return boolean
      */
     public function has($key)
     {
@@ -123,8 +123,8 @@ class Session
     /**
      * Sets session data.
      * 
-     * @param	$key	The index of the session.
-     * @param	$value	The value to be put into the session.
+     * @param $key    The index of the session.
+     * @param $value    The value to be put into the session.
      */
     public function set($key, $value)
     {
@@ -135,7 +135,7 @@ class Session
     /**
      * Removes session data.
      * 
-     * @param	$key	The index of the session.
+     * @param $key    The index of the session.
      */
     public function delete($key)
     {

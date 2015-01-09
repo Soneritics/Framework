@@ -28,39 +28,39 @@ namespace Framework\Web\SessionHandlers;
  * Abstract class for session handlers.
  * 
  * @author Jordi Jolink
- * @since 25-12-2014
+ * @since  25-12-2014
  */
 abstract class SessionHandler
 {
     /**
      * Retrieve data from a session.
      *
-     * @param	$key		The index of the session.
-     * @param	$default	Default return value when not set.
-     * @return	Any type of variable
+     * @param  $key        The index of the session.
+     * @param  $default    Default return value when not set.
+     * @return Any type of variable
      */
     abstract public function get($key, $default = null);
 
     /**
      * Checks key existence.
      *
-     * @param	$key		The index of the session.
-     * @return	boolean
+     * @param  $key        The index of the session.
+     * @return boolean
      */
     abstract public function has($key);
 
     /**
      * Sets session data.
      * 
-     * @param	$key	The index of the session.
-     * @param	$value	The value to be put into the session.
+     * @param $key    The index of the session.
+     * @param $value    The value to be put into the session.
      */
     abstract public function set($key, $value);
 
     /**
      * Removes session data.
      * 
-     * @param	$key	The index of the session.
+     * @param $key    The index of the session.
      */
     abstract public function delete($key);
 

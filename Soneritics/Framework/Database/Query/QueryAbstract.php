@@ -32,7 +32,7 @@ use Framework\Exceptions\FatalException;
  * which automatically gives it full chainable query functionality.
  * 
  * @author Jordi Jolink
- * @since 1-1-2015
+ * @since  1-1-2015
  */
 abstract class QueryAbstract
 {
@@ -65,7 +65,7 @@ abstract class QueryAbstract
     /**
      * Set the table to use.
      *
-     * @param string $table
+     * @param  string $table
      * @return $this
      */
     public function setTable($table)
@@ -118,7 +118,7 @@ abstract class QueryAbstract
     /**
      * Set the fields to use in the query.
      *
-     * @param $fields
+     * @param  $fields
      * @return $this
      */
     public function fields($fields)
@@ -130,7 +130,7 @@ abstract class QueryAbstract
     /**
      * Set the values to use in the query.
      *
-     * @param $values
+     * @param  $values
      * @return $this
      */
     public function values(array $values)
@@ -142,8 +142,8 @@ abstract class QueryAbstract
     /**
      * Set values for an update query.
      * 
-     * @param type $key
-     * @param type $val
+     * @param  type $key
+     * @param  type $val
      * @return $this
      */
     public function set($key, $val = null)
@@ -162,8 +162,8 @@ abstract class QueryAbstract
     /**
      * Add a left join part to the query.
      *
-     * @param $table
-     * @param $on
+     * @param  $table
+     * @param  $on
      * @return $this
      */
     public function leftJoin($table, $on)
@@ -175,8 +175,8 @@ abstract class QueryAbstract
     /**
      * Add a right join part to the query.
      *
-     * @param $table
-     * @param $on
+     * @param  $table
+     * @param  $on
      * @return $this
      */
     public function rightJoin($table, $on)
@@ -188,8 +188,8 @@ abstract class QueryAbstract
     /**
      * Add an inner join part to the query.
      *
-     * @param $table
-     * @param $on
+     * @param  $table
+     * @param  $on
      * @return $this
      */
     public function join($table, $on)
@@ -201,7 +201,7 @@ abstract class QueryAbstract
     /**
      * Add a where clause to the query.
      *
-     * @param $where
+     * @param  $where
      * @return $this
      */
     public function where($where)
@@ -213,7 +213,7 @@ abstract class QueryAbstract
     /**
      * Add a GROUP BY part to the query.
      *
-     * @param $column
+     * @param  $column
      * @return $this
      */
     public function groupBy($column)
@@ -225,7 +225,7 @@ abstract class QueryAbstract
     /**
      * Order ascending on a specific $column.
      *
-     * @param $column
+     * @param  $column
      * @return $this
      */
     public function orderAsc($column)
@@ -237,7 +237,7 @@ abstract class QueryAbstract
     /**
      * Order descending on a specific column.
      *
-     * @param $column
+     * @param  $column
      * @return $this
      */
     public function orderDesc($column)
@@ -249,8 +249,8 @@ abstract class QueryAbstract
     /**
      * Limit the results of a query.
      *
-     * @param $start
-     * @param null $end
+     * @param  $start
+     * @param  null  $end
      * @return $this
      */
     public function limit($start, $end = null)

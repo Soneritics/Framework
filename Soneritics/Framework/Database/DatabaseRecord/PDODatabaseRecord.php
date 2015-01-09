@@ -29,7 +29,7 @@ namespace Framework\Database\DatabaseRecord;
  * Uses the PDOStatement object to fetch the rows from.
  *
  * @author Jordi Jolink
- * @since 5-1-2015
+ * @since  5-1-2015
  */
 class PDODatabaseRecord extends DatabaseRecord
 {

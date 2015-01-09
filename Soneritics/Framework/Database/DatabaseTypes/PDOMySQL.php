@@ -32,7 +32,7 @@ use Framework\Database\DatabaseRecord\PDODatabaseRecord;
  * DatabaseType object for MySQL using the PDO connector.
  * 
  * @author Jordi Jolink
- * @since 1-1-2015
+ * @since  1-1-2015
  */
 class PDOMySQL implements IDatabaseType
 {
@@ -63,7 +63,7 @@ class PDOMySQL implements IDatabaseType
     /**
      * Quote a value for use in a query.
      *
-     * @param $value
+     * @param  $value
      * @return string
      */
     public function quote($value)
@@ -86,7 +86,7 @@ class PDOMySQL implements IDatabaseType
      * Execute a query. The parameter can either be a Query(Abstract) object,
      * or a string containing a full query.
      *
-     * @param $query
+     * @param  $query
      * @return DatabaseRecord
      */
     public function query($query)
@@ -108,7 +108,7 @@ class PDOMySQL implements IDatabaseType
      * Execute a query. The parameter can either be a Query(Abstract) object,
      * or a string containing a full query.
      *
-     * @param $query
+     * @param  $query
      * @return DatabaseRecord
      */
     public function execute($query)

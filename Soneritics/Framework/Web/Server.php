@@ -28,14 +28,14 @@ namespace Framework\Web;
  * Object that loads server variables.
  * 
  * @author Jordi Jolink
- * @since 1-1-2015
+ * @since  1-1-2015
  */
 class Server
 {
     /**
      * Get a filtered variable from the $_SERVER super global.
      * 
-     * @param type $id
+     * @param  type $id
      * @return mixed Boolean false when not found, otherwise the variable.
      */
     public function get($id)

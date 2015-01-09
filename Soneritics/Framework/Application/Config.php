@@ -31,40 +31,40 @@ use Framework\Database\Database;
  * Handles the reading and parsing of the project's configuration files.
  * 
  * @author Jordi Jolink
- * @since 27-11-2014
+ * @since  27-11-2014
  */
 class Config
 {
-	private $configs = [];
+    private $configs = [];
 
-	/**
-	 * Constructor, reads the configuration files from a project.
-	 * 
-	 * @param string $configPath
-	 */
+    /**
+     * Constructor, reads the configuration files from a project.
+     * 
+     * @param string $configPath
+     */
     public function __construct($configPath)
     {
         $configFiles = array_map(
-			'basename',
-			glob($configPath . '/config-*.php')
-		);
+            'basename',
+            glob($configPath . '/config-*.php')
+        );
 
-		if (!empty($configFiles)) {
-			foreach ($configFiles as $configFile) {
-				$this->configs = array_replace_recursive(
-					$this->configs,
-					include($configPath . '/' . $configFile)
-				);
-			}
-		}
+        if (!empty($configFiles)) {
+            foreach ($configFiles as $configFile) {
+                $this->configs = array_replace_recursive(
+                    $this->configs,
+                    include$configPath . '/' . $configFile
+                );
+            }
+        }
     }
 
-	/**
-	 * Get the contents of a configuration.
-	 * 
-	 * @param string $key
-	 * @return mixed
-	 */
+    /**
+     * Get the contents of a configuration.
+     * 
+     * @param  string $key
+     * @return mixed
+     */
     public function get($key)
     {
         if (isset($this->configs[$key])) {

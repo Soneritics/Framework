@@ -28,7 +28,7 @@ namespace Framework;
  * Framework's autoloader.
  * 
  * @author Jordi Jolink
- * @since 7-12-2014
+ * @since  7-12-2014
  */
 class AutoLoader
 {
@@ -37,7 +37,7 @@ class AutoLoader
     /**
      * Add a root path to the autoloader.
      * 
-     * @param string $path
+     * @param  string $path
      * @return $this
      */
     public function addRootPath($path)
@@ -60,7 +60,7 @@ class AutoLoader
     /**
      * Load class.
      *
-     * @param string $className The name of the class to load.
+     * @param  string $className The name of the class to load.
      * @return bool
      */
     public function loadClass($className)
@@ -69,7 +69,7 @@ class AutoLoader
             foreach ($this->rootPaths as $path) {
                 $file = $path . '/' . str_replace('\\', '/', $className) . '.php';
                 if (file_exists($file)) {
-                    require_once($file);
+                    include_once$file;
                     return true;
                 }
             }

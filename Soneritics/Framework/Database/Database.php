@@ -30,7 +30,7 @@ use Framework\Exceptions\FatalException;
  * Database class for connecting to the database.
  * 
  * @author Jordi Jolink
- * @since 1-1-2015
+ * @since  1-1-2015
  */
 class Database
 {
@@ -40,7 +40,7 @@ class Database
     /**
      * Create a database connection.
      *
-     * @param array $config
+     * @param  array $config
      * @return IDatabaseType
      */
     private static function createDatabaseConnection(array $config)
@@ -52,7 +52,7 @@ class Database
      * Set a database connection.
      *
      * @param string $id
-     * @param array $config
+     * @param array  $config
      */
     public static function set($id, array $config)
     {
@@ -67,7 +67,7 @@ class Database
     /**
      * Get a database connection.
      *
-     * @param null $id
+     * @param  null $id
      * @return mixed
      * @throws FatalException
      */

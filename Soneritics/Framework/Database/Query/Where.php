@@ -28,7 +28,7 @@ namespace Framework\Database\Query;
  * Where object for creating where conditions for the queries.
  * 
  * @author Jordi Jolink
- * @since 1-1-2015
+ * @since  1-1-2015
  */
 class Where
 {
@@ -53,7 +53,7 @@ class Where
     /**
      * Add a(n extra) part to the where statement.
      *
-     * @param $where
+     * @param  $where
      * @return $this
      */
     public function where($where)
@@ -65,8 +65,8 @@ class Where
     /**
      * Add an IN part to the where clause.
      *
-     * @param $column
-     * @param array $values
+     * @param  $column
+     * @param  array  $values
      * @return $this
      */
     public function in($column, array $values)
@@ -78,8 +78,8 @@ class Where
     /**
      * Add a NOT IN part to the where clause.
      *
-     * @param $column
-     * @param array $values
+     * @param  $column
+     * @param  array  $values
      * @return $this
      */
     public function notIn($column, array $values)
@@ -91,7 +91,7 @@ class Where
     /**
      * Add a NOT NULL part to the where clause.
      *
-     * @param $column
+     * @param  $column
      * @return $this
      */
     public function notNull($column)
@@ -103,8 +103,8 @@ class Where
     /**
      * Add a LIKE part to the WHERE clause.
      *
-     * @param $column
-     * @param $value
+     * @param  $column
+     * @param  $value
      * @return $this
      */
     public function like($column, $value)

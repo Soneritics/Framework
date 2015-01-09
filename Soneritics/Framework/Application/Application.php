@@ -35,20 +35,20 @@ use Framework\Web\Server;
  * Main Application abstraction class.
  * 
  * @author Jordi Jolink
- * @since 18-9-2014
+ * @since  18-9-2014
  */
 abstract class Application
 {
-	private static $folders;
+    private static $folders;
     private static $config;
 
-	/**
-	 * Constructor. Set-up necessary objects and connections.
-	 */
-	public final function __construct()
-	{
-		self::$folders = new Folders();
-	}
+    /**
+     * Constructor. Set-up necessary objects and connections.
+     */
+    public final function __construct()
+    {
+        self::$folders = new Folders();
+    }
 
     /**
      * Function that gets executed before the application runs.
@@ -69,7 +69,7 @@ abstract class Application
      * return true. When it returns false, a PermissionDeniedException is
      * thrown.
      * 
-     * @param Routing $router
+     * @param  Routing $router
      * @return bool Indicator wether the app may run or not.
      */
     protected abstract function canRun(Routing $router);
@@ -85,8 +85,8 @@ abstract class Application
     /**
      * Run the current application with a given Router and Config.
      * 
-     * @param \Framework\Application\Config $config
-     * @param \Framework\Application\Routing $router
+     * @param  \Framework\Application\Config  $config
+     * @param  \Framework\Application\Routing $router
      * @throws PageNotFoundException
      * @throws PermissionDeniedException
      */
@@ -118,7 +118,7 @@ abstract class Application
     /**
      * Function to handle the actual running of the controller.
      * 
-     * @param \Framework\Application\Routing $router
+     * @param  \Framework\Application\Routing $router
      * @throws PageNotFoundException
      */
     private function dispatch(Routing $router)

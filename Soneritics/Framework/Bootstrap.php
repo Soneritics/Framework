@@ -33,7 +33,7 @@ use Framework\Application\Routing;
  * starts the application.
  * 
  * @author Jordi Jolink
- * @since 14-9-2014
+ * @since  14-9-2014
  */
 class Bootstrap
 {
@@ -47,7 +47,7 @@ class Bootstrap
     private function setFolders($appPath = null)
     {
         $rootPath = dirname(dirname(__DIR__));
-        require_once($rootPath . '/Soneritics/Framework/IO/Folders.php');
+        include_once$rootPath . '/Soneritics/Framework/IO/Folders.php';
 
         $this->folders = (new IO\Folders())
             ->setFrameworkRootPath($rootPath)
@@ -65,12 +65,12 @@ class Bootstrap
                     $this->folders->get($folder) . '/autoload.php';
 
             if (file_exists($vendorAutoLoader)) {
-                include($vendorAutoLoader);
+                include$vendorAutoLoader;
             }
         }
 
         // Include the framework's autoloader
-        require($this->folders->get('framework') . '/AutoLoader.php');
+        include$this->folders->get('framework') . '/AutoLoader.php';
         (new AutoLoader)
             ->addRootPath($this->folders->get('app'))
             ->addRootPath($this->folders->get('package'))
@@ -106,12 +106,12 @@ class Bootstrap
 
         $config->setDatabases();
 
-		if ($config->get('Logging') !== null) {
-			$logger = $config->get('Logging');
-			\Framework\Logging\Log::setLogger(
-				new $logger['Logger']($logger['Config'])
-			);
-		}
+        if ($config->get('Logging') !== null) {
+            $logger = $config->get('Logging');
+            \Framework\Logging\Log::setLogger(
+                new $logger['Logger']($logger['Config'])
+            );
+        }
 
         $this->application->run(
             $config,
@@ -129,20 +129,20 @@ class Bootstrap
         // Complete output buffering
         ob_start();
 
-		try {
-        // Initialize and register the necessary
-        $this->setFolders($appPath);
-        $this->initAutoLoading();
-        $this->initErrorHandling();
+        try {
+              // Initialize and register the necessary
+              $this->setFolders($appPath);
+              $this->initAutoLoading();
+              $this->initErrorHandling();
 
-        // Start the application
-        $this->dispatch();
-		} catch (\Exception $e) {
-			$errorHandler = new ErrorHandler;
-			$errorHandler->handle($e);
-		} finally {
-			// When everything is done, render
-			echo ob_get_clean();
-		}
+              // Start the application
+              $this->dispatch();
+        } catch (\Exception $e) {
+            $errorHandler = new ErrorHandler;
+            $errorHandler->handle($e);
+        } finally {
+         // When everything is done, render
+         echo ob_get_clean();
+        }
     }
 }

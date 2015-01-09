@@ -28,7 +28,7 @@ namespace Framework\Headers;
  * Simple class that redirects to a given URL.
  * 
  * @author Jordi Jolink
- * @since 14-9-2014
+ * @since  14-9-2014
  */
 class Redirect
 {
@@ -39,7 +39,7 @@ class Redirect
      */
     public function __construct($url)
     {
-		header('Location: ' . $url);
-		die();
+        header('Location: ' . $url);
+        die();
     }
 }

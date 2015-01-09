@@ -28,4 +28,6 @@ namespace Framework\Exceptions;
 /**
  * FatalException
  */
-class FatalException extends \Exception  {}
+class FatalException extends \Exception
+{
+}

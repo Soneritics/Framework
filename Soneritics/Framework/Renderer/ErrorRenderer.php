@@ -30,33 +30,36 @@ use Framework\Web\Server;
  * Render an error.
  * 
  * @author Jordi Jolink
- * @since 20-12-2014
+ * @since  20-12-2014
  */
 class ErrorRenderer extends HtmlRenderer
 {
-	/**
-	 * Override the constructor, as it might raise errors for not having
+    /**
+     * Override the constructor, as it might raise errors for not having
      * a $module that exists.
-	 * 
-	 * @param string $module Can be omitted for the ErrorRenderer.
-	 */
-	public function __construct($module){}
+     * 
+     * @param string $module Can be omitted for the ErrorRenderer.
+     */
+    public function __construct($module)
+    {
+
+    }
 
     /**
      * Get the location of the view file.
      * 
-     * @param type $viewFile
+     * @param  type $viewFile
      * @return type
      */
-	private function getViewFileUrl($viewFile)
-	{
-		$file = 'Errors/%s.php';
-		if (file_exists(($f = sprintf($file, $viewFile)))) {
-			return $f;
-		}
+    private function getViewFileUrl($viewFile)
+    {
+        $file = 'Errors/%s.php';
+        if (file_exists(($f = sprintf($file, $viewFile)))) {
+            return $f;
+        }
 
-		return sprintf($file, 'error');
-	}
+        return sprintf($file, 'error');
+    }
 
     /**
      * Get the layout for the error view.
@@ -65,23 +68,23 @@ class ErrorRenderer extends HtmlRenderer
      * 
      * @return string
      */
-	private function getErrorLayout()
-	{
-		if (file_exists('Layouts/error.php')) {
-			return 'error';
-		}
+    private function getErrorLayout()
+    {
+        if (file_exists('Layouts/error.php')) {
+            return 'error';
+        }
 
-		return 'default';
-	}
+        return 'default';
+    }
 
-	/**
-	 * Render the error view.
-	 * 
-	 * @param type $viewFile
-	 * @param array $params
-	 * @param type $layout
-	 * @return string
-	 */
+    /**
+     * Render the error view.
+     * 
+     * @param  type  $viewFile
+     * @param  array $params
+     * @param  type  $layout
+     * @return string
+     */
     public function render($viewFile, array $params, $layout = null)
     {
         extract($params);
@@ -90,11 +93,11 @@ class ErrorRenderer extends HtmlRenderer
             print_r($params); // @todo: Write to stderr
         } else {
             ob_start();
-            include($this->getViewFileUrl($viewFile));
+            include$this->getViewFileUrl($viewFile);
             $content = ob_get_clean();
 
             ob_start();
-            include('Layouts/' . $this->getErrorLayout() . '.php');
+            include'Layouts/' . $this->getErrorLayout() . '.php';
             return ob_get_clean();
         }
     }

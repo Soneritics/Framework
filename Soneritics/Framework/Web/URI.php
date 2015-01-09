@@ -30,19 +30,19 @@ use Framework\Web\Server;
  * URI object. Holds a URL.
  * 
  * @author Jordi Jolink
- * @since 18-12-2014
+ * @since  18-12-2014
  */
 class URI
 {
-	private $url, $server;
+    private $url, $server;
 
     /**
      * Constructor, saves the url (request uri) in the $url property.
      * 
      * @param string $url
      */
-	public function __construct($url = null)
-	{
+    public function __construct($url = null)
+    {
         $this->server = new Server;
         if (!$this->server->isCLI()) {
             if ($url === null) {
@@ -54,18 +54,18 @@ class URI
             }
         }
 
-		$this->url = $url;
-	}
+        $this->url = $url;
+    }
 
     /**
      * Getter for the $url property.
      * 
      * @return string
      */
-	public function getURL()
-	{
-		return $this->url;
-	}
+    public function getURL()
+    {
+        return $this->url;
+    }
 
     /**
      * Get the server, including the protocol.

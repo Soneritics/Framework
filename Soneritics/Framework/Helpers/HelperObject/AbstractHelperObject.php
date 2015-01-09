@@ -33,7 +33,7 @@ use Framework\Web\Request\RequestAbstract;
  * Abstract class for the HelperObject classes.
  * 
  * @author Jordi Jolink
- * @since 21-12-2014
+ * @since  21-12-2014
  */
 abstract class AbstractHelperObject
 {
@@ -54,7 +54,7 @@ abstract class AbstractHelperObject
     /**
      * Format the attribute of an HTML object (attribute="value")
      * 
-     * @param string $attribute
+     * @param  string $attribute
      * @return string
      */
     protected function formatAttribute($attribute)
@@ -65,7 +65,7 @@ abstract class AbstractHelperObject
     /**
      * Format the value of an HTML object (attribute="value")
      * 
-     * @param type $value
+     * @param  type $value
      * @return string
      */
     protected function formatValue($value)
@@ -87,7 +87,7 @@ abstract class AbstractHelperObject
     /**
      * Render HTML from the parameters in the $markup.
      * 
-     * @param string $markup
+     * @param  string $markup
      * @return string
      */
     protected function renderHTML($markup)
@@ -128,7 +128,7 @@ abstract class AbstractHelperObject
     /**
      * Set the name.
      * 
-     * @param string $name
+     * @param  string $name
      * @return \Framework\Helpers\AbstractHelperObject
      */
     public function setName($name)
@@ -150,29 +150,29 @@ abstract class AbstractHelperObject
     /**
      * Set the object's class(ses).
      * 
-     * @param string $class
+     * @param  string $class
      * @return \Framework\Helpers\AbstractHelperObject
      */
     public function setClass($class)
     {
-        return $this->setParam('class' , $class);
+        return $this->setParam('class', $class);
     }
 
     /**
      * Set the object's vlue.
      * 
-     * @param string $value
+     * @param  string $value
      * @return \Framework\Helpers\AbstractHelperObject
      */
     public function setValue($value)
     {
-        return $this->setParam('value' , $value);
+        return $this->setParam('value', $value);
     }
 
     /**
      * Set a param.
      * 
-     * @param string $class
+     * @param  string $class
      * @return \Framework\Helpers\FormStart
      */
     public function setParam($key, $value)

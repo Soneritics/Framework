@@ -30,32 +30,32 @@ use Framework\Logging\Logger;
  * Screen logger. Simply logs to the screen.
  * 
  * @author Jordi Jolink
- * @since 19-9-2014
+ * @since  19-9-2014
  */
 class Screen extends Logger
 {
     private $html = true;
 
-	/**
-	 * No configuration is needed for this Logger.
-	 * 
-	 * @param array $configuration
-	 */
-	public function setConfiguration(array $configuration)
-    {
+    /**
+     * No configuration is needed for this Logger.
+     * 
+     * @param array $configuration
+     */
+    public function setConfiguration(array $configuration)
+ {
         if (isset($configuration['html'])) {
             $this->html = $configuration['html'];
-        }
-    }
+           }
+ }
 
-	/**
-	 * Write a debug message to the selected logger.
-	 * When no logger has been initialized, the default logger is used.
-	 * 
-	 * @param mixed $object
-	 */
+    /**
+     * Write a debug message to the selected logger.
+     * When no logger has been initialized, the default logger is used.
+     * 
+     * @param mixed $object
+     */
     public function write($object)
-	{
+    {
         if (!$this->html) {
             print_r($object);
             echo PHP_EOL;
@@ -64,5 +64,5 @@ class Screen extends Logger
             echo htmlspecialchars(print_r($object, true));
             echo '</pre>';
         }
-	}
+    }
 }

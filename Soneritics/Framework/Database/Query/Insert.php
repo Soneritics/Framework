@@ -28,7 +28,7 @@ namespace Framework\Database\Query;
  * Insert query class.
  * 
  * @author Jordi Jolink
- * @since 1-1-2015
+ * @since  1-1-2015
  */
 class Insert extends QueryAbstract
 {
@@ -48,7 +48,7 @@ class Insert extends QueryAbstract
     /**
      * Wrapper around the setTable function for the insert class.
      *
-     * @param $table
+     * @param  $table
      * @return $this
      */
     public function into($table)

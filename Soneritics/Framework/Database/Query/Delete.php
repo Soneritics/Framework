@@ -28,7 +28,7 @@ namespace Framework\Database\Query;
  * Delete query class.
  * 
  * @author Jordi Jolink
- * @since 1-1-2015
+ * @since  1-1-2015
  */
 class Delete extends QueryAbstract
 {
@@ -48,7 +48,7 @@ class Delete extends QueryAbstract
     /**
      * Wrapper around the setTable function for the delete class.
      *
-     * @param $table
+     * @param  $table
      * @return $this
      */
     public function from($table)

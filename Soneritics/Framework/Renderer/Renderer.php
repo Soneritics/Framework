@@ -30,7 +30,7 @@ use Framework\Exceptions\FatalException;
  * Abstract renderer class, defines the lay-out of the renderers.
  * 
  * @author Jordi Jolink
- * @since 9-12-2014
+ * @since  9-12-2014
  */
 abstract class Renderer
 {
