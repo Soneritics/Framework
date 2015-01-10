@@ -238,7 +238,7 @@ trait MySQLTrait
                     $this->quote($value)
                 );
             }
-        } elseif (is_a($where, 'Where')) {
+        } elseif (is_a($where, 'Framework\Database\Query\Where')) {
             $operator = $where->getOperator();
             $whereClause = $where->getWhereClause();
 
