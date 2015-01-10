@@ -1,4 +1,4 @@
-# Soneritics Framework - Version 1.0 #
+# Soneritics Framework #
 
 [![Build Status](https://api.travis-ci.org/Soneritics/Framework.svg?branch=master)](https://travis-ci.org/Soneritics/Framework)
 ![License](http://img.shields.io/badge/license-MIT-green.svg)
