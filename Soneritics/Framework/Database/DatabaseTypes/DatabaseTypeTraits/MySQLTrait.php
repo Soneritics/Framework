@@ -64,7 +64,7 @@ trait MySQLTrait
      */
     public function quoteIdentifier($id)
     {
-        return '`' . str_replace('`', '', $id) . '`';
+        return str_replace('.', '`.`', '`' . str_replace('`', '', $id) . '`');
     }
 
     /**
