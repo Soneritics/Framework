@@ -37,7 +37,7 @@ class FormSelect extends AbstractHelperObject
 
     /**
      * Add a single option to a select object.
-     * 
+     *
      * @param type $id
      * @param type $value
      * @return \Framework\Helpers\HelperObject\FormSelect
@@ -50,7 +50,7 @@ class FormSelect extends AbstractHelperObject
 
     /**
      * Add an array of options to the select.
-     * 
+     *
      * @param array $options
      * @return \Framework\Helpers\HelperObject\FormSelect
      */
@@ -65,7 +65,7 @@ class FormSelect extends AbstractHelperObject
 
     /**
      * Indicator whether to include an empty value as the first element.
-     * 
+     *
      * @param type $includeEmpty
      * @return \Framework\Helpers\HelperObject\FormSelect
      */
@@ -77,7 +77,7 @@ class FormSelect extends AbstractHelperObject
 
     /**
      * Get the HTML option with the  correct value, caption and selected state.
-     * 
+     *
      * @param string $key
      * @param string $value
      * @param string $selected
@@ -117,8 +117,7 @@ class FormSelect extends AbstractHelperObject
             $optionsHtml[] = $this->getHtmlOption($key, $value, $selected);
         }
 
-        echo $this->renderHTML(
-            '<select%s>' . implode('', $optionsHtml) . '</select>'
-        );
+        $opts = implode('', $optionsHtml);
+        echo $this->renderHTML("<select%s>{$opts}</select>");
     }
 }
