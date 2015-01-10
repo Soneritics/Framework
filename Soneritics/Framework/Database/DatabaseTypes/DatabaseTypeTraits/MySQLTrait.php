@@ -263,7 +263,7 @@ trait MySQLTrait
             }
         }
 
-        return implode(" {$operator} ", $fullWhere);
+        return '(' . implode(" {$operator} ", $fullWhere) . ')';
     }
 
     /**
