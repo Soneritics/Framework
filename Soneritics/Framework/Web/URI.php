@@ -82,7 +82,7 @@ class URI
             $result .= 's';
         }
 
-        $result .= '://' . $this->server->get('HTTP_HOST') . $this->getURL();
+        $result .= '://' . $this->server->get('HTTP_HOST');
         return $result;
     }
 }
