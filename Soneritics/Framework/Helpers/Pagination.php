@@ -51,6 +51,26 @@ class Pagination
     }
 
     /**
+     * Get the current active page.
+     * 
+     * @return int
+     */
+    public function getPage()
+    {
+        return $this->page;
+    }
+
+    /**
+     * Get the total number of pages.
+     * 
+     * @return int
+     */
+    public function getPages()
+    {
+        return $this->pages;
+    }
+
+    /**
      * Setter for the total amount of pages.
      *
      * @param  type $pages
