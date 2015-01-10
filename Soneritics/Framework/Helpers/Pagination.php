@@ -52,7 +52,7 @@ class Pagination
 
     /**
      * Get the current active page.
-     * 
+     *
      * @return int
      */
     public function getPage()
@@ -62,7 +62,7 @@ class Pagination
 
     /**
      * Get the total number of pages.
-     * 
+     *
      * @return int
      */
     public function getPages()
