@@ -4,13 +4,10 @@
     "description": "Soneritics PHP framework for PHP 5.5 and higher.",
     "homepage": "http://framework.soneritics.nl/",
     "license": "MIT",
+    "minimum-stability": "dev",
     "require": {
         "php": ">=5.4.0",
-        "pear/pear_exception": "dev-master",
         "pear/mail_mime": "dev-master",
-        "pear/structures_graph": "dev-master",
-        "pear/console_getopt": "dev-master",
-        "pear/pear": "dev-master",
         "pear/mail": "dev-master",
         "firephp/firephp-core": "*",
         "psr/log": "*"
