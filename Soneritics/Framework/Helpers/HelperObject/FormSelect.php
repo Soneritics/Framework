@@ -88,7 +88,7 @@ class FormSelect extends AbstractHelperObject
         return sprintf(
             '<option value=%s%s>%s</option>',
             $this->formatValue($key),
-            $selected == $value ? ' selected="selected"' : '',
+            $selected == $key ? ' selected="selected"' : '',
             htmlspecialchars($value)
         );
     }
