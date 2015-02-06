@@ -27,6 +27,7 @@ namespace Framework\Database\DatabaseTypes;
 use Framework\Database\DatabaseTypes\DatabaseTypeTraits\MySQLTrait;
 use Framework\Database\DatabaseRecord\DatabaseRecord;
 use Framework\Database\DatabaseRecord\PDODatabaseRecord;
+use Framework\Database\DatabaseRecord\EmptyDatabaseRecord;
 
 /**
  * DatabaseType object for MySQL using the PDO connector.
@@ -99,7 +100,7 @@ class PDOMySQL implements IDatabaseType
             \Application::log($query);
         }
 
-        return new PDODatabaseRecord($this->pdo->query($query));
+        return $this->getPDODatabaseRecord($this->pdo->query($query));
     }
 
     /**
@@ -119,7 +120,23 @@ class PDOMySQL implements IDatabaseType
             \Application::log($query);
         }
 
-        return new PDODatabaseRecord($this->pdo->exec($query));
+        return $this->getPDODatabaseRecord($this->pdo->exec($query));
+    }
+
+    /**
+     * Get the result as a DatabaseRecord object.
+     *
+     * @todo Investigate why this returns a boolean.
+     * @param type $pdoStatement
+     * @return PDODatabaseRecord
+     */
+    private function getPDODatabaseRecord($pdoStatement)
+    {
+        if (is_a($pdoStatement, '\PDOStatement')) {
+            return new PDODatabaseRecord($pdoStatement);
+        } else {
+            return new EmptyDatabaseRecord;
+        }
     }
 
     /**
