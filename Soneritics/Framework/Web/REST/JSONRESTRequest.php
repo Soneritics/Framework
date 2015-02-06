@@ -50,5 +50,4 @@ class JSONRESTRequest extends RESTRequest
     {
         return 'application/json';
     }
-
 }

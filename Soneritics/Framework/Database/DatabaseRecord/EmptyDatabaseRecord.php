@@ -83,5 +83,4 @@ class EmptyDatabaseRecord extends DatabaseRecord
     {
         return [];
     }
-
 }

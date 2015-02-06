@@ -48,7 +48,7 @@ abstract class RESTRequest
      * Parse the data from the webserver and return it as an array.
      * @param string $data
      * @return array
-     */    
+     */
     abstract protected function parse($data);
 
     /**
