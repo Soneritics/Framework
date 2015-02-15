@@ -24,6 +24,8 @@
  */
 namespace Framework\Web\REST;
 
+use Framework\Logging\Log;
+
 /**
  * REST Request class.
  *
@@ -112,6 +114,9 @@ abstract class RESTRequest
      */
     public function request()
     {
+        Log::write('RESTRequest: ' . $this->getContentType());
+        Log::write('RESTRequest: ' . $this->url);
+
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this->url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -128,8 +133,14 @@ abstract class RESTRequest
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->headers);
 
+        foreach ($this->headers as $header) {
+            Log::write("RESTRequest header: {$header}");
+        }
+
         $data = curl_exec($ch);
         curl_close($ch);
+
+        Log::write("RESTRequest result: {$data}");
 
         return $this->parse($data);
     }
