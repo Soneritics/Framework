@@ -42,7 +42,7 @@ Then start the framework by including the bootstrap:
 
 ```php
 require_once('Framework/Bootstrap.php');
-new Framework\Bootstrap();
+new Framework\Bootstrap;
 ```
 
 ### Database querying ###
@@ -72,32 +72,32 @@ $child
 // A new child has been born!
 $child
     ->insert()
-    ->values(array(
+    ->values([
         'firstname' => 'first name',
         'lastname' => 'last name',
         'father_id' => 1,
         'mother_id' => 1
-    ))
+    ])
     ->execute();
 
 // Typo in the baby's name :-)
 $child
     ->update()
     ->set('firstname', 'new first name')
-    ->where(array(
+    ->where([
         'firstname' => 'first name',
         'lastname' => 'last name'
-    ))
+    ])
     ->execute();
 
 // Typo in the first and lastname of the baby :O
 $child
     ->update()
-    ->set(array('firstname' => 'new first name', 'lastname' => 'new last name'))
-    ->where(array(
+    ->set(['firstname' => 'new first name', 'lastname' => 'new last name'])
+    ->where([
         'firstname' => 'first name',
         'lastname' => 'last name'
-    ))
+    ])
     ->execute();
 
 // Selecting with some sorting and limiting
