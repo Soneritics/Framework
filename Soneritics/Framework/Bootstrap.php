@@ -66,12 +66,12 @@ class Bootstrap
                     $this->folders->get($folder) . '/autoload.php';
 
             if (file_exists($vendorAutoLoader)) {
-                include$vendorAutoLoader;
+                include $vendorAutoLoader;
             }
         }
 
         // Include the framework's autoloader
-        include$this->folders->get('framework') . '/AutoLoader.php';
+        include $this->folders->get('framework') . '/AutoLoader.php';
         (new AutoLoader)
             ->addRootPath($this->folders->get('app'))
             ->addRootPath($this->folders->get('package'))
