@@ -136,11 +136,11 @@ abstract class RequestAbstract
 
         foreach ($data as $k => $v) {
             if (is_array($v)) {
-                $result += $this->getRequestPartsFromArray(
+                $result = array_merge($result, $this->getRequestPartsFromArray(
                     $v,
                     $part . "[{$k}]",
                     $exclude
-                );
+                ));
             } else {
                 if (!in_array("{$part}[{$k}]", $exclude)) {
                     $result[] = sprintf(
