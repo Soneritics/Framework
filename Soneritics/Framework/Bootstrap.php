@@ -48,7 +48,7 @@ class Bootstrap
     private function setFolders($appPath = null)
     {
         $rootPath = dirname(dirname(__DIR__));
-        include_once$rootPath . '/Soneritics/Framework/IO/Folders.php';
+        include_once $rootPath . '/Soneritics/Framework/IO/Folders.php';
 
         $this->folders = (new IO\Folders())
             ->setFrameworkRootPath($rootPath)
@@ -66,12 +66,12 @@ class Bootstrap
                     $this->folders->get($folder) . '/autoload.php';
 
             if (file_exists($vendorAutoLoader)) {
-                include$vendorAutoLoader;
+                include $vendorAutoLoader;
             }
         }
 
         // Include the framework's autoloader
-        include$this->folders->get('framework') . '/AutoLoader.php';
+        include $this->folders->get('framework') . '/AutoLoader.php';
         (new AutoLoader)
             ->addRootPath($this->folders->get('app'))
             ->addRootPath($this->folders->get('package'))
@@ -140,8 +140,8 @@ class Bootstrap
             $errorHandler = new ErrorHandler;
             $errorHandler->handle($e);
         } finally {
-         // When everything is done, render
-         echo ob_get_clean();
+            // When everything is done, render
+            echo ob_get_clean();
         }
     }
 }

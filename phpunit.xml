@@ -1,1 +1,1 @@
-<phpunit bootstrap="test/helpers/config.php"></phpunit>
+<phpunit bootstrap="tests/helpers/FrameworkTest.php"></phpunit>

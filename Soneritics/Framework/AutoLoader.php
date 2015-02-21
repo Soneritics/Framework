@@ -32,11 +32,19 @@ namespace Framework;
  */
 class AutoLoader
 {
-    private $rootPaths = array();
+    private $rootPaths = [];
+    private $registered = false;
+
+    /**
+     * Upon destruction of the object, unregister the autoloader.
+     */
+    public function __destruct()
+    {
+        $this->unregister();
+    }
 
     /**
      * Add a root path to the autoloader.
-     *
      * @param  string $path
      * @return $this
      */
@@ -48,18 +56,33 @@ class AutoLoader
 
     /**
      * Installs this class loader on the SPL autoload stack.
-     *
      * @return $this
      */
     public function register()
     {
-        spl_autoload_register([$this, 'loadClass']);
+        if ($this->registered === false) {
+            spl_autoload_register([$this, 'loadClass']);
+            $this->registered = true;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Uninstalls this class loader on the SPL autoload stack.
+     * @return $this
+     */
+    public function unregister()
+    {
+        if ($this->registered === true) {
+            spl_autoload_unregister([$this, 'loadClass']);
+            $this->registered = false;
+        }
         return $this;
     }
 
     /**
      * Load class.
-     *
      * @param  string $className The name of the class to load.
      * @return bool
      */
@@ -69,7 +92,7 @@ class AutoLoader
             foreach ($this->rootPaths as $path) {
                 $file = $path . '/' . str_replace('\\', '/', $className) . '.php';
                 if (file_exists($file)) {
-                    include_once$file;
+                    include_once $file;
                     return true;
                 }
             }

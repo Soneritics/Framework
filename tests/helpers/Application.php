@@ -22,34 +22,52 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+use Framework\Application\Routing;
+use Framework\MVC\View;
+use Framework\Web\Session;
+use Components\ACL;
 
 /**
- * Test the AutoLoader class.
+ * Mandatory Application class. This class is specifically formatted for 
+ * unit testing.
  *
- * @author Jordi Jolink
- * @since 1-1-2015
+ * @author Jordi Jolink <mail@jordijolink.nl>
+ * @since 21-2-2015
  */
-class AutoLoaderTest extends PHPUnit_Framework_TestCase
+class Application extends Framework\Application\Application
 {
     /**
-     * Test if the framework's Application class can be autoloaded.
+     * Function after the contoller has run.
+     * @param Routing $router
      */
-    public function testFrameworkAutoloadApplication()
+    protected function afterRun(Routing $router)
     {
-        $this->assertTrue(
-            class_exists('Framework\Application\Application'),
-            'Test if the framework\'s Application class can be autoloaded.'
-        );
     }
 
     /**
-     * Test if the `application` can be autoloaded.
+     * 
+     * Function before the application runs.
+     * @param Routing $router
      */
-    public function testApplicationAutoloadApplication()
+    protected function beforeRun(Routing $router)
     {
-        $this->assertTrue(
-            class_exists('\Application'),
-            'Test if application\'s Application class can be autoloaded.'
-        );
+    }
+
+    /**
+     * Function that gets executed before the view renders.
+     * @param View $view
+     */
+    protected function beforeRender(View $view)
+    {
+    }
+
+    /**
+     * Check if the application can run.
+     * @param Routing $router
+     * @return boolean
+     */
+    protected function canRun(Routing $router)
+    {
+        return false;
     }
 }
