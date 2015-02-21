@@ -48,7 +48,7 @@ class Bootstrap
     private function setFolders($appPath = null)
     {
         $rootPath = dirname(dirname(__DIR__));
-        include_once $rootPath . '/Soneritics/Framework/IO/Folders.php';
+        require_once $rootPath . '/Soneritics/Framework/IO/Folders.php';
 
         $this->folders = (new IO\Folders())
             ->setFrameworkRootPath($rootPath)
@@ -71,7 +71,7 @@ class Bootstrap
         }
 
         // Include the framework's autoloader
-        include $this->folders->get('framework') . '/AutoLoader.php';
+        require_once $this->folders->get('framework') . '/AutoLoader.php';
         (new AutoLoader)
             ->addRootPath($this->folders->get('app'))
             ->addRootPath($this->folders->get('package'))

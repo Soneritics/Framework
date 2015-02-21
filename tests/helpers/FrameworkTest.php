@@ -27,7 +27,7 @@
 require_once __DIR__ . '/../../Soneritics/Framework/Bootstrap.php';
 
 /**
- * Test the AutoLoader class.
+ * Abstract Unit Test class.
  *
  * @author Jordi Jolink
  * @since 21-2-2015

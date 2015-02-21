@@ -41,26 +41,35 @@ class Routing
     /**
      * Constructor saved the routing array in a property.
      * @param array $routing
+     * @param URI $uri
      */
-    public function __construct(array $routing = null)
+    public function __construct(array $routing = null, URI $uri = null)
     {
         if ($routing === null) {
             $routing = [];
         }
 
+        if ($uri === null) {
+            $uri = new URI;
+        }
+
         $this->routing = $routing;
-        $this->init();
+        $this->init($uri);
     }
 
     /**
      * Find the route.
      * @return bool Route has been found.
      */
-    private function init()
+    private function init(URI $uri)
     {
         // Get the current URI
-        $uri = new URI;
         $url = $uri->getURL();
+
+        // For fallback, remove or add a / at the end of the url
+        $fallbackUrl = substr($url, -1) === '/' ?
+            substr($url, 0, -1) :
+            $url . '/';
 
         // Check for full url in the routes
         if (isset($this->routing[$url])) {
@@ -69,6 +78,8 @@ class Routing
                 $uri,
                 $this->routing[$url]
             );
+        } elseif (isset($this->routing[$fallbackUrl])) {
+            $this->init(new URI($fallbackUrl));
         }
 
         // Get wildcarded urls
