@@ -43,12 +43,8 @@ class Routing
      *
      * @param array $routing
      */
-    public function __construct(array $routing = null)
+    public function __construct(array $routing = [])
     {
-        if ($routing === null) {
-            $routing = [];
-        }
-
         $this->routing = $routing;
         $this->init();
     }
