@@ -14,7 +14,7 @@
         "psr/log": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "*",
+        "phpunit/phpunit": "3.7.*",
         "squizlabs/php_codesniffer": "dev-master",
         "satooshi/php-coveralls": "dev-master"
     },
