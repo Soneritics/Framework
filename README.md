@@ -1,7 +1,7 @@
 # Soneritics Framework #
 
 [![Build Status](https://api.travis-ci.org/Soneritics/Framework.svg?branch=master)](https://travis-ci.org/Soneritics/Framework)
-[![Coverage Status](https://coveralls.io/repos/Soneritics/Framework/badge.svg)](https://coveralls.io/r/Soneritics/Framework)
+[![Coverage Status](https://coveralls.io/repos/Soneritics/Framework/badge.svg?branch=master)](https://coveralls.io/r/Soneritics/Framework?branch=master)
 ![License](http://img.shields.io/badge/license-MIT-green.svg)
 
 by
