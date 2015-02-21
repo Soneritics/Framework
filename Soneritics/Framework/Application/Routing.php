@@ -198,7 +198,7 @@ class Routing
      */
     public function getRequestType()
     {
-        if (isset($_SERVER['REQUEST_METHOD'])) {
+        if (!empty($_SERVER['REQUEST_METHOD'])) {
             return ucfirst(strtolower($_SERVER['REQUEST_METHOD']));
         } else {
             return 'Action';
