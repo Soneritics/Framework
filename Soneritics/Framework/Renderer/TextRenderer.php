@@ -57,7 +57,7 @@ class TextRenderer extends Renderer
         extract($params);
 
         ob_start();
-        include$this->getAbsoluteViewFileUrl($viewFile);
+        include $this->getAbsoluteViewFileUrl($viewFile);
         $content = ob_get_clean();
 
         if ($layout !== null) {
