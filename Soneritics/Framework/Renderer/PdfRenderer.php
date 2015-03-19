@@ -63,6 +63,6 @@ class PdfRenderer extends Renderer
 
         $this->pdf = new \fpdf\FPDF;
         include $this->getAbsoluteViewFileUrl($viewFile);
-        return $this->pdf->Output();
+        return $this->pdf->Output('', 'S');
     }
 }
