@@ -77,7 +77,7 @@ class View
      * @param  string $layout
      * @return $this
      */
-    public function setLayout($layout)
+    public function setLayout($layout = null)
     {
         $this->layout = $layout;
         return $this;
@@ -145,7 +145,7 @@ class View
     protected function getRenderer()
     {
         return $this->renderer === null ?
-            new HtmlRenderer() :
+            new HtmlRenderer :
             $this->renderer;
     }
 
