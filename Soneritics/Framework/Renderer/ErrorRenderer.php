@@ -35,17 +35,6 @@ use Framework\Web\Server;
 class ErrorRenderer extends HtmlRenderer
 {
     /**
-     * Override the constructor, as it might raise errors for not having
-     * a $module that exists.
-     *
-     * @param string $module Can be omitted for the ErrorRenderer.
-     */
-    public function __construct($module)
-    {
-
-    }
-
-    /**
      * Get the location of the view file.
      *
      * @param  type $viewFile
@@ -93,11 +82,11 @@ class ErrorRenderer extends HtmlRenderer
             print_r($params); // @todo: Write to stderr
         } else {
             ob_start();
-            include$this->getViewFileUrl($viewFile);
+            include $this->getViewFileUrl($viewFile);
             $content = ob_get_clean();
 
             ob_start();
-            include'Layouts/' . $this->getErrorLayout() . '.php';
+            include 'Layouts/' . $this->getErrorLayout() . '.php';
             return ob_get_clean();
         }
     }

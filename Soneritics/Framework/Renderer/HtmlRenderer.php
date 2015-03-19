@@ -62,14 +62,12 @@ class HtmlRenderer extends Renderer
         extract($params);
 
         ob_start();
-        include$this->getAbsoluteViewFileUrl($viewFile);
+        include $this->getAbsoluteViewFileUrl($viewFile);
         $content = ob_get_clean();
 
         if ($layout !== null) {
             ob_start();
-            include
-                \Application::getFolders()->get('layouts') . '/' . $layout . '.php'
-            ;
+            include \Application::getFolders()->get('layouts') . "/{$layout}.php";
             return ob_get_clean();
         } else {
             return $content;

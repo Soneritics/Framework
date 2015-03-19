@@ -39,14 +39,14 @@ abstract class Renderer
 
     protected $modulePath;
 
-    public function __construct($module)
+    public function __construct()
     {
         $modulePath =
             \Application::getFolders()->get('modules') . '/' .
-            $module . '/View/';
+            \Application::getModule() . '/View/';
 
         if (!file_exists($modulePath)) {
-            throw new FatalException('Path nog found: ' . $modulePath);
+            throw new FatalException('Path not found: ' . $modulePath);
         }
 
         $this->modulePath = $modulePath;

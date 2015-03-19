@@ -33,7 +33,6 @@ use Framework\Web\Server;
 
 /**
  * Main Application abstraction class.
- *
  * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  18-9-2014
  */
@@ -41,6 +40,7 @@ abstract class Application
 {
     private static $folders;
     private static $config;
+    private static $module = 'error';
 
     /**
      * Constructor. Set-up necessary objects and connections.
@@ -52,14 +52,12 @@ abstract class Application
 
     /**
      * Function that gets executed before the application runs.
-     *
      * @param Routing $router
      */
     abstract protected function beforeRun(Routing $router);
 
     /**
      * Function that gets executed after the application runs.
-     *
      * @param Routing $router
      */
     abstract protected function afterRun(Routing $router);
@@ -68,7 +66,6 @@ abstract class Application
      * Function that gets executed before the application runs and should
      * return true. When it returns false, a PermissionDeniedException is
      * thrown.
-     *
      * @param  Routing $router
      * @return bool Indicator wether the app may run or not.
      */
@@ -77,14 +74,12 @@ abstract class Application
     /**
      * Function that gets executed before the view renders.
      * Passes the View as a variable, so it can be altered.
-     *
      * @param View $view
      */
     abstract protected function beforeRender(View $view);
 
     /**
      * Run the current application with a given Router and Config.
-     *
      * @param  \Framework\Application\Config  $config
      * @param  \Framework\Application\Routing $router
      * @throws PageNotFoundException
@@ -117,12 +112,14 @@ abstract class Application
 
     /**
      * Function to handle the actual running of the controller.
-     *
      * @param  \Framework\Application\Routing $router
      * @throws PageNotFoundException
      */
     private function dispatch(Routing $router)
     {
+        // Set the module name
+        self::$module = $router->getModule();
+
         // Create the controller
         $controllerClass = implode(
             '\\',
@@ -161,13 +158,12 @@ abstract class Application
                 print_r($view, true));
         } elseif ($isView) {
             $this->beforeRender($view);
-            echo $view->render(new \Framework\Renderer\HtmlRenderer($router->getModule()));
+            echo $view->render();
         }
     }
 
     /**
      * Static function to return the configuration object.
-     *
      * @return Config Configuration for the application.
      */
     public static function getConfig()
@@ -177,12 +173,20 @@ abstract class Application
 
     /**
      * Returns an initialized Folders object.
-     *
      * @return Folders Initialized Folders object.
      */
     public static function getFolders()
     {
         return self::$folders;
+    }
+
+    /**
+     * Get the name of the module.
+     * @return string
+     */
+    public static function getModule()
+    {
+        return self::$module;
     }
 
     /**

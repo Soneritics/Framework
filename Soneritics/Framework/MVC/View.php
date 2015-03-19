@@ -26,6 +26,7 @@ namespace Framework\MVC;
 
 use Framework\Exceptions\FatalException;
 use Framework\Renderer\Renderer;
+use Framework\Renderer\HtmlRenderer;
 
 /**
  * View object. This is the object that is used in controllers to actual
@@ -39,12 +40,12 @@ class View
     private $layout = null;
     private $view = null;
     private $params = [];
+    private $renderer = null;
 
     /**
      * Constructor. Optionally sets a view.
      * Also, when there is no View object that has a layout yet, this will
      * automatically load the layout.
-     *
      * @staticvar boolean $layoutLoaded
      * @param     type $view
      */
@@ -64,7 +65,6 @@ class View
 
     /**
      * Getter for the layout.
-     *
      * @return string
      */
     public function getLayout()
@@ -74,7 +74,6 @@ class View
 
     /**
      * Setter for the layout.
-     *
      * @param  string $layout
      * @return $this
      */
@@ -86,7 +85,6 @@ class View
 
     /**
      * Getter for the view file.
-     *
      * @return string
      */
     public function getViewFile()
@@ -96,7 +94,6 @@ class View
 
     /**
      * Setter for the view file.
-     *
      * @param  string $view
      * @return $this
      */
@@ -108,7 +105,6 @@ class View
 
     /**
      * Set a parameter for use in the view.
-     *
      * @param  string $name
      * @param  mixed  $value
      * @return $this
@@ -121,7 +117,6 @@ class View
 
     /**
      * Set multiple parameters at once.
-     *
      * @param  array $array
      * @return $this
      */
@@ -132,37 +127,56 @@ class View
     }
 
     /**
-     * MAke the parameters available in the view.
-     *
+     * Setter for the Renderer property. Sets the renderer to use for the view.
      * @param Renderer $renderer
+     * @return \Framework\MVC\View
      */
-    private function parseParams(Renderer $renderer)
+    public function setRenderer(Renderer $renderer)
     {
-        foreach ($this->params as &$param) {
-            if (is_a($param, 'Framework\MVC\View')) {
-                $param = $param->render($renderer);
+        $this->renderer = $renderer;
+        return $this;
+    }
+
+    /**
+     * Get the renderer for this view.
+     * When no renderer has been explicitly set. use the HtmlRenderer.
+     * @return \Framework\Renderer\Renderer
+     */
+    protected function getRenderer()
+    {
+        return $this->renderer === null ?
+            new HtmlRenderer() :
+            $this->renderer;
+    }
+
+    /**
+     * Make the parameters available in the view.
+     */
+    private function parseParams()
+    {
+        if (!empty($this->params)) {
+            foreach ($this->params as &$param) {
+                if (is_a($param, 'Framework\MVC\View')) {
+                    $param = $param->render();
+                }
             }
         }
     }
 
     /**
      * Render the view using the $renderer Renderer.
-     *
-     * @param  Renderer $renderer
      * @return string
      * @throws FatalException
      */
-    public function render(Renderer $renderer)
+    public function render()
     {
         if ($this->view === null) {
             throw new FatalException('No view file assigned.');
         }
 
-        if (!empty($this->params)) {
-            $this->parseParams($renderer);
-        }
+        $this->parseParams();
 
-        return $renderer->render(
+        return $this->getRenderer()->render(
             $this->view,
             $this->params,
             $this->layout
