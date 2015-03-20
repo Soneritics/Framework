@@ -25,7 +25,7 @@
 namespace Framework\Headers;
 
 /**
- * 
+ *
  * @author Jordi Jolink <mail@jordijolink.nl>
  * @since  18-3-2015
  */

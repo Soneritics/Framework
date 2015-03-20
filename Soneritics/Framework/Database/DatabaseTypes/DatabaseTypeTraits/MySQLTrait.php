@@ -379,7 +379,7 @@ trait MySQLTrait
                     $this->getOrder($queryParts),
                     $this->getLimit($queryParts)
                 ],
-                function($var) {
+                function ($var) {
                     return $var !== null;
                 }
             )
