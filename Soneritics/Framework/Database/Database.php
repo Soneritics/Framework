@@ -24,6 +24,7 @@
  */
 namespace Framework\Database;
 
+use Framework\Database\DatabaseTypes\IDatabaseType;
 use Framework\Exceptions\FatalException;
 
 /**
@@ -68,7 +69,7 @@ class Database
      * Get a database connection.
      *
      * @param  null $id
-     * @return mixed
+     * @return IDatabaseType
      * @throws FatalException
      */
     public static function get($id = null)
