@@ -39,12 +39,16 @@ abstract class Renderer
 
     protected $modulePath;
 
-    public function __construct()
+    public function __construct($module = null)
     {
+        if ($module === null) {
+            $module = \Application::getModule();
+        }
+
         $modulePath =
             \Application::getFolders()->get('modules')
             . '/' .
-            str_replace('\\', '/', \Application::getModule())
+            str_replace('\\', '/', $module)
             . '/View/';
 
         if (!file_exists($modulePath)) {
