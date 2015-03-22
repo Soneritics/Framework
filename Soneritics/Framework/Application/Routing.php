@@ -108,6 +108,23 @@ class Routing
     }
 
     /**
+     * Parse a function name. Removes dashes and adds upper case characters.
+     * @param string $functionName
+     * @return string
+     */
+    private function parseFunction($functionName)
+    {
+        $parts = explode('-', $functionName);
+        for ($i = 0; $i < count($parts); $i++) {
+            if ($i > 0) {
+                $parts[$i] = ucfirst($parts[$i]);
+            }
+        }
+
+        return implode('', $parts);
+    }
+
+    /**
      * Store a route in the class' properties and fetch the parameters.
      * @param  type  $url
      * @param  URI   $uri
@@ -131,7 +148,7 @@ class Routing
                 $var = trim($part);
                 if (strlen($var) > 0) {
                     if (!isset($route['Function'])) {
-                        $route['Function'] = $var;
+                        $route['Function'] = $this->parseFunction($var);
                     } else {
                         $route['Parameters'][] = $var;
                     }
