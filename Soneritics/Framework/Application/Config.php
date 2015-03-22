@@ -53,7 +53,7 @@ class Config
             foreach ($configFiles as $configFile) {
                 $this->configs = array_replace_recursive(
                     $this->configs,
-                    include$configPath . '/' . $configFile
+                    include $configPath . '/' . $configFile
                 );
             }
         }
