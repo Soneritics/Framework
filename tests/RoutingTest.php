@@ -32,12 +32,6 @@
 class RoutingTest extends FrameworkTest
 {
     /**
-     * Routing object.
-     * @var Framework\Application\Routing
-     */
-    private $routing;
-
-    /**
      * Start the framework so we have auto loading.
      */
     public function setUp()
