@@ -117,6 +117,52 @@ class File
      */
     public function exists()
     {
-        return file_exists($this->getPath() . $this->getFilename());
+        $filename = $this->getPath() . $this->getFilename();
+        return file_exists($filename) && is_file($filename);
+    }
+
+    /**
+     * Read the whole file's contents.
+     * @throws Exception
+     * @return string
+     */
+    public function read()
+    {
+        $filename = $this->getPath() . $this->getFilename();
+        if (!$this->exists()) {
+            throw new \Exception("File $filename does not exist.");
+        }
+
+        return file_get_contents($filename);
+    }
+
+    /**
+     * Copy the file to a new destination.
+     * @throws Exception
+     * @return boolean
+     */
+    public function copy($targetFile)
+    {
+        $sourceFile = $this->getPath() . $this->getFilename();
+
+        if (!$this->exists()) {
+            throw new \Exception("File $sourceFile does not exist.");
+        }
+
+        $this->load($targetFile);
+        return copy($sourceFile, $targetFile);
+    }
+
+    /**
+     * Delete the file from the file system.
+     * @return boolean
+     */
+    public function delete()
+    {
+        if ($this->exists()) {
+            return unlink($this->getPath() . $this->getFilename());
+        }
+
+        return true;
     }
 }
