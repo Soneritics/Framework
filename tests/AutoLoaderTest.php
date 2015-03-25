@@ -34,6 +34,13 @@ require_once __DIR__ . '/../Soneritics/Framework/AutoLoader.php';
 class AutoLoaderTest extends FrameworkTest
 {
     /**
+     * Prevent starting the framework so we have no auto loading.
+     */
+    public function setUp()
+    {
+    }
+
+    /**
      * Create a new Autoloader object.
      * @return Framework\Autoloader
      */

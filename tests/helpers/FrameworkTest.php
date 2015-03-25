@@ -34,6 +34,24 @@ require_once __DIR__ . '/../../Soneritics/Framework/Bootstrap.php';
  */
 abstract class FrameworkTest extends PHPUnit_Framework_TestCase
 {
+    /**
+     * Bootstrap object.
+     * @var Framework\Bootstrap
+     */
+    protected $bootstrap;
+
+    /**
+     * Start the framework so we have auto loading.
+     */
+    public function setUp()
+    {
+        parent::setUp();
+        $this->initFramework();
+    }
+
+    /**
+     * Initialize the framework by creating the Bootstrap object.
+     */
     protected function initFramework()
     {
         $this->bootstrap = new Framework\Bootstrap(__DIR__);

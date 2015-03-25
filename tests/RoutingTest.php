@@ -32,15 +32,6 @@
 class RoutingTest extends FrameworkTest
 {
     /**
-     * Start the framework so we have auto loading.
-     */
-    public function setUp()
-    {
-        parent::setUp();
-        $this->initFramework();
-    }
-
-    /**
      * Test the getRequestType function of the Routing class, which is an 
      * indirect input for the invocation of controller functions.
      */
