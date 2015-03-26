@@ -33,10 +33,10 @@ namespace Framework\IO;
 class Image extends File
 {
     // Constants for reading the $imageInfo properties.
-    CONST WIDTH = 0;
-    CONST HEIGHT = 1;
-    CONST BITS = 'bits';
-    CONST MIME = 'mime';
+    const WIDTH = 0;
+    const HEIGHT = 1;
+    const BITS = 'bits';
+    const MIME = 'mime';
 
     /**
      * Array as given from PHP's getimageinfo function.
