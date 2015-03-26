@@ -43,7 +43,6 @@ class Download
         $quoted = sprintf('"%s"', addcslashes(basename($filename), '"\\'));
 
         header('Content-Description: File Transfer');
-        header('Content-Type: application/octet-stream');
         header('Content-Disposition: attachment; filename=' . $quoted);
         header('Content-Transfer-Encoding: binary');
         header('Connection: Keep-Alive');
@@ -52,7 +51,7 @@ class Download
         header('Pragma: public');
 
         $contents = $view->render();
-        $size = filesize($contents);
+        $size = strlen($contents);
         header('Content-Length: ' . $size);
         echo $contents;
     }
