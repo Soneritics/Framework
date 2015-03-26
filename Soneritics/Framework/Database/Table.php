@@ -66,6 +66,8 @@ class Table
 
         if (substr($tbl, -1) === 'y') {
             $tbl = substr($tbl, 0, -1) . 'ies';
+        } elseif (substr($tbl, -1) === 's') {
+            $tbl = substr($tbl, 0, -1) . 'ses';
         } else {
             $tbl .= 's';
         }
