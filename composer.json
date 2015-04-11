@@ -27,5 +27,8 @@
             "type": "vcs",
             "url": "https://github.com/firephp/firephp-core"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {"Framework\\": "Soneritics/Framework/"}
+    }
 }
