@@ -24,8 +24,6 @@
  */
 use Framework\Application\Routing;
 use Framework\MVC\View;
-use Framework\Web\Session;
-use Components\ACL;
 
 /**
  * Mandatory Application class. This class is specifically formatted for 
