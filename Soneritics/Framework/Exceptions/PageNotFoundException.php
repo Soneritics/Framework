@@ -29,5 +29,6 @@ namespace Framework\Exceptions;
  */
 class PageNotFoundException extends \Exception
 {
+    public $responseCode = '404';
     protected $message = 'Page not found.';
 }

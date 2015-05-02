@@ -29,5 +29,6 @@ namespace Framework\Exceptions;
  */
 class PermissionDeniedException extends \Exception
 {
+    public $responseCode = '403';
     protected $message = 'Permission denied!';
 }

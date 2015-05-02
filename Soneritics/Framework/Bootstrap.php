@@ -137,8 +137,13 @@ class Bootstrap
               // Start the application
               $this->dispatch();
         } catch (\Exception $e) {
-            $errorHandler = new ErrorHandler;
-            $errorHandler->handle($e);
+            try {
+                $errorHandler = new ErrorHandler;
+                $errorHandler->handle($e);
+            } catch (\Exception $ex) {
+                http_response_code(500);
+                echo $ex->getMessage();
+            }
         } finally {
             // When everything is done, render
             echo ob_get_clean();

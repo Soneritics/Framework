@@ -35,6 +35,15 @@ use Framework\Web\Server;
 class ErrorRenderer extends HtmlRenderer
 {
     /**
+     * Override the constructor from the Renderer class.
+     * @param string $module
+     */
+    public function __construct($module = null)
+    {
+        $this->modulePath = null;
+    }
+
+    /**
      * Get the location of the view file.
      *
      * @param  type $viewFile

@@ -44,14 +44,11 @@ class ErrorHandler
     private function getErrorView(\Exception $exception)
     {
         $className = substr(get_class($exception), strlen('Framework\Exceptions\\'));
-        switch ($className) {
-            case 'PageNotFoundException':
-            case 'PermissionDeniedException':
-                return substr($className, 0, -1 * strlen('Exception'));
-            break;
+        if (!empty($className)) {
+            return substr($className, 0, -1 * strlen('Exception'));
+        } else {
+            return 'error';
         }
-
-        return 'error';
     }
 
     /**
@@ -62,7 +59,11 @@ class ErrorHandler
      */
     private function sendHeader(\Exception $exception)
     {
-        // @todo
+        if (isset($exception->responseCode)) {
+            http_response_code($exception->responseCode);
+        } else {
+            http_response_code(500);
+        }
     }
 
     /**
@@ -74,7 +75,7 @@ class ErrorHandler
     {
         Log::write($exception);
         $this->sendHeader($exception);
-        $errorRenderer = new Renderer\ErrorRenderer('error');
+        $errorRenderer = new Renderer\ErrorRenderer('Error');
         echo $errorRenderer->render(
             $this->getErrorView($exception),
             ['exception' => $exception]

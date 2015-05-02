@@ -30,4 +30,5 @@ namespace Framework\Exceptions;
  */
 class FatalException extends \Exception
 {
+    public $responseCode = '500';
 }
