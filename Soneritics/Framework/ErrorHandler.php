@@ -52,6 +52,15 @@ class ErrorHandler
     }
 
     /**
+     * Remove existing headers that prevent the error page from showing.
+     */
+    private function removeExistingHeaders()
+    {
+        // Just remove every header
+        header_remove();
+    }
+
+    /**
      * Send the correct (content type) header.
      *
      * @param \Exception $exception
@@ -59,6 +68,7 @@ class ErrorHandler
      */
     private function sendHeader(\Exception $exception)
     {
+        new Headers\ContentType('text/html');
         if (isset($exception->responseCode)) {
             http_response_code($exception->responseCode);
         } else {
@@ -74,6 +84,7 @@ class ErrorHandler
     public function handle(\Exception $exception)
     {
         Log::write($exception);
+        $this->removeExistingHeaders();
         $this->sendHeader($exception);
         $errorRenderer = new Renderer\ErrorRenderer('Error');
         echo $errorRenderer->render(
