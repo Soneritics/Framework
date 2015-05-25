@@ -152,7 +152,7 @@ class SingleInstance
             (time() - $this->getFile()->getModificationTime()) / 60
         );
 
-        return $minutesRunning > $this->allowedRunMinutes;
+        return $minutesRunning < $this->allowedRunMinutes;
     }
 
     /**
