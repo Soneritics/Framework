@@ -165,4 +165,32 @@ class File
 
         return true;
     }
+
+    /**
+     * Set the contents of the file.
+     * @param string $contents
+     * @return bool
+     */
+    public function set($contents)
+    {
+        $filename = $this->getPath() . $this->getFilename();
+        return file_put_contents($filename, $contents);
+    }
+
+    /**
+     * Touch the file, so the last editted timestamp will update.
+     */
+    public function touch()
+    {
+        touch($this->getPath() . $this->getFilename());
+    }
+
+    /**
+     * Get the file modification time.
+     * @return int
+     */
+    public function getModificationTime()
+    {
+        return filemtime($this->getPath() . $this->getFilename());
+    }
 }
