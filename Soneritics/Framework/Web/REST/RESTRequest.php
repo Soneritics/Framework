@@ -46,6 +46,9 @@ abstract class RESTRequest
     // The request type
     private $requestType = 'GET';
 
+    // Basic authentication, if used
+    private $basicAuth = null;
+
     /**
      * Parse the data from the webserver and return it as an array.
      * @param string $data
@@ -93,6 +96,17 @@ abstract class RESTRequest
     }
 
     /**
+     * Set the basic authentication header (username:password).
+     * @param string $basicAuth username:password
+     * @return \Framework\Web\REST\RESTRequest
+     */
+    public function setBasicAuth($basicAuth)
+    {
+        $this->basicAuth = $basicAuth;
+        return $this;
+    }
+
+    /**
      * Add post values.
      * @param type $key
      * @param type $value
@@ -123,6 +137,11 @@ abstract class RESTRequest
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $this->requestType);
 
         $this->headers[] = 'Content-Type: ' . $this->getContentType();
+
+        if (!empty($this->basicAuth)) {
+            curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+            curl_setopt($ch, CURLOPT_USERPWD, $this->basicAuth);
+        }
 
         if (!empty($this->post)) {
             $dataString = json_encode($this->post);
