@@ -84,6 +84,7 @@ class Bootstrap
     private function initErrorHandling()
     {
         register_shutdown_function([$this, 'shutdown']);
+        set_error_handler([$this, 'error']);
     }
 
     /**
@@ -95,6 +96,19 @@ class Bootstrap
         if (!empty($error)) {
             \Application::log($error);
         }
+    }
+
+    /**
+     * Error handler, invoked by the set_error_handler function.
+     * Makes sure exceptions are raised when PHP catchable errors occur.
+     */
+    public function error($errno, $errstr, $errfile, $errline)
+    {
+        if ($errno === E_RECOVERABLE_ERROR) {
+            throw new \ErrorException($errstr, $errno, 0, $errfile, $errline);
+        }
+
+        return false;
     }
 
     /**
