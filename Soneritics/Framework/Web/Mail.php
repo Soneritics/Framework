@@ -190,7 +190,9 @@ class Mail
     public function setHTMLBody($body)
     {
         if (is_a($body, 'Framework\MVC\View')) {
-            $body = $body->render((new HtmlRenderer('Pub'))); // @todo: Get Module from Routing object
+            $body = $body
+                ->setRenderer(new HtmlRenderer('Pub'))
+                ->render();
         }
 
         $this->messageHtml = $body;
@@ -206,7 +208,9 @@ class Mail
     public function setTextBody($body)
     {
         if (is_a($body, 'Framework\MVC\View')) {
-            $body = $body->render((new TextRenderer('Pub'))); // @todo: Get Module from Routing object
+            $body = $body
+                ->setRenderer(new TextRenderer('Pub'))
+                ->render();
         }
 
         $this->messageTxt = $body;
