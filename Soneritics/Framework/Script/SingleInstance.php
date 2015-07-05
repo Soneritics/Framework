@@ -67,6 +67,7 @@ class SingleInstance
     public function __construct($name)
     {
         $this->name = $name;
+        $this->updateTempDir();
     }
 
     /**
@@ -93,7 +94,16 @@ class SingleInstance
         }
 
         $this->tempDir = $tempDir;
+        $this->updateTempDir();
         return $this;
+    }
+
+    /**
+     * Add a unique identifier to the temp dir.
+     */
+    protected function updateTempDir()
+    {
+        $this->tempDir .= md5(__DIR__) . '/';
     }
 
     /**
