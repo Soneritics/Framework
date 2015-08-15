@@ -42,6 +42,9 @@ class View
     private $params = [];
     private $renderer = null;
 
+    private static $layoutLoaded = false;
+    private $layoutIsAutomaticcalyAssigned = false;
+
     /**
      * Constructor. Optionally sets a view.
      * Also, when there is no View object that has a layout yet, this will
@@ -51,11 +54,10 @@ class View
      */
     public function __construct($view = null)
     {
-        static $layoutLoaded = false;
-
-        if (!$layoutLoaded) {
-            $layoutLoaded = true;
+        if (!$this->layoutLoaded) {
+            $this->layoutLoaded = true;
             $this->layout = 'default';
+            $this->layoutIsAutomaticcalyAssigned = true;
         }
 
         if ($view !== null) {
@@ -80,6 +82,11 @@ class View
     public function setLayout($layout = null)
     {
         $this->layout = $layout;
+
+        if ($layout === null && $this->layoutIsAutomaticcalyAssigned === true) {
+            $this->layoutLoaded = false;
+        }
+
         return $this;
     }
 
