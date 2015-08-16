@@ -36,6 +36,7 @@ class Pagination
 {
     private $page = 1;
     private $pages = 1;
+    private $totalCount = 0;
     private $url = '?page=%s';
 
     /**
@@ -80,6 +81,26 @@ class Pagination
     {
         $this->pages = (int)$pages;
         return $this;
+    }
+
+    /**
+     * Set the total amount of orders.
+     * @param int $orderCount
+     * @return \Framework\Helpers\Pagination
+     */
+    public function setTotalCount($orderCount)
+    {
+        $this->totalCount = (int)$orderCount;
+        return $this;
+    }
+
+    /**
+     * Get the total amount of orders.
+     * @return int
+     */
+    public function getTotalCount()
+    {
+        return $this->totalCount;
     }
 
     /**
