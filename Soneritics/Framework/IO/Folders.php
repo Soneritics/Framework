@@ -111,6 +111,6 @@ class Folders
             return static::$paths[$name];
         }
 
-        throw new Framework\Exceptions\FatalException('Path not set: ' . $name);
+        throw new \Framework\Exceptions\FatalException('Path not set: ' . $name);
     }
 }
