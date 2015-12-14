@@ -96,6 +96,9 @@ class Bootstrap
         if (!empty($error)) {
             \Application::log($error);
         }
+
+        // When everything is done, render
+        echo ob_get_clean();
     }
 
     /**
@@ -158,9 +161,6 @@ class Bootstrap
                 http_response_code(500);
                 echo $ex->getMessage();
             }
-        } finally {
-            // When everything is done, render
-            echo ob_get_clean();
         }
     }
 }
