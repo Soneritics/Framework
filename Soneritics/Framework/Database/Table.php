@@ -62,8 +62,22 @@ class Table
      */
     public function setTableFromName()
     {
-        $tbl = strtolower(preg_replace('~(?!\A)(?=[A-Z]+)~', '_', $this->name));
+        $fullName = $this->name;
 
+        $uppercase = 0;
+        for ($i = 0; $i < strlen($fullName); $i++) {
+            $char = $fullName[$i];
+            if ($char === strtoupper($char)) {
+                $uppercase++;
+                if ($uppercase > 2) {
+                    $fullName[$i - 1] = strtolower($fullName[$i - 1]);
+                }
+            } else {
+                $uppercase = 0;
+            }
+        }
+
+        $tbl = strtolower(preg_replace('~(?!\A)(?=[A-Z]+)~', '_', $fullName));
         if (substr($tbl, -1) === 'y') {
             $tbl = substr($tbl, 0, -1) . 'ies';
         } elseif (substr($tbl, -1) === 's') {
