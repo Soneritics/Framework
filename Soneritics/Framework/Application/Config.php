@@ -24,7 +24,7 @@
  */
 namespace Framework\Application;
 
-use Framework\Database\Database;
+use Database\DatabaseConnectionFactory;
 
 /**
  * Project configuration class.
@@ -83,7 +83,7 @@ class Config
         $databases = $this->get('Database');
         if (!empty($databases)) {
             foreach ($databases as $id => $config) {
-                Database::set($id, $config);
+                DatabaseConnectionFactory::create($id, $config);
             }
         }
     }
