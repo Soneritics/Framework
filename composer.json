@@ -14,6 +14,7 @@
         "psr/log": "*"
     },
     "require-dev": {
+        "soneritics/database": "dev-master",
         "phpunit/phpunit": "3.7.*",
         "squizlabs/php_codesniffer": "dev-master",
         "satooshi/php-coveralls": "dev-master"
@@ -22,10 +23,6 @@
         {
             "type": "pear",
             "url": "http://pear2.php.net"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/firephp/firephp-core"
         }
     ],
     "autoload": {
