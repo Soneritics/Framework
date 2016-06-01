@@ -24,8 +24,6 @@
  */
 namespace Framework;
 
-use Framework\Logging\Log;
-
 /**
  * Error handler class.
  * Renders errors.
@@ -37,7 +35,6 @@ class ErrorHandler
 {
     /**
      * Get the error view.
-     *
      * @param  \Exception $exception
      * @return string
      */
@@ -62,9 +59,7 @@ class ErrorHandler
 
     /**
      * Send the correct (content type) header.
-     *
      * @param \Exception $exception
-     * @todo  Write the implementation
      */
     private function sendHeader(\Exception $exception)
     {
@@ -78,12 +73,11 @@ class ErrorHandler
 
     /**
      * Handle the exception. Renders the error view using the class' functions.
-     *
      * @param \Exception $exception
      */
     public function handle(\Exception $exception)
     {
-        Log::write($exception);
+        \Application::log()->error($exception->getMessage(), $exception->getTrace());
         $this->removeExistingHeaders();
         $this->sendHeader($exception);
         $errorRenderer = new Renderer\ErrorRenderer('Error');

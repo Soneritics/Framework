@@ -30,6 +30,7 @@ use Framework\Exceptions\FatalException;
 use Framework\IO\Folders;
 use Framework\MVC\View;
 use Framework\Web\Server;
+use Monolog\Logger;
 
 /**
  * Main Application abstraction class.
@@ -38,16 +39,33 @@ use Framework\Web\Server;
  */
 abstract class Application
 {
+    /**
+     * @var Folders
+     */
     private static $folders;
+
+    /**
+     * @var Config
+     */
     private static $config;
+
+    /**
+     * @var string
+     */
     private static $module = 'error';
+
+    /**
+     * @var Logger
+     */
+    private static $log;
 
     /**
      * Constructor. Set-up necessary objects and connections.
      */
     final public function __construct()
     {
-        self::$folders = new Folders();
+        self::$folders = new Folders;
+        self::$log = new Logger('Framework');
     }
 
     /**
@@ -113,6 +131,7 @@ abstract class Application
     /**
      * Function to handle the actual running of the controller.
      * @param  \Framework\Application\Routing $router
+     * @throws FatalException
      * @throws PageNotFoundException
      */
     private function dispatch(Routing $router)
@@ -190,13 +209,11 @@ abstract class Application
     }
 
     /**
-     * Use the framework's logger to log a message.
+     * Return the logger object;
+     * @return Logger
      */
     public static function log()
     {
-        call_user_func_array(
-            ['Framework\Logging\Log', 'write'],
-            func_get_args()
-        );
+        return self::$log;
     }
 }
