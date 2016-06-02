@@ -63,7 +63,7 @@ class Bootstrap
         // Initialize Composer's autoloaders
         foreach (['framework-vendor', 'vendor'] as $folder) {
             $vendorAutoLoader =
-                    $this->folders->get($folder) . '/autoload.php';
+                $this->folders->get($folder) . '/autoload.php';
 
             if (file_exists($vendorAutoLoader)) {
                 include $vendorAutoLoader;
@@ -84,6 +84,7 @@ class Bootstrap
     private function initErrorHandling()
     {
         set_error_handler([$this, 'error']);
+        set_exception_handler([$this, 'exception']);
     }
 
     /**
@@ -105,6 +106,20 @@ class Bootstrap
         }
 
         return false;
+    }
+
+    /**
+     * Log uncaught exceptions.
+     * @param $exception
+     */
+    function exception($exception)
+    {
+        $log = \Application::log();
+        if (!empty($log)) {
+            $log->error($exception, $exception->getTrace());
+        }
+
+        throw $exception;
     }
 
     /**
