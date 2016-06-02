@@ -112,7 +112,7 @@ class Bootstrap
      * Log uncaught exceptions.
      * @param $exception
      */
-    function exception($exception)
+    public function exception($exception)
     {
         $log = \Application::log();
         if (!empty($log)) {
