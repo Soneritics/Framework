@@ -83,21 +83,14 @@ class Bootstrap
      */
     private function initErrorHandling()
     {
-        register_shutdown_function([$this, 'shutdown']);
         set_error_handler([$this, 'error']);
     }
 
     /**
-     * Actual shutdown function.
+     * When everything is done, render.
      */
     public function shutdown()
     {
-        $error = error_get_last();
-        if (!empty($error)) {
-            \Application::log($error);
-        }
-
-        // When everything is done, render
         echo ob_get_clean();
     }
 
@@ -119,14 +112,17 @@ class Bootstrap
      */
     private function dispatch()
     {
+        register_shutdown_function([$this, 'shutdown']);
+
         $this->application = new \Application();
         $config = new Config($this->folders->get('config'));
-
         $config->setDatabases();
 
-        if ($config->get('Logging') !== null) {
-            $logger = $config->get('Logging');
-            \Framework\Logging\Log::setLogger(new $logger['Logger']($logger['Config']));
+        if ($config->get('LogHandler') !== null) {
+            $handlers = $config->get('LogHandler');
+            foreach ($handlers as $handler) {
+                $this->application->log()->pushHandler($handler);
+            }
         }
 
         $this->application->run(
@@ -146,13 +142,13 @@ class Bootstrap
         ob_start();
 
         try {
-              // Initialize and register the necessary
-              $this->setFolders($appPath);
-              $this->initAutoLoading();
-              $this->initErrorHandling();
+            // Initialize and register the necessary
+            $this->setFolders($appPath);
+            $this->initAutoLoading();
+            $this->initErrorHandling();
 
-              // Start the application
-              $this->dispatch();
+            // Start the application
+            $this->dispatch();
         } catch (\Exception $e) {
             try {
                 $errorHandler = new ErrorHandler;
