@@ -80,7 +80,7 @@ class DatabaseHandler extends AbstractProcessingHandler
 
             $values = [
                 'message' => $record['message'],
-                'context' => implode(PHP_EOL, $record['context']),
+                'context' => print_r($record['context'], true),
                 'level' => $record['level_name']
             ];
             static::$table->insert()->values($values)->execute();
