@@ -137,13 +137,14 @@ class Image extends File
             return $result;
         }
 
-		return null;
+        return null;
     }
 
     /**
      * Rotate the image by a given angle.
      * @param int $angle One of the ROTATION_* constants of this class.
      * @return $this
+     * @throws \Exception
      */
     public function rotate($angle)
     {
