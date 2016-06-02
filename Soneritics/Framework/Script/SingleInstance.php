@@ -41,8 +41,8 @@ class SingleInstance
     private $name;
 
     /**
-     * File to write the 
-     * @var Framework\IO\File
+     * File to write to.
+     * @var File
      */
     private $file;
 
@@ -85,7 +85,8 @@ class SingleInstance
     /**
      * Set the temp directory.
      * @param string $tempDir
-     * @return \Framework\Script\SingleInstance
+     * @return SingleInstance
+     * @throws \Exception
      */
     public function setTempDir($tempDir)
     {
@@ -167,7 +168,8 @@ class SingleInstance
 
     /**
      * Get the file object for this instance.
-     * @return Framework\IO\File
+     * @return File
+     * @throws \Exception
      */
     private function getFile()
     {
