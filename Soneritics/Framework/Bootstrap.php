@@ -101,7 +101,16 @@ class Bootstrap
      */
     public function error($errno, $errstr, $errfile, $errline)
     {
-        if ($errno === E_RECOVERABLE_ERROR) {
+        if (in_array($errno, [E_ERROR, E_USER_ERROR])) {
+            $log = \Application::log();
+            if (!empty($log)) {
+                $lastError = error_get_last();
+                $log->critical(
+                    "Fatal error\n" . print_r($lastError, true),
+                    empty($lastError) ? debug_backtrace() : $lastError
+                );
+            }
+        } elseif ($errno === E_RECOVERABLE_ERROR) {
             throw new \ErrorException($errstr, $errno, 0, $errfile, $errline);
         }
 
