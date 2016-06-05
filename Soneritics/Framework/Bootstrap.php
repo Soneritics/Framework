@@ -92,6 +92,14 @@ class Bootstrap
      */
     public function shutdown()
     {
+        // Log a fatal error
+        if (!defined(PROGRAM_EXECUTION_SUCCESSFUL)) {
+            $log = \Application::log();
+            if (!empty($log)) {
+                $log->critical('Fatal error', error_get_last());
+            }
+        }
+
         echo ob_get_clean();
     }
 
