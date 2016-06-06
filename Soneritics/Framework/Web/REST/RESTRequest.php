@@ -130,7 +130,7 @@ abstract class RESTRequest
         \Application::log()->debug('RESTRequest: ' . $this->url);
 
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $this->url);
+        curl_setopt($ch, CURLOPT_URL, urlencode($this->url));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $this->requestType);
 
