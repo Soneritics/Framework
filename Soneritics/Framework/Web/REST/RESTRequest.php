@@ -157,7 +157,7 @@ abstract class RESTRequest
         $data = curl_exec($ch);
         curl_close($ch);
 
-        \Application::log()->debug("RESTRequest result: {$data}");
+        \Application::log()->debug("RESTRequest result", ['data' => $data]);
 
         return $this->parse($data);
     }
