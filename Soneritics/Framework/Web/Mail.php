@@ -81,7 +81,7 @@ class Mail
         }
 
         // Send the mail
-        $headers = ['From' => $this->from, 'Subject' => $this->subject];
+        $headers = ['From' => $this->from, 'Return-Path' => $this->from, 'Subject' => $this->subject];
         $mime = new \Mail_mime(PHP_EOL);
         $mime->setTXTBody($this->messageTxt);
         $mime->setHTMLBody($this->messageHtml);
