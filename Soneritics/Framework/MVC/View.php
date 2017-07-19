@@ -54,8 +54,8 @@ class View
      */
     public function __construct($view = null)
     {
-        if (!static::$layoutLoaded) {
-            static::$layoutLoaded = true;
+        if (!self::$layoutLoaded) {
+            self::$layoutLoaded = true;
             $this->layout = 'default';
             $this->layoutIsAutomaticcalyAssigned = true;
         }
@@ -84,7 +84,7 @@ class View
         $this->layout = $layout;
 
         if ($layout === null && $this->layoutIsAutomaticcalyAssigned === true) {
-            static::$layoutLoaded = false;
+            self::$layoutLoaded = false;
         }
 
         return $this;
