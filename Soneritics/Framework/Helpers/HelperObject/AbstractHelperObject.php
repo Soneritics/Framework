@@ -244,7 +244,9 @@ abstract class AbstractHelperObject
      */
     protected function setValueFrom(RequestAbstract $request)
     {
-        $this->setValue($request->get($this->getName()));
+        if ($request->get($this->getName()) !== null) {
+            $this->setValue($request->get($this->getName()));
+        }
     }
 
     /**
