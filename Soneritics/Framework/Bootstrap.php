@@ -24,6 +24,7 @@
  */
 namespace Framework;
 
+use Database\Debug\ExecutedQuery;
 use Framework\Application\Config;
 use Framework\Application\Routing;
 
@@ -85,6 +86,25 @@ class Bootstrap
     {
         set_error_handler([$this, 'error']);
         set_exception_handler([$this, 'exception']);
+    }
+
+    /**
+     * Initialize logging of database queries when using the Soneritics\Database project.
+     */
+    private function initDatabaseLogging()
+    {
+        if (class_exists('Database\Debug')) {
+            \Database\Debug::addSubscriber(function(ExecutedQuery $query) {
+                \Application::log()->debug(
+                    sprintf(
+                        "Query with type `%s` took %f sec:\n%s",
+                        $query->getType(),
+                        $query->getExecutionTime(),
+                        $query->getQuery()
+                    )
+                );
+            });
+        }
     }
 
     /**
@@ -170,6 +190,7 @@ class Bootstrap
             $this->setFolders($appPath);
             $this->initAutoLoading();
             $this->initErrorHandling();
+            $this->initDatabaseLogging();
 
             // Start the application
             $this->dispatch();
