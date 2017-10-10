@@ -37,7 +37,7 @@ class FormImage extends AbstractHelperObject
      */
     public function render()
     {
-        echo $this->renderHTML('<input type="image"%s>');
+        echo $this->renderHTML('<input type="image"{params}>');
     }
 
     /**

@@ -33,7 +33,7 @@ use Framework\Web\Request\RequestAbstract;
  */
 class FormCheckbox extends AbstractHelperObject
 {
-    private $renderFormat = '<input type="checkbox"%s>';
+    private $renderFormat = '<input type="checkbox"{params}>';
 
     /**
      * Set the rendering format.

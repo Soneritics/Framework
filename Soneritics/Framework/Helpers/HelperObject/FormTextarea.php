@@ -38,7 +38,7 @@ class FormTextarea extends AbstractHelperObject
      */
     public function render()
     {
-        $html = '<textarea%s>' . htmlspecialchars($this->getParam('value')) . '</textarea>';
+        $html = '<textarea{params}>' . htmlspecialchars($this->getParam('value')) . '</textarea>';
         unset($this->params['value']);
         echo $this->renderHTML($html);
     }

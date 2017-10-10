@@ -118,6 +118,6 @@ class FormSelect extends AbstractHelperObject
         }
 
         $opts = implode('', $optionsHtml);
-        echo $this->renderHTML("<select%s>{$opts}</select>");
+        echo $this->renderHTML("<select{params}>{$opts}</select>");
     }
 }

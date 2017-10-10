@@ -39,6 +39,6 @@ class FormHidden extends AbstractHelperObject
      */
     public function render()
     {
-        echo $this->renderHTML('<input type="hidden"%s>');
+        echo $this->renderHTML('<input type="hidden"{params}>');
     }
 }

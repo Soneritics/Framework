@@ -43,6 +43,6 @@ class FormPassword extends AbstractHelperObject
             unset($this->params['value']);
         }
 
-        echo $this->renderHTML('<input type="password"%s>');
+        echo $this->renderHTML('<input type="password"{params}>');
     }
 }

@@ -39,7 +39,7 @@ class FormStart extends AbstractHelperObject
      */
     public function render()
     {
-        echo $this->renderHTML('<form%s>');
+        echo $this->renderHTML('<form%{params}>');
     }
 
     /**

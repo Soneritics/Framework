@@ -110,7 +110,7 @@ abstract class AbstractHelperObject
             $parameters = '';
         }
 
-        return sprintf($markup, $parameters) . "\n";
+        return str_replace('{params}', $parameters, $markup) . "\n";
     }
 
     /**

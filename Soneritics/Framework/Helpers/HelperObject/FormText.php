@@ -39,6 +39,6 @@ class FormText extends AbstractHelperObject
      */
     public function render()
     {
-        echo $this->renderHTML('<input type="text"%s>');
+        echo $this->renderHTML('<input type="text"{params}>');
     }
 }
