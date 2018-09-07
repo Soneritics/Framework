@@ -180,7 +180,7 @@ class SingleInstance
                 ->setPath($this->tempDir);
 
             $path = $this->file->getPath();
-            if (!file_exists($path) && !@mkdir($path, 0777, true)) {
+            if (!file_exists($path) && (!@mkdir($path, 0777, true) || !chmod($path, 0777))) {
                 throw new \Exception("Directory {$path} could not be created.");
             }
         }
