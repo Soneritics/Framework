@@ -125,6 +125,7 @@ class SingleInstance
     public function start()
     {
         $this->getFile()->set($this->name);
+        $this->getFile()->setChmod(0777);
         $this->endOnDestruct = true;
         return $this;
     }
