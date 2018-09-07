@@ -193,4 +193,13 @@ class File
     {
         return filemtime($this->getPath() . $this->getFilename());
     }
+
+    /**
+     * Set file mode
+     * @param $mode
+     */
+    public function setChmod($mode)
+    {
+        chmod($this->getPath() . $this->getFilename(), $mode);
+    }
 }
