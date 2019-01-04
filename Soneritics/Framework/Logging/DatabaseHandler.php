@@ -48,46 +48,40 @@ class DatabaseHandler extends AbstractProcessingHandler
     const DATABASE = 'Logging';
 
     /**
-     * Constructor.
      * @param array $databaseConfiguration
-     * @param Table $table Log table
-     * @param bool|int $level The minimum logging level at which this handler will be triggered
-     * @param boolean $bubble
+     * @param Table $table
+     * @return DatabaseHandler
      */
-    public function __construct(array $databaseConfiguration, Table $table, $level = Logger::DEBUG, $bubble = true)
+    public function setDatabaseAndTable(array $databaseConfiguration, Table $table): DatabaseHandler
     {
         DatabaseConnectionFactory::create(static::DATABASE, $databaseConfiguration);
         static::$table = $table;
 
-        /* @todo Check if the table exists, otherwise create
-        if (!$table->exists()) {
-
-        }
-        */
-
-        parent::__construct($level, $bubble);
+        return $this;
     }
 
     /**
      * Write a record to the database.
      * @param array $record
      */
-    protected function write(array $record)
+    protected function write(array $record): void
     {
-        $currentDatabase = DatabaseConnectionFactory::getActiveDatabaseId();
-        try {
-            DatabaseConnectionFactory::select(static::DATABASE);
+        if (static::$table !== null) {
+            $currentDatabase = DatabaseConnectionFactory::getActiveDatabaseId();
+            try {
+                DatabaseConnectionFactory::select(static::DATABASE);
 
-            $values = [
-                'message' => $record['message'],
-                'context' => print_r($record['context'], true),
-                'level' => $record['level_name']
-            ];
-            static::$table->insert()->values($values)->execute();
-        } catch (\Exception $e) {
-            // Fail silently, as logging a logging error results in an infinite loop
-        } finally {
-            DatabaseConnectionFactory::select($currentDatabase);
+                $values = [
+                    'message' => $record['message'],
+                    'context' => print_r($record['context'], true),
+                    'level' => $record['level_name']
+                ];
+                static::$table->insert()->values($values)->execute();
+            } catch (\Throwable $t) {
+                // Fail silently, as logging a logging error results in an infinite loop
+            } finally {
+                DatabaseConnectionFactory::select($currentDatabase);
+            }
         }
     }
 }
