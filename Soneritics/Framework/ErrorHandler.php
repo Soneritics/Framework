@@ -68,7 +68,16 @@ class ErrorHandler
      */
     public function handle(\Exception $exception)
     {
-        \Application::log()->error($exception->getMessage(), $exception->getTrace());
+        \Application::log()->error(
+            $exception->getMessage(), 
+            [
+                'REQUEST_URI' => $_SERVER['REQUEST_URI'] ?? '',
+                'POST' => $_POST,
+                'GET' => $_GET,
+                'TRACE' => $exception->getTrace()
+            ]
+        );
+
         $this->sendHeader($exception);
         $errorRenderer = new Renderer\ErrorRenderer('Error');
         echo $errorRenderer->render(
