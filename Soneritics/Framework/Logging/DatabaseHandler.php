@@ -45,7 +45,7 @@ class DatabaseHandler extends AbstractProcessingHandler
     /**
      * Database id
      */
-    const DATABASE = 'Logging';
+    private $database = 'Logging';
 
     /**
      * @param array $databaseConfiguration
@@ -54,7 +54,7 @@ class DatabaseHandler extends AbstractProcessingHandler
      */
     public function setDatabaseAndTable(array $databaseConfiguration, Table $table): DatabaseHandler
     {
-        DatabaseConnectionFactory::create(static::DATABASE, $databaseConfiguration);
+        DatabaseConnectionFactory::create($this->database, $databaseConfiguration);
         static::$table = $table;
 
         return $this;
@@ -69,7 +69,7 @@ class DatabaseHandler extends AbstractProcessingHandler
         if (static::$table !== null) {
             $currentDatabase = DatabaseConnectionFactory::getActiveDatabaseId();
             try {
-                DatabaseConnectionFactory::select(static::DATABASE);
+                DatabaseConnectionFactory::select($this->database);
 
                 $values = [
                     'message' => $record['message'],
@@ -83,5 +83,23 @@ class DatabaseHandler extends AbstractProcessingHandler
                 DatabaseConnectionFactory::select($currentDatabase);
             }
         }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDatabase()
+    {
+        return $this->database;
+    }
+
+    /**
+     * @param mixed $database
+     * @return DatabaseHandler
+     */
+    public function setDatabase($database)
+    {
+        $this->database = $database;
+        return $this;
     }
 }
