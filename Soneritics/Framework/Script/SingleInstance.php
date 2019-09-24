@@ -172,7 +172,7 @@ class SingleInstance
      * @return File
      * @throws \Exception
      */
-    private function getFile()
+    public function getFile()
     {
         if (empty($this->file)) {
             $this->file = (new File)
